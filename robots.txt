@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /thanks
+Disallow: /thanks.html
+Disallow: /thankyou
+Disallow: /thankyou.html
+
+Sitemap: https://vanessaflowyoga.co.uk/sitemap.xml

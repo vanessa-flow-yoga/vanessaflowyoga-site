@@ -1,0 +1,81 @@
+# Netlify redirects — Vanessa Flow Yoga
+# Source of truth: docs/url-migration-map.md. Do not edit here without updating that doc.
+# Format: /old-path  /new-path  301
+# Blog posts: ALL live posts are rebuilt at their original /post/<slug> URLs,
+# so there are NO blog-post redirects — nothing moved, nothing to redirect.
+
+# --- Block internal files from being served (they ship in the folder but
+#     must not be public). 404! forces the block even though the file exists. ---
+/CLAUDE.md    /404.html  404!
+/docs/*       /404.html  404!
+/mockups/*    /404.html  404!
+/.claude/*    /404.html  404!
+
+# --- Core pages ---
+/21dayintropass            /intro-pass         301
+/members                   /membership         301
+/privates-corporate        /private-corporate  301
+/classdescriptions-clitheroe  /classes         301
+/inquiry-services-page     /contact            301
+/upcoming-yoga-retreats-24 /events           301
+/uk-yoga-retreats          /events           301
+/general-7                 /events             301
+/greece2026                /events           301
+
+# --- Pages the Wix sitemap OMITTED, found by re-crawl 23 Jul 2026
+#     (booking/timetable pages → classes). /faq /privacy /events kept identical. ---
+/schedule                  /classes            301
+/book-online               /classes            301
+/our-yoga-schedule-ribble-valley  /classes#timetable  301
+
+# --- Free home yoga retired (member perk now, page removed 19 Jul 2026) ---
+/free-home-yoga            /                   301
+/free-home-yoga.html       /                   301
+
+# --- Dropped class/topic pages → classes ---
+/pregnancy-yoga-ribble-valley  /classes  301
+/baby-me                       /classes  301
+/hot-yoga-ribble-valley        /classes  301
+/challenges                    /classes  301
+
+# --- /pricing → membership (sensible default, veto if wrong) ---
+/pricing                       /membership  301
+
+# --- Email-sequence links (Vanessa's list, 28 Jul) ---
+/vflowmembership               /membership  301
+/on-demand-library             https://momence.com/video/plugin/13063  301
+
+# --- Old Wix booking placeholders → classes (private ones → private-corporate) ---
+/service-page/1-private-yoga-class                 /private-corporate  301
+/service-page/4-private-yoga-classes               /private-corporate  301
+/service-page/pregnancy-yoga-drop-in               /classes  301
+/service-page/spring-pregnancy-yoga-6-week-block   /classes  301
+/service-page/summer-pregnancy-yoga-5-week-block   /classes  301
+/service-page/march-pregnancy-yoga-6-week-block    /classes  301
+/service-page/mum-baby-yoga-february-1             /classes  301
+/service-page/mum-baby-yoga-march-1                /classes  301
+/service-page/baby-me-yoga-5-week-block-booking    /classes  301
+
+# --- Blog category pages ---
+/blog/categories/yoga             /blog  301
+/blog/categories/health           /blog  301
+/blog/categories/dance            /blog  301
+/blog/categories/teacher-training /blog  301
+
+# retreats + gift-cards pages removed (24 Jul) — page returns via backend when a retreat is live
+/gift-cards          https://momence.com/gcc/13063  301
+/retreats            /events                       301
+
+# reviews page removed (reviews now shown across the site)
+/reviews             /                             301
+
+# home-yoga-library retired 19 Jul 2026 (library is now a members-only perk)
+/home-yoga-library       /membership   301
+/home-yoga-library.html  /membership   301
+
+# blog slug typo fix ("go-too" -> "go-to")
+/post/i-m-new-to-yoga-what-class-should-i-go-too       /post/i-m-new-to-yoga-what-class-should-i-go-to   301
+/post/i-m-new-to-yoga-what-class-should-i-go-too.html  /post/i-m-new-to-yoga-what-class-should-i-go-to   301
+
+# keep the CSS backup out of the deploy
+/styles.backup.css   /404.html   404!

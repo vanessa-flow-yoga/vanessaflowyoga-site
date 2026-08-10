@@ -1,0 +1,6 @@
+# Netlify config — Vanessa Flow Yoga front-end
+# Static site, no build step: the repo root IS the publish directory.
+# The _headers and _redirects files in this folder are applied automatically.
+
+[build]
+  publish = "."

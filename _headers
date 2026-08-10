@@ -1,0 +1,28 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), browsing-topics=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  # CSP: 'unsafe-inline' is required for scripts because this hand-built no-build
+  # site uses inline <script> blocks and inline onclick handlers. It still locks
+  # down connect-src/frame-src/object-src/base-uri. img-src is https: because the
+  # Instagram/Behold image hosts are hard to enumerate — tighten after checking
+  # the live network tab. VERIFY on the live site (watch console for CSP blocks,
+  # especially the Momence webchat iframe host) before considering this final.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://momence.com https://*.momence.com https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://*.momence.com; font-src 'self' data: https://*.momence.com; img-src 'self' data: https:; connect-src 'self' https://api.momence.com https://momence.com https://*.momence.com wss://momence.com wss://*.momence.com https://feeds.behold.so https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com https://stats.g.doubleclick.net; frame-src https://www.google.com https://maps.google.com https://momence.com https://*.momence.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/videos/*
+  Cache-Control: public, max-age=2592000
+
+/styles.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=0, must-revalidate
