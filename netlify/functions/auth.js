@@ -1,7 +1,7 @@
 // Step 1 of the GitHub login: send the editor's popup window to GitHub.
 // The client secret is never used here, and never leaves Netlify's settings.
 
-const CALLBACK = "https://admin.vanessaflowyoga.co.uk/oauth/callback";
+const CALLBACK = "https://vanessaflowyoga.co.uk/oauth/callback";
 
 exports.handler = async () => {
   const clientId = process.env.GITHUB_CLIENT_ID;

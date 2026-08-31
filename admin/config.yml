@@ -11,7 +11,7 @@ backend:
   name: github
   repo: vanessa-flow-yoga/vanessaflowyoga-site
   branch: main
-  base_url: https://admin.vanessaflowyoga.co.uk
+  base_url: https://vanessaflowyoga.co.uk
   auth_endpoint: oauth/auth
 
 # Where uploaded images are stored, and how pages refer to them.

@@ -4,10 +4,9 @@
 # Blog posts: ALL live posts are rebuilt at their original /post/<slug> URLs,
 # so there are NO blog-post redirects — nothing moved, nothing to redirect.
 
-# --- Content editor (admin.vanessaflowyoga.co.uk) ---------------------------
-#     The subdomain is a Netlify domain alias on this same site. Its root serves
-#     the editor; the two /oauth routes are the GitHub sign-in relay.
-https://admin.vanessaflowyoga.co.uk/  /admin/index.html  200
+# --- Content editor ---------------------------------------------------------
+#     Served at /admin on the main domain, which already has a valid
+#     certificate. The two /oauth routes are the GitHub sign-in relay.
 /oauth/auth      /.netlify/functions/auth      200
 /oauth/callback  /.netlify/functions/callback  200
 
