@@ -21,8 +21,10 @@
   #  - unpkg.com, because the app fetches its LANGUAGE FILE from there at
   #    runtime and lazy-loads optional extras. Blocking it does not degrade
   #    gracefully: the page retries forever and never renders.
+  #  - cdn.jsdelivr.net, which serves its fonts, including the ICON font. Block
+  #    it and the editor renders but its buttons lose their icons.
   # This applies to /admin/* only. The public site's policy is untouched.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://unpkg.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' data: blob: https://unpkg.com https://api.github.com https://github.com https://raw.githubusercontent.com https://avatars.githubusercontent.com https://www.githubstatus.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://unpkg.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https://cdn.jsdelivr.net; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' data: blob: https://unpkg.com https://cdn.jsdelivr.net https://api.github.com https://github.com https://raw.githubusercontent.com https://avatars.githubusercontent.com https://www.githubstatus.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
 
 /oauth/*
   X-Robots-Tag: noindex, nofollow
