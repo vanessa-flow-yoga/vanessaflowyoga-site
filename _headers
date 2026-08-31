@@ -15,8 +15,11 @@
 /admin/*
   X-Robots-Tag: noindex, nofollow
   # The editor is a self-hosted app that talks to GitHub. It needs its own
-  # policy: the main site's is deliberately too tight to allow that.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://github.com https://raw.githubusercontent.com https://avatars.githubusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
+  # policy: the main site's is deliberately too tight to allow that. It builds
+  # blob: URLs at runtime (image previews, file handling), which the site's
+  # default-src 'self' blocks outright — hence blob: on the specific directives
+  # rather than loosening default-src.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' data: blob: https://api.github.com https://github.com https://raw.githubusercontent.com https://avatars.githubusercontent.com https://www.githubstatus.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
 
 /oauth/*
   X-Robots-Tag: noindex, nofollow
