@@ -1,6 +1,12 @@
 # Editor settings for Vanessa Flow Yoga.
 # Saving here commits to the site repo, which redeploys the site automatically.
 
+# Branding: the studio logo replaces the editor's own on the sign-in screen
+# and in the browser tab, and the links back to the site point at the real one.
+logo_url: /favicon.svg   # square brand mark; images/logo.png is white-on-transparent and vanishes here
+site_url: https://vanessaflowyoga.co.uk
+display_url: https://vanessaflowyoga.co.uk
+
 backend:
   name: github
   repo: vanessa-flow-yoga/vanessaflowyoga-site

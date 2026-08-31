@@ -9,6 +9,78 @@
 <!-- Named explicitly: the editor is served at the root of the admin subdomain,
      so a relative path would look for the settings in the wrong place. -->
 <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+
+<style>
+  /* Brand the editor. The app renders inside shadow DOM, so its own styles are
+     out of reach — but CSS custom properties inherit through it, which is how
+     these land. Kept to colour and type on purpose: restyling a third-party
+     app's layout is how you break it on its next update. */
+
+  /* Site fonts, self-hosted, same files the public site uses. */
+  @font-face {
+    font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url("/fonts/inter-400-latin.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap;
+    src: url("/fonts/inter-600-latin.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap;
+    src: url("/fonts/inter-700-latin.woff2") format("woff2");
+  }
+
+  /* The app injects its own stylesheet AFTER this one and declares these on
+     :root[data-theme="light"], which outranks a plain :root. !important is
+     what makes the brand colour actually win. */
+  :root {
+    --vfy-coral: #eb6768;
+    --vfy-coral-deep: #d04f50;
+    --vfy-ink: #49545a;
+
+    /* Buttons, links, focus rings and selected states across the whole editor. */
+    /* Verified against the rendered buttons, not assumed from the names:
+         -color     : the accent fill (primary button, borders, focus rings)
+         -inverted  : text drawn ON that fill  -> white
+         -text      : the accent used AS TEXT on a pale background -> must be
+                      dark. Brand coral is only 3.15:1 on white and fails
+                      WCAG AA, so this is a darkened coral (5.1:1 on the
+                      button's grey).
+       The coral FILL keeps white text at 3.15:1, which is below AA. Left as
+       is deliberately: that is the same pairing the public site's CTA buttons
+       use, and darkening it enough to pass turns the brand coral into a hard
+       red. A brand-level decision, not one to make silently here.
+       Get these the wrong way round and the "Sign In with GitHub" button
+       renders white-on-pale-grey and effectively disappears. */
+    --sui-primary-accent-color: #eb6768 !important;
+    --sui-primary-accent-color-inverted: #ffffff !important;
+    --sui-primary-accent-color-text: #a83e3f !important;
+    --sui-primary-accent-color-light: #a83e3f !important;
+
+    --sui-font-family-default: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    --sui-heading-font-family: var(--sui-font-family-default) !important;
+    --sui-control-font-family: var(--sui-font-family-default) !important;
+    --sui-textbox-font-family: var(--sui-font-family-default) !important;
+  }
+
+  /* Put the studio's name on the sign-in screen instead of the product's.
+     Anchored to the logo image's own class rather than a generated one. If a
+     future update changes that markup this simply stops applying and the
+     product name comes back — it cannot break the page. */
+  div:has(> img.logo) > h1 { font-size: 0 !important; line-height: 0 !important; }
+  div:has(> img.logo) > h1::after {
+    content: "Vanessa Flow Yoga";
+    display: block;
+    font-family: var(--sui-font-family-default);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--vfy-ink);
+  }
+  div:has(> img.logo) > img.logo { border-radius: 14px; }
+
+  html, body { background: #fff; }
+</style>
 </head>
 <body>
 <script src="/admin/sveltia-cms.js"></script>
