@@ -1,10 +1,11 @@
-# Netlify config — Vanessa Flow Yoga front-end
+# Netlify config — Vanessa Flow Yoga
 # Eleventy builds the site into _site/, which is what gets published.
 # _headers and _redirects are copied into _site/ and applied automatically.
 
 [build]
   command = "npx @11ty/eleventy"
   publish = "_site"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "22"

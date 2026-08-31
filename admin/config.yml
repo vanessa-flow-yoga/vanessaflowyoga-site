@@ -1,0 +1,72 @@
+# Editor settings for Vanessa Flow Yoga.
+# Saving here commits to the site repo, which redeploys the site automatically.
+
+backend:
+  name: github
+  repo: vanessa-flow-yoga/vanessaflowyoga-site
+  branch: main
+  base_url: https://admin.vanessaflowyoga.co.uk
+  auth_endpoint: oauth/auth
+
+# Where uploaded images are stored, and how pages refer to them.
+media_folder: images/blog
+public_folder: /images/blog
+
+collections:
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    folder: post
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: [published, title]
+    view_filters:
+      - { label: Beginners,  field: category, pattern: Beginners }
+      - { label: Hot yoga,   field: category, pattern: Hot yoga }
+      - { label: Poses,      field: category, pattern: Poses }
+      - { label: Wellbeing,  field: category, pattern: Wellbeing }
+      - { label: Yoga 101,   field: category, pattern: Yoga 101 }
+      - { label: Breathwork, field: category, pattern: Breathwork }
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: Shown as the headline, the browser tab, and the Google result.
+
+      - label: Search description
+        name: description
+        widget: text
+        hint: The grey summary line under the title in Google. Aim for one or two sentences.
+
+      - label: Category
+        name: category
+        widget: select
+        options: [Beginners, Breathwork, Hot yoga, Poses, Wellbeing, Yoga 101]
+
+      - label: Date
+        name: published
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        hint: Shown on the post as month and year, e.g. Aug 2026.
+
+      - label: Read time
+        name: readTime
+        widget: string
+        default: 3 min read
+        hint: Roughly 200 words per minute. Write it as "4 min read".
+
+      - label: Cover image
+        name: image
+        widget: image
+        required: false
+        hint: Optional. Leave empty to keep the post's existing cover image.
+
+      - label: Post
+        name: body
+        widget: markdown
+        hint: Use Heading 2 for section headings, as the existing posts do.

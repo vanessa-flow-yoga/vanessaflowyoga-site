@@ -22,6 +22,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_headers");
   eleventyConfig.addPassthroughCopy("_redirects");
 
+  // The content editor, plus its app file served from our own domain rather
+  // than a CDN, so the site's security policy can stay locked down.
+  eleventyConfig.addPassthroughCopy("admin");
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/@sveltia/cms/dist/sveltia-cms.js": "admin/sveltia-cms.js",
+  });
+
   // Escapes text the way the hand-written pages did: & " < > only, leaving
   // apostrophes alone. Keeps output identical to the pre-CMS pages.
   eleventyConfig.addFilter("vfyesc", (v) =>
