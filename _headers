@@ -14,12 +14,15 @@
 
 /admin/*
   X-Robots-Tag: noindex, nofollow
-  # The editor is a self-hosted app that talks to GitHub. It needs its own
-  # policy: the main site's is deliberately too tight to allow that. It builds
-  # blob: URLs at runtime (image previews, file handling), which the site's
-  # default-src 'self' blocks outright — hence blob: on the specific directives
-  # rather than loosening default-src.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' data: blob: https://api.github.com https://github.com https://raw.githubusercontent.com https://avatars.githubusercontent.com https://www.githubstatus.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
+  # The editor is a third-party app that talks to GitHub, so it needs its own
+  # policy; the main site's is deliberately far too tight for it. Two things
+  # are load-bearing here and were found the hard way:
+  #  - blob: URLs, which default-src 'self' blocks outright
+  #  - unpkg.com, because the app fetches its LANGUAGE FILE from there at
+  #    runtime and lazy-loads optional extras. Blocking it does not degrade
+  #    gracefully: the page retries forever and never renders.
+  # This applies to /admin/* only. The public site's policy is untouched.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://unpkg.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' data: blob: https://unpkg.com https://api.github.com https://github.com https://raw.githubusercontent.com https://avatars.githubusercontent.com https://www.githubstatus.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
 
 /oauth/*
   X-Robots-Tag: noindex, nofollow
