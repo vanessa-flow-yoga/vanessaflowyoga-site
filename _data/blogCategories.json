@@ -1,0 +1,26 @@
+{
+  "Beginners": {
+    "bg": "var(--mint-ink)",
+    "fg": "#fff"
+  },
+  "Breathwork": {
+    "bg": "var(--mint-ink)",
+    "fg": "#fff"
+  },
+  "Hot yoga": {
+    "bg": "var(--coral)",
+    "fg": "#fff"
+  },
+  "Poses": {
+    "bg": "var(--yellow)",
+    "fg": "var(--ink)"
+  },
+  "Wellbeing": {
+    "bg": "var(--purple-deep)",
+    "fg": "#fff"
+  },
+  "Yoga 101": {
+    "bg": "var(--purple-deep)",
+    "fg": "#fff"
+  }
+}
