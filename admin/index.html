@@ -84,5 +84,31 @@
 </head>
 <body>
 <script src="/admin/sveltia-cms.js"></script>
+<script>
+  // Leave exactly one way in. The editor also offers "Sign In Using Access
+  // Token", a developer fallback that needs a hand-made GitHub token — if
+  // Vanessa picks it by mistake she gets a dead end with no way to tell why.
+  //
+  // Deliberately defensive: it matches on the button's visible words, and if a
+  // future version renames or drops that button this simply does nothing. It
+  // can hide a button, never break the page or block sign-in.
+  (function () {
+    var HIDE = /access token/i;
+    function tidy() {
+      var found = false;
+      document.querySelectorAll('button').forEach(function (b) {
+        // Strip the bidi isolate characters the app wraps label text in.
+        var label = (b.textContent || '').replace(/[\u2066-\u2069]/g, '').trim();
+        if (HIDE.test(label)) { b.style.display = 'none'; found = true; }
+      });
+      return found;
+    }
+    tidy();
+    // The sign-in screen renders after this script runs, so watch briefly.
+    var obs = new MutationObserver(tidy);
+    obs.observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { obs.disconnect(); }, 15000);
+  })();
+</script>
 </body>
 </html>
