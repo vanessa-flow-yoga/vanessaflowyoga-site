@@ -200,7 +200,7 @@
 
     // Momence appends params to its post-checkout redirect. The id param is
     // named after the type, e.g.
-    //   thankyou?type=membership&membershipId=23857   (21-day intro pass)
+    //   thankyou?type=membership&membershipId=907474  (21-day intro pass)
     //   thankyou?type=session&sessionId=128604735     (single class)
     // So we read 'type' plus whichever *Id param is present.
     var params   = new URLSearchParams(location.search);
@@ -225,7 +225,9 @@
     // alone can't tell the intro pass from a normal membership). Leave blank to
     // fire Purchase with no value (Meta still optimises on purchase count).
     var VALUE_BY_ID = {
-      '23857': 35,     // 21-day intro pass
+      '907474': 35,    // 21-day intro pass (current product, from 31 Aug 2026)
+      '23857': 35,     // 21-day intro pass (retired product; kept so any
+                       // in-flight checkout on the old link still reports a value)
       '443979': 52,    // Limited membership (first payment; £52/mo)
       '27005': 72,     // Unlimited membership (first payment; £72/mo)
       '36635': 780,    // Annual membership (£780)
