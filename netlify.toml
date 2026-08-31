@@ -1,6 +1,10 @@
 # Netlify config — Vanessa Flow Yoga front-end
-# Static site, no build step: the repo root IS the publish directory.
-# The _headers and _redirects files in this folder are applied automatically.
+# Eleventy builds the site into _site/, which is what gets published.
+# _headers and _redirects are copied into _site/ and applied automatically.
 
 [build]
-  publish = "."
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"
