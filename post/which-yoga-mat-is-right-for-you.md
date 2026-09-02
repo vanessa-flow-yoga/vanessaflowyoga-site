@@ -54,6 +54,6 @@ Obviously mats are readily available from most places these days, tkmaxx being a
 
 **_My mat spray in class is some disinfectant & water, perfect for plastic mats but I would use sparingly on rubber ones. Please_** **_double check with whatever brand you go with for the best advice._**
 
-(If you do attend my classes and are still happy just using my mats please feel reassured that my mats are deep cleaned on a regular basis and sprayed down after each class but will be a £1 to rent after the 23rd of August)
+(If you do attend my classes and are still happy just using my mats please feel reassured that my mats are deep cleaned on a regular basis and sprayed down after each class and are £2 a class to rent)
 
 I hope you have found this helpful. And any further questions please feel free to ask.

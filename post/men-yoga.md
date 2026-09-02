@@ -100,6 +100,6 @@ We'd love to see more guys at our Ribble Valley yoga studio to discover the exce
 
 The best place to start is with a 21-Day Intro Pass, as this gives you unlimited access to try different classes, from a gentle restorative yoga to an energising vinyasa flow, or perhaps use the benefits of a heated room to ease into super tight muscles.
 
-Wear comfortable clothing that allows you to move with ease, and if you don't have your own mat yet, don't worry - you can hire one for £1 a class (free rental during our intro pass) and all other equipment will be provided.
+Wear comfortable clothing that allows you to move with ease, and if you don't have your own mat yet, don't worry - you can hire one for £2 a class (free rental during our intro pass) and all other equipment will be provided.
 
 **_Got a question about yoga for men?_** Get in touch and ask away. We look forward to seeing you on the mat.
