@@ -2620,6 +2620,43 @@
   .home-hero .hh-panel::after { z-index: 0; }
 
   .cardband.tint { background: var(--paper-2, #e9eef1); }
+  .faq.tint { background: var(--paper-2, #e9eef1); }
+
+  /* ---- Upcoming pregnancy classes (live from Momence, pregnancy-classes.js) ---- */
+  .pc-list { max-width: 720px; margin: 0 auto; }
+  .pc-head {
+    font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 14px; text-align: center;
+  }
+  .pc-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px 20px; margin-bottom: 12px; text-decoration: none;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  a.pc-row:hover { border-color: var(--coral); box-shadow: 0 10px 30px rgba(14,13,11,.07); transform: translateY(-2px); }
+  .pc-when { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .pc-date { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+  .pc-time { font-size: 13.5px; color: var(--ink-soft); }
+  .pc-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .pc-price { font-size: 17px; font-weight: 800; color: var(--ink); }
+  .pc-spots {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--coral-deep, var(--coral)); background: rgba(235,103,104,0.12);
+    padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .pc-cta {
+    font-size: 13px; font-weight: 800; letter-spacing: 0.04em;
+    background: var(--coral); color: #fff; padding: 10px 18px; border-radius: 999px; white-space: nowrap;
+  }
+  .pc-cta.is-full { background: var(--paper-2, #e9eef1); color: var(--ink-soft); }
+  .pc-more { display: block; text-align: center; margin-top: 18px; font-weight: 800; color: var(--coral-deep, var(--coral)); }
+  .pc-empty { text-align: center; padding: 32px 20px; }
+  .pc-empty p { font-size: 16px; color: var(--ink-soft); max-width: 46ch; margin: 0 auto 20px; line-height: 1.6; }
+  @media (max-width: 560px) {
+    .pc-row { flex-direction: column; align-items: stretch; gap: 14px; }
+    .pc-right { justify-content: space-between; }
+  }
 
   /* ---- Stat band: dark section with little yellow cards ---- */
   .statband { background: var(--ink); color: #fff; }

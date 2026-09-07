@@ -38,8 +38,14 @@
 /free-home-yoga            /                   301
 /free-home-yoga.html       /                   301
 
+# --- Pregnancy yoga: dedicated page restored 7 Sep 2026 ---
+# This URL ranked before go-live and was 301'd away to /classes on 30 Jul,
+# which is what killed pregnancy bookings. The real page lives here again;
+# do NOT redirect it. /pregnancy-yoga is the short alias.
+/pregnancy-yoga                /pregnancy-yoga-ribble-valley  301
+/prenatal-yoga                 /pregnancy-yoga-ribble-valley  301
+
 # --- Dropped class/topic pages → classes ---
-/pregnancy-yoga-ribble-valley  /classes  301
 /baby-me                       /classes  301
 /hot-yoga-ribble-valley        /classes  301
 /challenges                    /classes  301
@@ -54,10 +60,10 @@
 # --- Old Wix booking placeholders → classes (private ones → private-corporate) ---
 /service-page/1-private-yoga-class                 /private-corporate  301
 /service-page/4-private-yoga-classes               /private-corporate  301
-/service-page/pregnancy-yoga-drop-in               /classes  301
-/service-page/spring-pregnancy-yoga-6-week-block   /classes  301
-/service-page/summer-pregnancy-yoga-5-week-block   /classes  301
-/service-page/march-pregnancy-yoga-6-week-block    /classes  301
+/service-page/pregnancy-yoga-drop-in               /pregnancy-yoga-ribble-valley  301
+/service-page/spring-pregnancy-yoga-6-week-block   /pregnancy-yoga-ribble-valley  301
+/service-page/summer-pregnancy-yoga-5-week-block   /pregnancy-yoga-ribble-valley  301
+/service-page/march-pregnancy-yoga-6-week-block    /pregnancy-yoga-ribble-valley  301
 /service-page/mum-baby-yoga-february-1             /classes  301
 /service-page/mum-baby-yoga-march-1                /classes  301
 /service-page/baby-me-yoga-5-week-block-booking    /classes  301
