@@ -2275,7 +2275,7 @@
     color: var(--tsoft); max-width: 50ch; margin: 30px 0 0;
   }
   .id-hero.center .lead { margin-inline: auto; }
-  .id-hero .hero-cta-row { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .id-hero .hero-cta-row { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-start; align-items: center; }
   .id-hero.center .hero-cta-row { justify-content: center; }
   /* big translucent decorative circles */
   .id-hero .orb { position: absolute; border-radius: 50%; z-index: 1; opacity: 0.5; pointer-events: none; }
