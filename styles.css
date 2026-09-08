@@ -2621,33 +2621,37 @@
 
   .cardband.tint { background: var(--paper-2, #e9eef1); }
   .faq.tint { background: var(--paper-2, #e9eef1); }
-  /* ---- Hero date pills (pregnancy page) ---- */
-  .hero-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 24px; }
+  /* ---- Hero date pills (pregnancy page) ----
+     These are the hero's only call to action, so each pill carries its own
+     "Book now" chip and links straight to that Momence session. */
+  .hero-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; }
   .hero-dates[hidden] { display: none; }
   .hd-label {
     font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-soft); margin-right: 4px;
+    color: var(--ink-soft); width: 100%; margin-bottom: 2px;
   }
   .hd-pill {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 9px 15px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 8px 8px 16px; border-radius: 999px;
     border: 1.5px solid rgba(14,13,11,0.14); background: var(--paper);
-    font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none;
-    transition: border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+    font-size: 14.5px; font-weight: 700; color: var(--ink); text-decoration: none;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
   }
   a.hd-pill:hover, a.hd-pill:focus-visible {
-    border-color: var(--coral); color: var(--coral-deep);
-    transform: translateY(-1px); box-shadow: 0 6px 16px rgba(14,13,11,0.08);
+    border-color: var(--coral); transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(14,13,11,0.10);
   }
-  .hd-pill.is-full { opacity: 0.6; }
-  .hd-full {
-    font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink-soft); background: var(--paper-2, #e9eef1);
-    padding: 3px 7px; border-radius: 999px;
+  .hd-when { white-space: nowrap; }
+  .hd-act {
+    font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; white-space: nowrap;
+    background: var(--coral); color: #fff; padding: 7px 12px; border-radius: 999px;
+    transition: background .2s ease;
   }
+  a.hd-pill:hover .hd-act { background: var(--coral-deep); }
+  .hd-act.is-full { background: var(--paper-2, #e9eef1); color: var(--ink-soft); }
+  .hd-pill.is-full { opacity: 0.72; }
   .hd-more { font-size: 14px; font-weight: 800; color: var(--coral-deep); text-decoration: none; padding: 9px 4px; }
   .hd-more:hover { text-decoration: underline; }
-  @media (max-width: 520px) { .hd-label { width: 100%; margin-bottom: 2px; } }
 
   /* ---- Pregnancy benefits: nine cards, 3x3 on desktop ---- */
   .ben-grid {
@@ -5634,5 +5638,8 @@ main#main > section:first-child { padding-top: 116px; }
   body.page-pregnancy a.pc-row:hover { border-color: var(--purple); }
   body.page-pregnancy .pc-spots { color: var(--purple-deep); background: rgba(128,121,185,0.14); }
   body.page-pregnancy a.hd-pill:hover,
-  body.page-pregnancy a.hd-pill:focus-visible { border-color: var(--purple); color: var(--purple-deep); }
+  body.page-pregnancy a.hd-pill:focus-visible { border-color: var(--purple); }
+  body.page-pregnancy .hd-act { background: var(--purple); }
+  body.page-pregnancy a.hd-pill:hover .hd-act { background: var(--purple-deep); }
+  body.page-pregnancy .hd-act.is-full { background: var(--paper-2, #e9eef1); color: var(--ink-soft); }
   body.page-pregnancy .hd-more { color: var(--purple-deep); }

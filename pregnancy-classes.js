@@ -148,13 +148,18 @@
       var a = document.createElement(link ? 'a' : 'span');
       a.className = 'hd-pill' + (full ? ' is-full' : '');
       if (link) { a.href = link; a.target = '_blank'; a.rel = 'noopener'; }
-      a.textContent = fmtShort(new Date(x.startsAt));
-      if (full) {
-        var f = document.createElement('span');
-        f.className = 'hd-full';
-        f.textContent = x.allowWaitlist ? 'Waitlist' : 'Full';
-        a.appendChild(f);
-      }
+      var when = document.createElement('span');
+      when.className = 'hd-when';
+      when.textContent = fmtShort(new Date(x.startsAt));
+      a.appendChild(when);
+
+      // The pills are the hero's only call to action now, so each carries its
+      // own visible book affordance rather than relying on the pill being a link.
+      var act = document.createElement('span');
+      act.className = 'hd-act' + (full ? ' is-full' : '');
+      act.textContent = full ? (x.allowWaitlist ? 'Waitlist' : 'Full') : 'Book now';
+      a.appendChild(act);
+
       pillsEl.appendChild(a);
     });
 
