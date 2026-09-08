@@ -124,7 +124,7 @@
 }
 </script>
 </head>
-<body class="nav-solid theme-mint">
+<body class="nav-solid theme-mint page-pregnancy">
 <a class="skip-link" href="#main">Skip to content</a>
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
@@ -168,6 +168,10 @@
         <a class="btn" href="#dates">Book a class <span class="arrow">&rarr;</span></a>
         <a class="btn-outline" href="#dates">See upcoming dates</a>
       </div>
+      <!-- Filled by pregnancy-classes.js from the same fetch as the list below.
+           Stays hidden until it has real dates, so a failed fetch shows nothing
+           rather than an empty label. -->
+      <div class="hero-dates" id="pregnancyDatePills" hidden></div>
     </div>
     <div class="hero-cards" role="button" tabindex="0" aria-label="Browse studio photos">
       <div class="polaroid"><img src="images/pregnancy-yoga.webp" alt="A pregnancy yoga class in progress" loading="lazy" decoding="async"><span class="cap">Sunday evenings</span></div>

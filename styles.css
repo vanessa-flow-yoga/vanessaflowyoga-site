@@ -2621,6 +2621,34 @@
 
   .cardband.tint { background: var(--paper-2, #e9eef1); }
   .faq.tint { background: var(--paper-2, #e9eef1); }
+  /* ---- Hero date pills (pregnancy page) ---- */
+  .hero-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 24px; }
+  .hero-dates[hidden] { display: none; }
+  .hd-label {
+    font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); margin-right: 4px;
+  }
+  .hd-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 15px; border-radius: 999px;
+    border: 1.5px solid rgba(14,13,11,0.14); background: var(--paper);
+    font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none;
+    transition: border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  a.hd-pill:hover, a.hd-pill:focus-visible {
+    border-color: var(--coral); color: var(--coral-deep);
+    transform: translateY(-1px); box-shadow: 0 6px 16px rgba(14,13,11,0.08);
+  }
+  .hd-pill.is-full { opacity: 0.6; }
+  .hd-full {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); background: var(--paper-2, #e9eef1);
+    padding: 3px 7px; border-radius: 999px;
+  }
+  .hd-more { font-size: 14px; font-weight: 800; color: var(--coral-deep); text-decoration: none; padding: 9px 4px; }
+  .hd-more:hover { text-decoration: underline; }
+  @media (max-width: 520px) { .hd-label { width: 100%; margin-bottom: 2px; } }
+
   /* ---- Pregnancy benefits: nine cards, 3x3 on desktop ---- */
   .ben-grid {
     list-style: none; padding: 0; margin: 0 auto; max-width: 1020px;
@@ -5578,3 +5606,33 @@ main#main > section:first-child { padding-top: 116px; }
 .blog-pager .pg-btn:hover:not(:disabled) { border-color: var(--coral); color: var(--coral); }
 .blog-pager .pg-btn.is-active { background: var(--coral); border-color: var(--coral); color: #fff; }
 .blog-pager .pg-btn:disabled { opacity: .38; cursor: default; }
+
+  /* ---- Pregnancy page: brand purple instead of coral (owner request) ----
+     Scoped to body.page-pregnancy so events.html, the other theme-mint page,
+     is untouched. Purple is also better on white than coral: 3.97:1 against
+     3.15:1. --purple-deep would clear AA outright at 5.73:1. */
+  body.page-pregnancy .id-hero h1 .accent { color: var(--purple); }
+  body.page-pregnancy .tt-head h1 .accent,
+  body.page-pregnancy .tt-head h2 .accent,
+  body.page-pregnancy .faq-head h1 .accent,
+  body.page-pregnancy .faq-head h2 .accent { color: var(--purple); }
+  body.page-pregnancy .btn {
+    background: var(--purple);
+    box-shadow: 0 12px 32px rgba(128,121,185,0.36), inset 0 1px 0 rgba(255,255,255,0.20);
+  }
+  body.page-pregnancy .btn:hover {
+    background: var(--purple-deep);
+    box-shadow: 0 16px 36px rgba(128,121,185,0.44), inset 0 1px 0 rgba(255,255,255,0.20);
+  }
+  /* the pack band: purple ground, so its button inverts to white on purple */
+  body.page-pregnancy .pass-band { background: var(--purple); }
+  body.page-pregnancy .pass-stamp { color: var(--purple); }
+  body.page-pregnancy .pass-band .btn { background: var(--paper); color: var(--purple); box-shadow: 0 12px 30px rgba(14,13,11,0.18); }
+  body.page-pregnancy .pass-band .btn:hover { background: var(--ink); color: #fff; }
+  /* the live dates list and hero pills follow the same accent */
+  body.page-pregnancy .pc-cta { background: var(--purple); }
+  body.page-pregnancy a.pc-row:hover { border-color: var(--purple); }
+  body.page-pregnancy .pc-spots { color: var(--purple-deep); background: rgba(128,121,185,0.14); }
+  body.page-pregnancy a.hd-pill:hover,
+  body.page-pregnancy a.hd-pill:focus-visible { border-color: var(--purple); color: var(--purple-deep); }
+  body.page-pregnancy .hd-more { color: var(--purple-deep); }

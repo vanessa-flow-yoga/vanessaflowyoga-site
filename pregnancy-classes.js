@@ -16,6 +16,7 @@
 (function () {
   'use strict';
   var el = document.getElementById('pregnancyClasses');
+  var pillsEl = document.getElementById('pregnancyDatePills');
   if (!el) return;
 
   var host = el.getAttribute('data-host') || '13063';
@@ -41,6 +42,12 @@
     return d.toLocaleTimeString('en-GB', {
       timeZone: 'Europe/London', hour: 'numeric', minute: '2-digit', hour12: true
     }).replace(/\s/g, '').toLowerCase();
+  }
+
+  function fmtShort(d) {
+    return d.toLocaleDateString('en-GB', {
+      timeZone: 'Europe/London', weekday: 'short', day: 'numeric', month: 'short'
+    });
   }
 
   // Momence session names carry decorative emoji ("PREGNANCY YOGA<diamond>").
@@ -119,6 +126,49 @@
     return a;
   }
 
+  /* Hero date pills. Same sessions as the list below, each linking straight to
+     its own Momence session, so someone who already knows they want to come can
+     book from the top of the page without scrolling. Capped, with a "more" pill
+     back to the full list. */
+  var HERO_PILLS = 5;
+  function renderPills(sessions) {
+    if (!pillsEl || !sessions.length) return;
+    pillsEl.textContent = '';
+
+    var label = document.createElement('span');
+    label.className = 'hd-label';
+    label.textContent = 'Next dates';
+    pillsEl.appendChild(label);
+
+    sessions.slice(0, HERO_PILLS).forEach(function (x) {
+      var link = safeUrl(x.link, 'https://momence.com/');
+      var left = spotsLeft(x);
+      var full = left !== null && left <= 0;
+
+      var a = document.createElement(link ? 'a' : 'span');
+      a.className = 'hd-pill' + (full ? ' is-full' : '');
+      if (link) { a.href = link; a.target = '_blank'; a.rel = 'noopener'; }
+      a.textContent = fmtShort(new Date(x.startsAt));
+      if (full) {
+        var f = document.createElement('span');
+        f.className = 'hd-full';
+        f.textContent = x.allowWaitlist ? 'Waitlist' : 'Full';
+        a.appendChild(f);
+      }
+      pillsEl.appendChild(a);
+    });
+
+    if (sessions.length > HERO_PILLS) {
+      var more = document.createElement('a');
+      more.className = 'hd-more';
+      more.href = '#dates';
+      more.textContent = '+' + (sessions.length - HERO_PILLS) + ' more';
+      pillsEl.appendChild(more);
+    }
+
+    pillsEl.hidden = false;
+  }
+
   function fallback(msg) {
     el.className = 'pc-list pc-empty';
     el.textContent = '';
@@ -156,6 +206,7 @@
       el.appendChild(head);
 
       sessions.forEach(function (x) { el.appendChild(row(x)); });
+      renderPills(sessions);
 
       // No "see all dates" link here on purpose: it landed on the general
       // Momence page, which the owner found confusing (7 Sep). Each row books
