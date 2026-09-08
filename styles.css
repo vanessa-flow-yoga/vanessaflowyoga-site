@@ -5673,5 +5673,15 @@ main#main > section:first-child { padding-top: 116px; }
   body.page-pregnancy a.hd-pill:hover .hd-act { background: var(--purple-deep); }
   body.page-pregnancy .hd-act.is-full { background: var(--paper-2, #e9eef1); color: var(--ink-soft); }
   body.page-pregnancy .hd-more { color: var(--purple-deep); }
+  /* Lift the hero content so the dates sit higher on desktop. The shared
+     .id-hero.has-cards top padding computes to ~198px here, which pushed the
+     booking strip near the bottom of a 900px-tall hero. */
+  @media (min-width: 881px) {
+    /* !important is needed only because the shared "Non-home hero" rule above
+       sets padding-top with !important; this is more specific, so it wins. */
+    body.page-pregnancy .id-hero.has-cards { padding-top: clamp(112px, 13vh, 150px) !important; }
+    body.page-pregnancy .id-hero.has-cards h1 { margin-top: 16px !important; }
+    body.page-pregnancy .id-hero .hero-foot { margin-top: 22px; }
+  }
   /* The five-class pack CTA stays brand coral on purpose, so the alternative
      offer reads as distinct from the purple date pills above it. */
