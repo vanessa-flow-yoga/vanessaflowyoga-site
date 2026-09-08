@@ -2621,6 +2621,26 @@
 
   .cardband.tint { background: var(--paper-2, #e9eef1); }
   .faq.tint { background: var(--paper-2, #e9eef1); }
+  /* ---- Pregnancy benefits: nine cards, 3x3 on desktop ---- */
+  .ben-grid {
+    list-style: none; padding: 0; margin: 0 auto; max-width: 1020px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .ben-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    padding: 24px 22px; display: flex; flex-direction: column; gap: 10px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .ben-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(14,13,11,0.07); border-color: var(--mint-ink); }
+  .ben-n {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.12em;
+    color: var(--mint-text); line-height: 1;
+  }
+  .ben-card p { font-size: 16px; line-height: 1.6; color: var(--ink-2); margin: 0; }
+  .ben-card strong { color: var(--ink); }
+  @media (max-width: 920px) { .ben-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .ben-grid { grid-template-columns: 1fr; } }
+
   /* ---- Five-class pregnancy pack band (brand pink = --coral, image + offer) ---- */
   .pass-band {
     background: var(--coral); color: #fff; position: relative; overflow: hidden;
@@ -3394,6 +3414,10 @@
      deep mint (4.8:1 on white). The closing mint band needs ink instead. */
   body.theme-mint .eyebrow { color: var(--mint-text); }
   body.theme-mint .cta-band .eyebrow { color: var(--ink); }
+  /* Same yellow problem on the hero headline: .id-hero h1 .accent takes --page,
+     which is 1.4:1 on the white hero. Use coral, matching the h2 accents on the
+     page and clearing the 3:1 that large text needs. */
+  body.theme-mint .id-hero h1 .accent { color: var(--coral); }
 
   /* sticker colour fix: outrank the old body.theme-x .sticker rules (0,2,1) */
   body.theme-purple .id-hero .sticker,
