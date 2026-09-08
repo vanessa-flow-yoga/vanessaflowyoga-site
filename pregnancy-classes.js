@@ -20,7 +20,7 @@
 
   var host = el.getAttribute('data-host') || '13063';
   var teacher = el.getAttribute('data-teacher') || '9368';
-  var count = parseInt(el.getAttribute('data-count') || '6', 10);
+  var count = parseInt(el.getAttribute('data-count') || '12', 10);
   var bookAll = el.getAttribute('data-book-all') || 'https://momence.com/u/vanessa-flow-yoga';
 
   var from = new Date().toISOString();
@@ -157,13 +157,9 @@
 
       sessions.forEach(function (x) { el.appendChild(row(x)); });
 
-      var more = document.createElement('a');
-      more.className = 'pc-more';
-      more.href = bookAll;
-      more.target = '_blank';
-      more.rel = 'noopener';
-      more.textContent = 'See all dates and book on Momence';
-      el.appendChild(more);
+      // No "see all dates" link here on purpose: it landed on the general
+      // Momence page, which the owner found confusing (7 Sep). Each row books
+      // its own session directly.
 
       if (window.vfyReveal) window.vfyReveal(el);
     })

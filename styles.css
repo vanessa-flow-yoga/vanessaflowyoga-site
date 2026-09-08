@@ -2621,6 +2621,14 @@
 
   .cardband.tint { background: var(--paper-2, #e9eef1); }
   .faq.tint { background: var(--paper-2, #e9eef1); }
+  /* Five-class pregnancy pass band: ink ground so it reads as an offer, not a
+     repeat of the mint closing CTA further down the same page. */
+  .cta-band.pass-band { background: var(--ink); color: #fff; }
+  .cta-band.pass-band p { color: rgba(255,255,255,0.82); }
+  .cta-band.pass-band .eyebrow { color: rgba(255,255,255,0.72); }
+  .cta-band.pass-band h2 .accent { color: var(--yellow); }
+  .cta-band.pass-band .btn { background: var(--coral); }
+  .cta-band.pass-band .btn:hover { background: var(--coral-deep); }
 
   /* ---- Upcoming pregnancy classes (live from Momence, pregnancy-classes.js) ---- */
   .pc-list { max-width: 720px; margin: 0 auto; }
