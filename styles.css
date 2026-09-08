@@ -2592,14 +2592,11 @@
     .id-hero.has-cards .lead { margin-left: auto; margin-right: auto; }
     .hero-cards { height: 356px; margin: 0 auto; }
     .hero-cards .polaroid { width: clamp(210px, 64vw, 262px); }
-    /* Stacked, the dates are the call to action and must come before the
-       photos, not after them. The full-width strip sits last in the DOM so it
-       can span both columns on desktop. */
-    .id-hero.has-cards .hero-text { order: 1; }
-    .id-hero.has-cards .hero-foot { order: 2; margin-top: 4px; }
-    .id-hero.has-cards .hero-cards { order: 3; }
+    /* Everything in the hero centres when stacked, including the dates strip
+       and the pack link, both of which are flex rows. */
     .id-hero .hero-dates { justify-content: center; }
-    .hero-pack { text-align: center; }
+    .id-hero .hero-pack { justify-content: center; }
+    .id-hero .hd-label { text-align: center; }
   }
 
   /* ============================================================
@@ -2632,16 +2629,15 @@
   /* ---- Hero date pills (pregnancy page) ----
      These are the hero's only call to action, so each pill carries its own
      "Book now" chip and links straight to that Momence session. */
-  /* Full-width strip under both hero columns, so five dates sit on one row
-     rather than wrapping inside the narrower text column. */
-  .id-hero .hero-foot { grid-column: 1 / -1; margin-top: clamp(24px, 3vw, 38px); }
+  /* Sits inside .hero-text, directly under the copy. */
+  .id-hero .hero-foot { margin-top: clamp(22px, 2.6vw, 32px); }
   .hero-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
   .hero-dates[hidden] { display: none; }
   .hd-label {
     font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink-soft); margin-right: 4px;
   }
-  @media (max-width: 900px) { .hd-label { width: 100%; margin-bottom: 2px; } }
+  @media (max-width: 900px) { .hd-label { width: 100%; margin-right: 0; margin-bottom: 2px; } }
   .hd-pill {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 8px 8px 8px 16px; border-radius: 999px;
@@ -5677,7 +5673,5 @@ main#main > section:first-child { padding-top: 116px; }
   body.page-pregnancy a.hd-pill:hover .hd-act { background: var(--purple-deep); }
   body.page-pregnancy .hd-act.is-full { background: var(--paper-2, #e9eef1); color: var(--ink-soft); }
   body.page-pregnancy .hd-more { color: var(--purple-deep); }
-  body.page-pregnancy .hp-link { background: rgba(128,121,185,0.12); color: var(--purple-deep); }
-  body.page-pregnancy .hp-link:hover,
-  body.page-pregnancy .hp-link:focus-visible { background: rgba(128,121,185,0.18); border-color: var(--purple); }
-  body.page-pregnancy .hp-save { background: var(--purple); }
+  /* The five-class pack CTA stays brand coral on purpose, so the alternative
+     offer reads as distinct from the purple date pills above it. */
