@@ -20,4 +20,4 @@ The old Sveltia GitHub-login editor and OAuth functions are retired. Do not re-e
 
 ## Current state (24 September 2026)
 
-The separate-folder admin build is implemented and locally tested. **No new Netlify project has been created or published.** Identity, invited users, GitHub writer credential and real sign-in/save remain unconfigured. The local preview is read-only. The previous customer-site `/admin/` was removed from production in commit `dec9c54` and verified as HTTP 404.
+The separate admin project is live at `https://vanessa-flow-yoga-admin.netlify.app/`. Identity is enabled and Charlie reports successful sign-in. The GitHub writer credential is not configured, so content loading and saving are not yet ready; the admin now gives a specific setup message for that state. Keep `VFY_ADMIN_WRITE_BRANCH` on the review branch for initial end-to-end testing, not `main`. The previous customer-site `/admin/` was removed from production in commit `dec9c54` and verified as HTTP 404.
