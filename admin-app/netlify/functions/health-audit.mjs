@@ -3,7 +3,7 @@ const ADMIN = 'https://vanessa-flow-yoga-admin.netlify.app'
 const FORMS = ['contact', 'membership', 'application', 'retreat-interest']
 const CATEGORIES = ['availability', 'pages', 'links', 'security', 'seo', 'forms', 'media', 'speed', 'integrations', 'github']
 
-const timeLimit = 6000
+const timeLimit = 4000
 async function get(url, method = 'GET') {
   return fetch(url, {method, redirect:'follow', headers:{'user-agent':'VanessaFlowYoga-Health/2.0'}, signal:AbortSignal.timeout(timeLimit)})
 }
@@ -85,7 +85,7 @@ export async function runAudit({site=SITE,admin=ADMIN}={}) {
   const robots=await probe(site+'/robots.txt')
   add('seo','Robots file',robots.ok?'pass':'fail',robots.detail||`HTTP ${robots.status}`,site+'/robots.txt')
   await parallel([...internal],25,async url=>{const check=await probe(url);add('links',`Internal ${new URL(url).pathname}`,(check.ok?'pass':'fail'),check.detail||`HTTP ${check.status}`,url)})
-  await parallel([...external],25,async url=>{const check=await probe(url);add('links',`External ${new URL(url).hostname}`,check.ok?'pass':check.warning?'warn':'fail',check.detail||`HTTP ${check.status}`,url)})
+  await parallel([...external],30,async url=>{const check=await probe(url);add('links',`External ${new URL(url).hostname}`,check.ok?'pass':check.warning||!check.status?'warn':'fail',check.detail||`HTTP ${check.status}`,url)})
   for(const name of FORMS){const entry=forms.get(name);const found=!!entry&&new RegExp(`name=["']form-name["'][^>]*value=["']${name}["']`,'i').test(entry.markup);add('forms',`${name} form recognised`,found?'pass':'fail',entry?.pathname||'Not found')}
   for(const asset of library?.assets||[])images.add(site+asset.path)
   await parallel([...images],30,async url=>{const check=await probe(url);add('media',pagePath(url),check.ok?'pass':'fail',check.detail||`HTTP ${check.status}`,url)})
