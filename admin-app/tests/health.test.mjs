@@ -23,3 +23,9 @@ test('cookie audit distinguishes a gated iframe from an active third-party ifram
   assert.equal(hasPrematureThirdParty('<iframe src="https://maps.google.com/maps"></iframe>'),true)
   assert.equal(hasPrematureThirdParty('<script src="https://www.googletagmanager.com/gtag/js"></script>'),true)
 })
+
+test('saved Instagram reports link to the Behold account, not the raw feed',()=>{
+  const report=addManualChecks({results:[{category:'integrations',name:'Instagram feed',status:'fail',detail:'HTTP 402',url:'https://feeds.behold.so/old-feed'}]},defaultSettings())
+  assert.equal(report.results[0].url,'https://app.behold.so/sign-in')
+  assert.match(report.results[0].detail,/Behold returned HTTP 402/)
+})

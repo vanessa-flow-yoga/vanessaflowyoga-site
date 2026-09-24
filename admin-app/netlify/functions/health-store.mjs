@@ -22,7 +22,14 @@ export async function writeSettings(value) {await store().setJSON('settings',val
 export async function readReport() {return await store().get('latest-report',{type:'json'})}
 export async function writeReport(value) {await store().setJSON('latest-report',value)}
 export function addManualChecks(report,settings) {
-  const results=[...report.results]
+  // Older saved reports pointed Instagram's action at the raw feed response.
+  // Keep that historical result, but always send the editor to Behold.
+  const results=report.results.map(item=>item.category==='integrations'&&item.name.startsWith('Instagram feed')?{
+    ...item,
+    name:'Instagram feed (Behold)',
+    detail:item.detail==='HTTP 402'?'Behold returned HTTP 402. Check feed usage and plan in your Behold account.':item.detail,
+    url:'https://app.behold.so/sign-in',
+  }:item)
   for(const item of manualItems){const record=settings.manual?.[item.id];if(record?.status==='fail')results.push({category:item.id.startsWith('form:')?'forms':item.id,name:item.label,status:'fail',detail:`Manual check failed on ${record.checkedAt?.slice(0,10)||'an unknown date'}`,url:item.url})}
   return {...report,results,summary:{pass:results.filter(r=>r.status==='pass').length,fail:results.filter(r=>r.status==='fail').length,warn:results.filter(r=>r.status==='warn').length}}
 }
