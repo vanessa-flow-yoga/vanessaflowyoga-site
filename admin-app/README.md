@@ -8,4 +8,10 @@ Run `npm ci`, `npm test`, and `npm run build` from this folder for local verific
 
 Password sign-in and publishing require Netlify Identity (invite-only) plus the server-only GitHub writer credential on **this admin project**. No passwords or tokens belong in the repository. Setup details are in `../docs/admin-editor.md`.
 
-After setting `VFY_ADMIN_WRITE_BRANCH` in Netlify, deploy this admin project again so its Functions receive the new value. During review use `codex/vanessa-content-editor`; only switch to `main` when the customer-facing site release has been verified.
+The admin is now configured to publish to `main`; Charlie has confirmed a signed-in publish. Keep the site-specific token on this project only. The token expiry defaults to 24 October 2026 and can be overridden with `VFY_GITHUB_TOKEN_EXPIRES_AT` when rotated.
+
+The Media library is a read-only index generated at build time. It shows file details and descriptions from each page placement; it does not edit image metadata. Every existing and new blog post has optional search title, search description, cover-image description, and social image fields. Blank search fields fall back to the current headline and summary, keeping older posts intact.
+
+Site health runs daily and can be run manually after admin sign-in. It stores the latest report, recipients, notification choices, and manual check dates in a private Netlify Blobs store on this admin project. No extra database or shared account is used. The monitor checks responses, links, assets, security headers, basic SEO, form markup, integrations and GitHub. It does **not** submit forms, prove inbox delivery or certify GDPR, mobile layout or real-user speed. Record those in the hands-on check area after testing them.
+
+Failure email needs `RESEND_API_KEY` and `HEALTH_ALERT_FROM` set for the admin project's Functions in Netlify. The sender must be verified with the mail provider. Until both are present and a real alert email is received, the admin displays that alerts are inactive. Alert recipients and red-check categories can then be changed inside Site health. Removing the scheduled function and the `vfy-health` Blobs data rolls back this monitor without affecting the public website.

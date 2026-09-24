@@ -20,4 +20,6 @@ The old Sveltia GitHub-login editor and OAuth functions are retired. Do not re-e
 
 ## Current state (24 September 2026)
 
-The separate admin project is live at `https://vanessa-flow-yoga-admin.netlify.app/`. Identity is enabled and Charlie reports successful sign-in. The GitHub writer credential is not configured, so content loading and saving are not yet ready; the admin now gives a specific setup message for that state. Keep `VFY_ADMIN_WRITE_BRANCH` on the review branch for initial end-to-end testing, not `main`. The previous customer-site `/admin/` was removed from production in commit `dec9c54` and verified as HTTP 404.
+The separate admin project is live at `https://admin.vanessaflowyoga.co.uk/admin/` and `https://vanessa-flow-yoga-admin.netlify.app/admin/`. Charlie confirmed successful sign-in and a direct live publish. The admin write branch is `main`. The former customer-site `/admin/` remains removed. The GitHub content token expires on 24 October 2026 and must be rotated before then.
+
+Media, Site health, and optional per-post SEO editing have been built locally and require deployment and signed-in verification. The health screen distinguishes automated checks from manual proof of form delivery, cookie blocking/GDPR review, visitor speed, and mobile layout. Alert email is **not active** until the admin Netlify project has a verified mail sender and `RESEND_API_KEY` plus `HEALTH_ALERT_FROM` in its Functions environment, followed by a real delivered test. The email recipients and alert categories are edited in the admin after deployment.

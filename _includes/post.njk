@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>{{ title | vfyesc | safe }} · Vanessa Flow Yoga</title>
-<meta name="description" content="{{ description | vfyesc | safe }}">
+<title>{{ seoTitle | vfyesc | safe }} · Vanessa Flow Yoga</title>
+<meta name="description" content="{{ seoDescription | vfyesc | safe }}">
 <meta name="theme-color" content="#eb6768">
 <link rel="canonical" href="{{ canonical }}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -12,17 +12,15 @@
 <link rel="apple-touch-icon" href="/images/logo.png">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Vanessa Flow Yoga">
-<meta property="og:title" content="{{ title | vfyesc | safe }} · Vanessa Flow Yoga">
-<meta property="og:description" content="{{ description | vfyesc | safe }}">
-<meta property="og:image" content="https://vanessaflowyoga.co.uk/images/vanessa-social.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:title" content="{{ seoTitle | vfyesc | safe }} · Vanessa Flow Yoga">
+<meta property="og:description" content="{{ seoDescription | vfyesc | safe }}">
+<meta property="og:image" content="https://vanessaflowyoga.co.uk{{ socialImage }}">
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ title | vfyesc | safe }} · Vanessa Flow Yoga">
-<meta name="twitter:description" content="{{ description | vfyesc | safe }}">
-<meta name="twitter:image" content="https://vanessaflowyoga.co.uk/images/vanessa-social.png">
+<meta name="twitter:title" content="{{ seoTitle | vfyesc | safe }} · Vanessa Flow Yoga">
+<meta name="twitter:description" content="{{ seoDescription | vfyesc | safe }}">
+<meta name="twitter:image" content="https://vanessaflowyoga.co.uk{{ socialImage }}">
 <script type="application/ld+json">
 {{ jsonld | safe }}
 </script>
@@ -67,7 +65,7 @@
   <span class="a-cat" style="background:{{ cat.bg }};color:{{ cat.fg }}">{{ category | vfyesc | safe }}</span>
   <h1>{{ title | vfyesc | safe }}</h1>
   <div class="a-meta">{{ publishedISO | monthYear }} &middot; {{ readTime }} &middot; Vanessa Flow</div>
-  <div class="a-hero" style="background-image:url('{{ hero }}')" role="img" aria-label="{{ title | vfyesc | safe }}"></div>
+  <div class="a-hero" style="background-image:url('{{ hero }}')" role="img" aria-label="{{ heroAlt | vfyesc | safe }}"></div>
   <div class="a-body">
 {{ content | safe }}  </div>
   <a class="a-back" href="/blog.html">&larr; Back to all posts</a>

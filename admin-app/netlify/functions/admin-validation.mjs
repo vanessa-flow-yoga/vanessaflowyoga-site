@@ -20,6 +20,10 @@ export function validateContent(path, text) {
         !['Beginners','Breathwork','Hot yoga','Poses','Wellbeing','Yoga 101'].includes(meta.category) ||
         !date(meta.published) || !match[2].trim()) return 'Complete the title, summary, category, date and article text.'
     if (meta.image && !image(meta.image)) return 'Choose a photo uploaded to this website.'
+    if (meta.seo_title && (typeof meta.seo_title !== 'string' || meta.seo_title.length > 65)) return 'Keep the search result title under 65 characters.'
+    if (meta.seo_description && (typeof meta.seo_description !== 'string' || meta.seo_description.length > 160)) return 'Keep the search result description under 160 characters.'
+    if (meta.hero_alt && (typeof meta.hero_alt !== 'string' || meta.hero_alt.length > 130)) return 'Keep the cover image alt text under 130 characters.'
+    if (meta.social_image && !image(meta.social_image)) return 'Choose a social image uploaded to this website.'
     return null
   }
   let value

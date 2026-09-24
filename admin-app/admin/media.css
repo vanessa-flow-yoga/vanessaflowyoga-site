@@ -1,0 +1,32 @@
+.media-controls{display:flex;gap:12px;align-items:center;margin:22px 0 12px}
+.media-controls input,.media-controls select{border:1px solid #d9d3d9;background:#fff;border-radius:9px;padding:12px 13px;min-height:44px;color:#2f3034}
+.media-controls input{flex:1;min-width:0}
+.media-controls select{width:210px}
+.media-count{font-size:13px;color:#6c6670}
+.media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.media-card{border:1px solid #e8dee6;border-radius:13px;background:#fff;min-width:0;overflow:hidden}
+.media-card[open]{grid-row:span 2}
+.media-card__summary{list-style:none;display:flex;align-items:center;gap:15px;padding:14px;cursor:pointer}
+.media-card__summary::-webkit-details-marker{display:none}
+.media-card__summary:hover{background:#fcf8fb}
+.media-card__thumb{width:94px;height:78px;flex:0 0 94px;background:#f2edf1;border-radius:8px;display:grid;place-items:center;overflow:hidden}
+.media-card__thumb img{width:100%;height:100%;object-fit:cover}
+.media-card__video{font-size:13px;color:#624465;font-weight:700}
+.media-card__identity{min-width:0;display:grid;gap:5px}
+.media-card__identity strong{font-size:14px;overflow-wrap:anywhere}
+.media-card__identity small,.media-card__dimensions{font-size:12px;color:#746c76}
+.media-card__chevron{margin-left:auto;color:#8d6687;font-size:22px}
+.media-card[open] .media-card__chevron{transform:rotate(180deg)}
+.media-card__body{border-top:1px solid #eee6ec;padding:15px 18px 18px;font-size:13px;overflow-wrap:anywhere}
+.media-card__body h3{font-size:13px;margin:20px 0 8px;color:#49354f}
+.media-card__body h3:first-of-type{margin-top:14px}
+.media-card__body p{line-height:1.5}
+.media-card__original{font-weight:700;color:#624465}
+.media-alt{background:#f5f0f4;border-radius:7px;padding:9px 11px;margin:7px 0}
+.media-warning{color:#8c2929}
+.media-uses{margin:0;padding-left:20px;max-height:240px;overflow:auto}
+.media-uses li{margin:9px 0}
+.media-uses a{font-weight:700;color:#624465}
+.media-uses small{display:block;color:#6c6670;margin-top:3px;line-height:1.4}
+@media(max-width:800px){.media-grid{grid-template-columns:1fr}.media-card[open]{grid-row:auto}}
+@media(max-width:520px){.media-controls{flex-direction:column;align-items:stretch}.media-controls select{width:100%}}

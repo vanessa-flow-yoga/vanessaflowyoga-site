@@ -20,6 +20,10 @@ module.exports = {
     publishedISO: (d) => isoDate(d.published),
     // Cover image: whatever the CMS uploaded, else the migrated naming scheme.
     hero: (d) => d.image || `/images/blog/${d.page.fileSlug}.webp`,
+    heroAlt: (d) => d.hero_alt || d.title,
+    seoTitle: (d) => d.seo_title || d.title,
+    seoDescription: (d) => d.seo_description || d.description,
+    socialImage: (d) => d.social_image || d.image || `/images/blog/${d.page.fileSlug}.webp`,
     cat: (d) => {
       const c = d.blogCategories[d.category];
       if (!c) throw new Error(`Unknown blog category "${d.category}" in ${d.page.inputPath}`);
@@ -30,8 +34,8 @@ module.exports = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: d.title,
-        description: d.description,
-        image: SITE + (d.image || `/images/blog/${d.page.fileSlug}.webp`),
+        description: d.seo_description || d.description,
+        image: SITE + (d.social_image || d.image || `/images/blog/${d.page.fileSlug}.webp`),
         datePublished: isoDate(d.published),
         dateModified: isoDate(d.updated || d.published),
         author: { "@type": "Organization", name: "Vanessa Flow Yoga" },

@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {execFileSync} = require('node:child_process');
+const {buildMediaLibrary} = require('./media-library.cjs');
 
 const adminRoot = __dirname;
 const siteRoot = path.resolve(adminRoot, '..');
@@ -12,6 +13,7 @@ fs.rmSync(dist, {recursive: true, force: true});
 execFileSync(process.execPath, ['scripts/build-site.cjs'], {cwd: siteRoot, stdio: 'inherit'});
 fs.cpSync(siteOutput, dist, {recursive: true});
 fs.cpSync(path.join(adminRoot, 'admin'), path.join(dist, 'admin'), {recursive: true});
+fs.writeFileSync(path.join(dist, 'admin', 'media-library.json'), JSON.stringify(buildMediaLibrary(siteOutput)));
 
 const redirectsPath = path.join(dist, '_redirects');
 const siteRedirects = fs.readFileSync(redirectsPath, 'utf8');
