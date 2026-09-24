@@ -43,9 +43,11 @@ export default async function handler(req) {
     const user = await getUser()
     if (!user) return response({error: 'Please sign in again.'}, 401)
     if (!user.roles?.includes('admin')) return response({error: 'Your account needs admin access.'}, 403)
-    if (!process.env.VFY_GITHUB_CONTENT_TOKEN) return response({error: 'The GitHub content connection is not set up yet. Ask Charlie to finish the admin project setup.'}, 503)
-
     const url = new URL(req.url)
+    if (req.method === 'GET' && url.searchParams.get('mode') === '1') {
+      return response({mode: !process.env.VFY_ADMIN_WRITE_BRANCH ? 'readonly' : BRANCH === 'main' ? 'live' : 'review'})
+    }
+    if (!process.env.VFY_GITHUB_CONTENT_TOKEN) return response({error: 'The GitHub content connection is not set up yet. Ask Charlie to finish the admin project setup.'}, 503)
     const collection = url.searchParams.get('collection')
     const path = url.searchParams.get('path')
     if (req.method === 'POST' && url.searchParams.get('upload') === '1') {
@@ -124,7 +126,7 @@ export default async function handler(req) {
     })
     if (!commit.ok) return response({error: commit.status === 409 ? 'This entry changed. Reload before saving.' : 'GitHub could not save this change.'}, commit.status === 409 ? 409 : 502)
     const saved = await commit.json()
-    return response({path, sha: saved.content?.sha, message: 'Saved. Netlify will now update the website.'})
+    return response({path, sha: saved.content?.sha, message: BRANCH === 'main' ? 'Published. Netlify will now update the website.' : 'Saved to the review branch. The live website has not changed.'})
   } catch (error) {
     if (error?.status === 403) return response({error: 'Request was blocked for security.'}, 403)
     return response({error: 'The admin could not complete that request.'}, 500)
