@@ -1,0 +1,9 @@
+# New, separate Vanessa admin Netlify project. Set the project base directory
+# to admin-app so these settings cannot change the customer-facing site.
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"

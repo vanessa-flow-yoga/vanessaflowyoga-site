@@ -4,8 +4,8 @@ The admin is a **new Netlify project**, not a path on the customer-facing websit
 
 ## Two builds from the same repository
 
-- Customer website Netlify project (`vanessaflow`): normal `npm run build`, publishes `_site`, and keeps `/admin` returning 404.
-- New admin Netlify project: connect `vanessa-flow-yoga/vanessaflowyoga-site`, use the same build command and publish directory from `netlify.toml`, and set project environment variable `VFY_ADMIN_PROJECT=1` for builds. This includes `/admin/`, sends the project's root to the admin, and adds `X-Robots-Tag: noindex, nofollow` across the preview mirror. Public site pages are mirrored here solely so unsaved wording previews can use the real layout without cross-origin access.
+- Customer website Netlify project (`vanessaflow`): repository root, `netlify.toml` at root, normal `npm run build`, publishes `_site`, and keeps `/admin` returning 404.
+- New admin Netlify project: connect the **same** repository but set its base directory to `admin-app`. Its own `admin-app/netlify.toml` runs `npm run build` and publishes `dist`, with Functions under `admin-app/netlify/functions`. No special environment variable is needed to select the admin build. The admin build includes `/admin/`, sends the new project's root there, and adds `X-Robots-Tag: noindex, nofollow` across the preview mirror. Public site pages are copied into this separate build solely so unsaved wording previews can use the real layout without cross-origin access.
 
 The old Sveltia GitHub-login editor and OAuth functions are retired. Do not re-enable them. The browser receives no GitHub write credential.
 
@@ -20,4 +20,4 @@ The old Sveltia GitHub-login editor and OAuth functions are retired. Do not re-e
 
 ## Current state (24 September 2026)
 
-The separate-project build mode is implemented locally and being tested. **No new Netlify project has been created or published.** Identity, invited users, GitHub writer credential and real sign-in/save remain unconfigured. The local preview is read-only. The previous customer-site `/admin/` was removed from production in commit `dec9c54` and verified as HTTP 404.
+The separate-folder admin build is implemented and locally tested. **No new Netlify project has been created or published.** Identity, invited users, GitHub writer credential and real sign-in/save remain unconfigured. The local preview is read-only. The previous customer-site `/admin/` was removed from production in commit `dec9c54` and verified as HTTP 404.

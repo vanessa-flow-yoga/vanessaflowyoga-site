@@ -28,9 +28,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_headers");
   eleventyConfig.addPassthroughCopy("_redirects");
 
-  // Only the separate Netlify admin project publishes the website studio.
-  if (process.env.VFY_ADMIN_PROJECT === '1') eleventyConfig.addPassthroughCopy('admin');
-
   // Escapes text the way the hand-written pages did: & " < > only, leaving
   // apostrophes alone. Keeps output identical to the pre-CMS pages.
   eleventyConfig.addFilter("vfyesc", (v) =>
