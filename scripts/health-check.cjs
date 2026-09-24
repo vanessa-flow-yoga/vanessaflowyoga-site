@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const site = new URL(process.env.HEALTH_SITE_URL || 'https://vanessaflowyoga.co.uk');
+const adminSite = new URL(process.env.HEALTH_ADMIN_URL || 'https://vanessa-flow-yoga-admin.netlify.app');
 const timeoutMs = Number(process.env.HEALTH_TIMEOUT_MS || 15000);
 const results = [];
 const tested = new Set();
@@ -45,7 +46,9 @@ async function main() {
 
   const pagePaths = [...new Set([...sitemap.body.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)]
     .map(match => { try { return new URL(match[1]).pathname; } catch { return ''; } }).filter(Boolean))];
-  for (const essential of ['/admin/', '/thanks.html']) if (!pagePaths.includes(essential)) pagePaths.push(essential);
+  for (const essential of ['/thanks.html']) if (!pagePaths.includes(essential)) pagePaths.push(essential);
+  await checkHttp('Separate admin sign-in', new URL('/admin/', adminSite), body => body.includes('Vanessa Flow Yoga'));
+  await checkHttp('Admin identity service', new URL('/.netlify/identity/settings', adminSite), body => body.includes('external'));
   record('Sitemap has pages', pagePaths.length > 0, `${pagePaths.length} listed`);
 
   const internal = new Map();

@@ -10,6 +10,8 @@ const fs = require('node:fs');
 module.exports = function (eleventyConfig) {
   // Internal notes must never be published as site pages.
   eleventyConfig.ignores.add('docs/**');
+  // The separately deployed admin app is not part of the customer-facing site.
+  eleventyConfig.ignores.add('admin-app/**');
 
   // Whole directories, copied as-is. "post" is NOT here: it holds markdown now.
   ["images", "fonts", "videos", "content"].forEach((dir) =>
