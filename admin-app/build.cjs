@@ -18,7 +18,7 @@ const siteRedirects = fs.readFileSync(redirectsPath, 'utf8');
 const retiredAdminRules = '/admin  /404.html  404!\n/admin/*  /404.html  404!\n';
 if (!siteRedirects.startsWith(retiredAdminRules)) throw new Error('Expected public-site admin block is missing');
 fs.writeFileSync(redirectsPath,
-  '/  /admin/  302!\n/admin  /admin/  301!\n' + siteRedirects.slice(retiredAdminRules.length));
+  '/  /admin/  302!\n' + siteRedirects.slice(retiredAdminRules.length));
 
 const headersPath = path.join(dist, '_headers');
 fs.writeFileSync(headersPath,
