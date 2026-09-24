@@ -43,6 +43,7 @@ export default async function handler(req) {
     const user = await getUser()
     if (!user) return response({error: 'Please sign in again.'}, 401)
     if (!user.roles?.includes('admin')) return response({error: 'Your account needs admin access.'}, 403)
+    if (!process.env.VFY_GITHUB_CONTENT_TOKEN) return response({error: 'The GitHub content connection is not set up yet. Ask Charlie to finish the admin project setup.'}, 503)
 
     const url = new URL(req.url)
     const collection = url.searchParams.get('collection')
