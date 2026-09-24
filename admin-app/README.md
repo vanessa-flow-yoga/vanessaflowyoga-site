@@ -7,3 +7,5 @@ The root of the admin project's `*.netlify.app` address redirects to `/admin/`. 
 Run `npm ci`, `npm test`, and `npm run build` from this folder for local verification. The build includes a noindex copy of the website pages so the editor can preview wording in the actual layout.
 
 Password sign-in and publishing require Netlify Identity (invite-only) plus the server-only GitHub writer credential on **this admin project**. No passwords or tokens belong in the repository. Setup details are in `../docs/admin-editor.md`.
+
+After setting `VFY_ADMIN_WRITE_BRANCH` in Netlify, deploy this admin project again so its Functions receive the new value. During review use `codex/vanessa-content-editor`; only switch to `main` when the customer-facing site release has been verified.
