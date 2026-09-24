@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "plans": [
+    {
+      "id": "intro",
+      "label": "21-day intro pass",
+      "product_id": "907474",
+      "amount": 35,
+      "momence_confirmed_amount": 35,
+      "booking_url": "https://momence.com/Vanessa-Flow-Yoga/membership/3-Week-Intro-Pass%3A-21-Days-for-%C2%A335!/907474"
+    },
+    {
+      "id": "limited",
+      "label": "Limited monthly membership",
+      "product_id": "443979",
+      "amount": 52,
+      "momence_confirmed_amount": 52,
+      "booking_url": "https://momence.com/Vanessa-Flow-Yoga/membership/LIMITED-V-Flow-Membership%3A-%C2%A352pm/443979"
+    },
+    {
+      "id": "unlimited",
+      "label": "Unlimited monthly membership",
+      "product_id": "27005",
+      "amount": 72,
+      "momence_confirmed_amount": 72,
+      "booking_url": "https://momence.com/Vanessa-Flow-Yoga/membership/UNLIMITED-V-Flow-Membership%3A-%C2%A372pm/27005"
+    },
+    {
+      "id": "annual",
+      "label": "Annual membership",
+      "product_id": "36635",
+      "amount": 780,
+      "momence_confirmed_amount": 780,
+      "booking_url": "https://momence.com/Vanessa-Flow-Yoga/membership/Annual-V-Flow-Membership%3A-%C2%A3780/36635"
+    },
+    {
+      "id": "ten-pack",
+      "label": "10-class pack",
+      "product_id": "24050",
+      "amount": 150,
+      "momence_confirmed_amount": 150,
+      "booking_url": "https://momence.com/Vanessa-Flow-Yoga/membership/10-Class-Pass%3A-%C2%A3150/24050"
+    }
+  ]
+}

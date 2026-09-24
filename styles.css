@@ -2063,7 +2063,7 @@
   }
   body.nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1360px) {
     .site-nav .nav-inner { padding: 12px 24px; }
     .site-nav .nav-logo img,
     .site-nav.scrolled .nav-logo img,
@@ -3533,7 +3533,7 @@
   /* home menu: frosted white pill so the links read over both the white panel
      and the photo, keeping the hero light. Desktop only; reverts to the solid
      denim bar once scrolled. */
-  @media (min-width: 1025px) {
+  @media (min-width: 1361px) {
     body.home .site-nav:not(.scrolled) .nav-links {
       background: rgba(255,255,255,0.72);
       -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
@@ -3546,6 +3546,14 @@
     body.home .site-nav:not(.scrolled) .nav-links a { color: var(--denim); text-shadow: none; }
     body.home .site-nav:not(.scrolled) .nav-links a:hover { color: var(--coral); }
     body.home .site-nav:not(.scrolled) .nav-links a.nav-cta { color: #fff; }
+  }
+  @media (max-width: 1360px) {
+    body.home .site-nav .nav-links { gap: 4px; }
+    body.home .site-nav:not(.scrolled) .nav-toggle {
+      background: rgba(255,255,255,0.94);
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(14,13,11,0.16);
+    }
   }
 
   /* ===================== MOBILE POLISH ===================== */
@@ -4680,7 +4688,7 @@
   }
   .nav-sub a:hover { color: var(--coral) !important; background: var(--paper-2, #e9eef1); }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1360px) {
     .nav-links .nav-group { flex-direction: column; align-items: flex-start; width: 100%; }
     .nav-caret { display: none; }
     .nav-group::after { display: none; }

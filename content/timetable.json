@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "days": [
+    { "day": "Mon", "classes": [
+      { "time": "07:00", "name": "Sculpt", "style": "sweat" },
+      { "time": "09:30", "name": "Pilates", "style": "sweat" },
+      { "time": "10:30", "name": "Gentle", "style": "calm" },
+      { "time": "18:15", "name": "Pilates", "style": "sweat" },
+      { "time": "19:15", "name": "Hot Sequence", "style": "flow" }
+    ] },
+    { "day": "Tue", "classes": [
+      { "time": "07:30", "name": "Foundations", "style": "found" },
+      { "time": "10:00", "name": "Signature Flow", "style": "flow" },
+      { "time": "11:15", "name": "Chair Yoga", "style": "found" },
+      { "time": "17:30", "name": "Sculpt", "style": "sweat" },
+      { "time": "18:30", "name": "Flow", "style": "flow" },
+      { "time": "19:45", "name": "Yin", "style": "calm" }
+    ] },
+    { "day": "Wed", "classes": [
+      { "time": "07:00", "name": "Pilates", "style": "sweat" },
+      { "time": "10:00", "name": "Kundalini", "style": "flow" },
+      { "time": "16:30", "name": "Spiritual Warrior", "style": "flow" },
+      { "time": "18:00", "name": "Barre", "style": "sweat" },
+      { "time": "19:00", "name": "Warm Mandala", "style": "flow" }
+    ] },
+    { "day": "Thu", "classes": [
+      { "time": "07:00", "name": "Hot Sequence", "style": "flow" },
+      { "time": "09:30", "name": "Sculpt", "style": "sweat" },
+      { "time": "10:30", "name": "Signature Flow", "style": "flow" },
+      { "time": "17:15", "name": "Foundations", "style": "found" },
+      { "time": "18:30", "name": "Warm Forrest", "style": "found" },
+      { "time": "19:45", "name": "Relax & Nidra", "style": "calm" }
+    ] },
+    { "day": "Fri", "classes": [
+      { "time": "07:00", "name": "Hot Sculpt", "style": "sweat" },
+      { "time": "10:00", "name": "Signature Flow", "style": "flow" },
+      { "time": "11:15", "name": "Gentle", "style": "calm" },
+      { "time": "17:30", "name": "TGIF Hot Flow", "style": "flow" },
+      { "time": "18:45", "name": "Warm Yin", "style": "calm" }
+    ] },
+    { "day": "Sat", "classes": [
+      { "time": "09:00", "name": "Barre", "style": "sweat" },
+      { "time": "10:00", "name": "Hot Sequence", "style": "flow" },
+      { "time": "11:15", "name": "Hot Pilates", "style": "sweat" }
+    ] },
+    { "day": "Sun", "classes": [
+      { "time": "09:00", "name": "Spiritual Warrior", "style": "flow" },
+      { "time": "10:15", "name": "Hot Sculpt", "style": "sweat" },
+      { "time": "17:00", "name": "Pregnancy Yoga", "style": "calm" },
+      { "time": "18:15", "name": "Restorative", "style": "calm" }
+    ] }
+  ]
+}

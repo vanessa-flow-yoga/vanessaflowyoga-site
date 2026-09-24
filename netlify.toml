@@ -3,7 +3,7 @@
 # _headers and _redirects are copied into _site/ and applied automatically.
 
 [build]
-  command = "npx @11ty/eleventy"
+  command = "node scripts/build-site.cjs"
   publish = "_site"
   functions = "netlify/functions"
 

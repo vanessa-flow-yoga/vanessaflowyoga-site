@@ -1,0 +1,35 @@
+name: Site health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 8 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the public site
+        id: check
+        continue-on-error: true
+        env:
+          HEALTH_REPORT_PATH: health-report.json
+        run: node scripts/health-check.cjs
+      - name: Email Charlie and Vanessa when anything fails
+        if: steps.check.outcome == 'failure'
+        env:
+          HEALTH_REPORT_PATH: health-report.json
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          HEALTH_ALERT_FROM: ${{ secrets.HEALTH_ALERT_FROM }}
+        run: node scripts/send-health-alert.cjs
+      - name: Keep the failing check visible in GitHub
+        if: steps.check.outcome == 'failure'
+        run: exit 1

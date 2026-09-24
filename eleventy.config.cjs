@@ -5,29 +5,31 @@
 // those get converted to templates in later stages.
 
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fs = require('node:fs');
 
 module.exports = function (eleventyConfig) {
+  // Internal notes must never be published as site pages.
+  eleventyConfig.ignores.add('docs/**');
+
   // Whole directories, copied as-is. "post" is NOT here: it holds markdown now.
-  ["images", "fonts", "videos"].forEach((dir) =>
+  ["images", "fonts", "videos", "content"].forEach((dir) =>
     eleventyConfig.addPassthroughCopy(dir)
   );
 
   // Root-level site files. This config is named .cjs precisely so the *.js
   // glob below cannot pick it up and copy it into the published output.
-  ["*.html", "*.css", "*.js", "*.txt", "*.xml", "*.svg"].forEach((glob) =>
+  ["*.html", "*.css", "*.txt", "*.xml", "*.svg"].forEach((glob) =>
     eleventyConfig.addPassthroughCopy(glob)
   );
+  fs.readdirSync(__dirname).filter((name) => name.endsWith('.js') && !name.endsWith('.11ty.js'))
+    .forEach((name) => eleventyConfig.addPassthroughCopy(name));
 
   // Netlify control files (leading underscore, so they need naming explicitly)
   eleventyConfig.addPassthroughCopy("_headers");
   eleventyConfig.addPassthroughCopy("_redirects");
 
-  // The content editor, plus its app file served from our own domain rather
-  // than a CDN, so the site's security policy can stay locked down.
-  eleventyConfig.addPassthroughCopy("admin");
-  eleventyConfig.addPassthroughCopy({
-    "node_modules/@sveltia/cms/dist/sveltia-cms.js": "admin/sveltia-cms.js",
-  });
+  // Only the separate Netlify admin project publishes the website studio.
+  if (process.env.VFY_ADMIN_PROJECT === '1') eleventyConfig.addPassthroughCopy('admin');
 
   // Escapes text the way the hand-written pages did: & " < > only, leaving
   // apostrophes alone. Keeps output identical to the pre-CMS pages.
@@ -53,7 +55,7 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: { input: ".", output: "_site", includes: "_includes", data: "_data" },
-    templateFormats: ["md"],
+    templateFormats: ["md", "11ty.js"],
     markdownTemplateEngine: false, // post bodies are content, not templates
     htmlTemplateEngine: "njk",
   };

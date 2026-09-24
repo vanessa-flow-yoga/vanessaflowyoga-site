@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
+<script>
+  // Netlify Identity invitation and recovery emails land on the site root.
+  // Move only those fragments into the admin, where the login handles them.
+  if (/^#(?:invite_token|recovery_token|confirmation_token|access_token)=/.test(location.hash)) {
+    location.replace('/admin/' + location.hash);
+  }
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Vanessa Flow Yoga · Yoga in Clitheroe, Ribble Valley</title>
@@ -70,7 +77,7 @@
 <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-800-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260922-nav">
   <script>(function(){try{var m=window.matchMedia;if('IntersectionObserver' in window && !(m&&m('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('has-reveal')}}catch(e){}})();</script>
 </head>
 <body class="home">
@@ -96,7 +103,7 @@
       </div>
       <a href="classes.html">Timetable</a><a href="https://momence.com/u/vanessa-flow-yoga" target="_blank" rel="noopener">Book a class</a>
       <a href="membership.html">Membership</a>
-      <a href="events.html">Events</a>
+      <a href="/events.html">Events</a><a href="/retreats">Retreats</a>
       <a href="blog.html">Blog</a>
       <a href="faq.html">FAQ</a>
       <a class="nav-cta" href="/intro-pass">Intro Pass · £35</a>
@@ -116,8 +123,8 @@
         <span class="g-info"><span class="g-stars" aria-hidden="true">★★★★★</span> <span class="g-num">5.0</span> <span class="g-count">(92)</span></span>
       </a>
       <a class="hero-logo" href="/" aria-label="Vanessa Flow Yoga"><img src="images/new-logo-pink.png" alt="Vanessa Flow Yoga" decoding="async"></a>
-      <h1>We make yoga<br><span class="accent">normal.</span></h1>
-      <p class="lead">Inclusive yoga classes with a non-perfection mindset. A genuine yoga experience for real people.</p>
+      <h1><span data-copy-key="hero_line">We make yoga</span><br><span class="accent" data-copy-key="hero_accent">normal.</span></h1>
+      <p class="lead" data-copy-key="hero_lead">Inclusive yoga classes with a non-perfection mindset. A genuine yoga experience for real people.</p>
       <div class="hero-cta-row">
         <a class="btn" href="/intro-pass">Try 21 days for £35 <span class="arrow">→</span></a>
       </div>
@@ -164,7 +171,7 @@
     <div class="tt-head">
       <span class="eyebrow">Seven days a week</span>
       <h2>Find the class that <span class="accent">suits you.</span></h2>
-      <p>From energising mornings to relaxing evenings, choose the sessions that fit your schedule.</p>
+      <p data-copy-key="timetable_intro">From energising mornings to relaxing evenings, choose the sessions that fit your schedule.</p>
     </div>
 
     <div class="tt-legend">
@@ -184,6 +191,7 @@
       <button class="tt-pill" type="button" data-day="6">Sun</button>
     </div>
 
+    <!-- TIMETABLE_START -->
     <div class="tt-grid">
       <div class="day">
         <div class="day-head"><h3>Mon</h3><span class="count">5</span></div>
@@ -256,6 +264,7 @@
       </div>
     </div>
 
+    <!-- TIMETABLE_END -->
     <div class="ways-foot tt-foot">
       <a class="btn" href="https://momence.com/u/vanessa-flow-yoga" target="_blank" rel="noopener">Book a class <span class="arrow">→</span></a>
     </div>
@@ -285,6 +294,7 @@
 <section class="cardband lx-sec" id="latest">
   <div class="wrap">
     <div class="band-head"><span class="eyebrow">Fresh at the studio</span><h2>The latest</h2></div>
+    <!-- LATEST_START -->
     <div class="lx-grid">
       <!-- Class of the month. DATE-SPECIFIC: refresh monthly. Under S2 this tile carries expires: 2026-09-30. -->
       <div class="lx-tile lx-big lx-flip" tabindex="0">
@@ -362,10 +372,9 @@
         </div>
       </div>
     </div>
+    <!-- LATEST_END -->
   </div>
 </section>
-
-
 
 <!-- ABOUT TEASER -->
 <section class="welcome">
@@ -374,8 +383,8 @@
       <div class="welcome-text">
         <span class="eyebrow">About the studio</span>
         <h2>Yoga without the <span class="accent">pressure.</span></h2>
-        <p>Forget the idea that you need to be flexible, experienced or confident before you begin. Our teachers meet you exactly where you are, helping you build your practice at your own pace.</p>
-        <p>Built for the yoga-curious, not the yoga-perfect. With hot yoga, gentle classes, Pilates, Barre and more, you'll find a class that fits your body, your goals and your week.</p>
+        <p data-copy-key="welcome_one">Forget the idea that you need to be flexible, experienced or confident before you begin. Our teachers meet you exactly where you are, helping you build your practice at your own pace.</p>
+        <p data-copy-key="welcome_two">Built for the yoga-curious, not the yoga-perfect. With hot yoga, gentle classes, Pilates, Barre and more, you'll find a class that fits your body, your goals and your week.</p>
         <div class="hero-cta-row" style="justify-content:flex-start;margin:32px 0 0;">
           <a class="btn" href="about.html">Meet Vanessa &amp; the team <span class="arrow">→</span></a>
         </div>
@@ -406,28 +415,28 @@
     <div class="band-head">
       <span class="eyebrow">What we stand for</span>
       <h2>Our core principles.</h2>
-      <p>The studio is built on four simple things. They shape every class and every welcome at the door.</p>
+      <p data-copy-key="principles_intro">The studio is built on four simple things. They shape every class and every welcome at the door.</p>
     </div>
     <div class="prow">
       <div class="pitem">
         <div class="pn" style="color:var(--coral)">01</div>
         <h3>Welcoming</h3>
-        <p>A community with a class for everyone, in a safe space to be yourself and make friends.</p>
+        <p data-copy-key="principle_welcoming">A community with a class for everyone, in a safe space to be yourself and make friends.</p>
       </div>
       <div class="pitem">
         <div class="pn" style="color:var(--purple)">02</div>
         <h3>Dedicated</h3>
-        <p>A reliable schedule and an easy booking system. We make showing up simple.</p>
+        <p data-copy-key="principle_dedicated">A reliable schedule and an easy booking system. We make showing up simple.</p>
       </div>
       <div class="pitem">
         <div class="pn" style="color:var(--yellow-deep)">03</div>
         <h3>Passion</h3>
-        <p>Inspiring teachers who are genuinely excited to share what they love, every class.</p>
+        <p data-copy-key="principle_passion">Inspiring teachers who are genuinely excited to share what they love, every class.</p>
       </div>
       <div class="pitem">
         <div class="pn" style="color:var(--mint-text)">04</div>
         <h3>Integrity</h3>
-        <p>We do things the right way, on and off the mat, even when no one is looking.</p>
+        <p data-copy-key="principle_integrity">We do things the right way, on and off the mat, even when no one is looking.</p>
       </div>
     </div>
   </div>
@@ -590,7 +599,7 @@
     <div class="ways-head">
       <span class="eyebrow">Ways to practise</span>
       <h2>Start your <span class="accent">yoga journey.</span></h2>
-      <p>Whether you're trying your first class or ready to make yoga part of your routine, there's an option to suit you.</p>
+      <p data-copy-key="ways_intro">Whether you're trying your first class or ready to make yoga part of your routine, there's an option to suit you.</p>
     </div>
     <div class="ways-grid">
       <div class="way-card featured">
@@ -674,7 +683,7 @@
 <div class="wrap">
     <div class="md-bar">
       <a class="md-logo" href="/" aria-label="Vanessa Flow Yoga"><img src="images/logo.png" alt="Vanessa Flow Yoga" loading="lazy" decoding="async"></a>
-      <nav class="md-nav"><span class="md-group"><a href="about.html">About</a><span class="md-sub"><a href="about.html">Our story</a><a href="/pregnancy-yoga-ribble-valley">Pregnancy Yoga</a><a href="private-corporate.html">Private &amp; Corporate</a><a href="work-with-us.html">Work With Us</a></span></span><a href="classes.html">Timetable</a><a href="https://momence.com/u/vanessa-flow-yoga" target="_blank" rel="noopener">Book a class</a><a href="membership.html">Membership</a><a href="events.html">Events</a><a href="https://momence.com/gcc/13063" target="_blank" rel="noopener">Gift cards</a><a href="faq.html">FAQ</a><a href="cancellation.html">Cancellation</a></nav>
+      <nav class="md-nav"><span class="md-group"><a href="about.html">About</a><span class="md-sub"><a href="about.html">Our story</a><a href="/pregnancy-yoga-ribble-valley">Pregnancy Yoga</a><a href="private-corporate.html">Private &amp; Corporate</a><a href="work-with-us.html">Work With Us</a></span></span><a href="classes.html">Timetable</a><a href="https://momence.com/u/vanessa-flow-yoga" target="_blank" rel="noopener">Book a class</a><a href="membership.html">Membership</a><a href="/events.html">Events</a><a href="/retreats">Retreats</a><a href="https://momence.com/gcc/13063" target="_blank" rel="noopener">Gift cards</a><a href="faq.html">FAQ</a><a href="cancellation.html">Cancellation</a></nav>
       <div class="footer-social"><a class="ig" href="https://instagram.com/vanessaflow_yoga" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm10.5 1.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a class="fb" href="https://facebook.com/vanessaflowyoga" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a><a class="tt" href="https://www.tiktok.com/@vanessa.flow.yoga" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 8.5a6.5 6.5 0 0 1-4-1.36V15a6 6 0 1 1-6-6c.34 0 .67.03 1 .08v3.1A2.9 2.9 0 0 0 11 12a3 3 0 1 0 3 3V2h3a4 4 0 0 0 4 4v2.5z"/></svg></a></div>
     </div>
     <div class="md-row">
@@ -873,6 +882,7 @@
 </script>
 <script src="consent.js" defer></script>
 <script src="class-info.js" defer></script>
+<script src="latest-content.js" defer></script>
 <script src="instagram-grid.js" defer></script>
 <script src="reveal.js" defer></script>
 <script src="parallax.js" defer></script>

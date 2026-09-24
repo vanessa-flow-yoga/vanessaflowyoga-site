@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "tiles": [
+    {
+      "id": "class-of-the-month",
+      "size": "big",
+      "kind": "class",
+      "tag": "Class of the month",
+      "headline": "Warm Yin",
+      "sub": "Class of the month · Fridays at 6:45pm",
+      "body": "A slower end to the week. Sink into deep stretches in a gently heated room, giving your body time to soften, release and reset. Fridays at 6:45pm · 45 mins.",
+      "cta": "See the timetable",
+      "href": "/classes",
+      "image": "/images/warmyoga.webp",
+      "colour": "mint",
+      "expires": "2026-09-30"
+    },
+    {
+      "id": "top-class",
+      "size": "standard",
+      "kind": "class",
+      "tag": "Top class",
+      "headline": "Made for the pregnant body",
+      "sub": "Top class · Pregnancy Yoga",
+      "body": "A Sunday evening class with Katie, who specialises in prenatal yoga. Ease the aches, build strength for birth, and meet other mums-to-be. Suitable from 14 weeks to full term.",
+      "cta": "See upcoming dates",
+      "href": "/pregnancy-yoga-ribble-valley",
+      "image": "/images/pregnancy-yoga.webp",
+      "colour": "purple",
+      "expires": ""
+    },
+    {
+      "id": "latest-read",
+      "size": "standard",
+      "kind": "post",
+      "tag": "Latest read",
+      "headline": "Nervous about your first class?",
+      "sub": "Latest read · 5 ways to feel calm",
+      "body": "First-class nerves are completely normal. Five simple ways to feel calm and ready before you step on the mat.",
+      "cta": "Read the post",
+      "href": "/post/5-new-yogi-tips-that-help-calm-first-class-nerves",
+      "image": "/images/blog/5-new-yogi-tips-tile.webp",
+      "colour": "mint",
+      "expires": ""
+    },
+    {
+      "id": "intro-pass",
+      "size": "standard",
+      "kind": "offer",
+      "tag": "Intro pass",
+      "headline": "Try the whole studio for £35",
+      "sub": "21 days, every class, every style",
+      "body": "Twenty-one days of unlimited classes for £35. Every style, every teacher, no commitment. The easiest way to start.",
+      "cta": "Get the intro pass",
+      "href": "/intro-pass",
+      "image": "/images/7.webp",
+      "colour": "coral",
+      "expires": ""
+    },
+    {
+      "id": "studio-news",
+      "size": "standard",
+      "kind": "news",
+      "tag": "Studio news",
+      "headline": "Hot class? Bring a towel",
+      "sub": "Studio news · What to bring to the heat",
+      "body": "Every hot class needs a towel long enough to cover your mat. Rent one at the studio for £4 or buy your own for £28. Mat rental is £2 a class.",
+      "cta": "Read what to expect in the heat",
+      "href": "/post/are-you-feeling-hot-hot-hot",
+      "image": "/images/hotyoga.webp",
+      "colour": "yellow",
+      "expires": ""
+    }
+  ]
+}
