@@ -2008,6 +2008,17 @@
     height: 100%;
     border: 0;
   }
+  .footer-map .consent-placeholder {
+    position: absolute; inset: 0; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; padding: 20px; text-align: center;
+    color: var(--ink); background: #f5f5f0;
+  }
+  .footer-map .consent-placeholder p { margin: 0; line-height: 1.5; }
+  .footer-map .consent-placeholder button {
+    border: 0; border-radius: 999px; padding: 10px 18px;
+    background: var(--ink); color: #fff; cursor: pointer;
+  }
   .footer-map .marker-pill {
     position: absolute;
     bottom: 18px; right: 18px;
@@ -2829,8 +2840,9 @@
           </svg>
           Find us
         </span>
+        <div class="consent-placeholder"><p>The map loads once you accept functional cookies.</p><button type="button" onclick="event.preventDefault();event.stopPropagation();if(window.vfyOpenCookieSettings){window.vfyOpenCookieSettings()}">Show map</button></div>
         <iframe
-          src="https://maps.google.com/maps?q=Vanessa+Flow+Yoga+Clitheroe&t=&z=16&ie=UTF8&iwloc=&output=embed"
+          data-consent-src="https://maps.google.com/maps?q=Vanessa+Flow+Yoga+Clitheroe&t=&z=16&ie=UTF8&iwloc=&output=embed"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           title="Vanessa Flow Yoga studio location"></iframe>

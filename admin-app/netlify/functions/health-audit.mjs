@@ -1,7 +1,7 @@
 const SITE = 'https://vanessaflowyoga.co.uk'
 const ADMIN = 'https://vanessa-flow-yoga-admin.netlify.app'
 const FORMS = ['contact', 'membership', 'application', 'retreat-interest']
-const CATEGORIES = ['availability', 'pages', 'links', 'security', 'seo', 'forms', 'media', 'speed', 'integrations', 'github']
+const CATEGORIES = ['availability', 'pages', 'links', 'security', 'seo', 'forms', 'cookies', 'media', 'speed', 'mobile', 'integrations', 'github']
 
 const timeLimit = 4000
 async function get(url, method = 'GET') {
@@ -29,6 +29,7 @@ function urls(html, base, expression) {
 }
 function pagePath(url) {try{return new URL(url).pathname}catch{return ''}}
 function result(category, name, status, detail = '', url = '') {return {category,name,status,detail,url}}
+export function hasPrematureThirdParty(html){return /<(?:script|iframe)\b[^>]*\ssrc=["']https?:\/\/(?:www\.googletagmanager\.com|www\.google-analytics\.com|connect\.facebook\.net|www\.facebook\.com\/tr|maps\.google\.com|momence\.com\/plugin)/i.test(html)}
 
 export async function runAudit({site=SITE,admin=ADMIN}={}) {
   const checkedAt=new Date().toISOString(), results=[]
@@ -53,7 +54,7 @@ export async function runAudit({site=SITE,admin=ADMIN}={}) {
   const github=await probe('https://api.github.com/repos/vanessa-flow-yoga/vanessaflowyoga-site')
   add('github','GitHub repository responding',github.ok?'pass':'fail',github.detail||`HTTP ${github.status}`)
   let pagePaths=[]
-  if(sitemap?.ok){const xml=await sitemap.text();pagePaths=[...new Set([...xml.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(match=>pagePath(match[1])).filter(Boolean))]}
+  if(sitemap?.ok){try{const xml=await sitemap.text();pagePaths=[...new Set([...xml.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(match=>pagePath(match[1])).filter(Boolean))]}catch(error){add('seo','Sitemap contents','fail',error.message,site+'/sitemap.xml')}}
   try {const response=await get(admin+'/admin/media-library.json');if(response.ok){library=await response.json();pagePaths=[...new Set([...pagePaths,...(library.pages||[])])]}else add('media','Media inventory','warn',`HTTP ${response.status}`)}catch(error){add('media','Media inventory','warn',error.message)}
   add('seo','Pages listed in sitemap',pagePaths.length?'pass':'fail',`${pagePaths.length} pages`)
   const pageData=[]
@@ -68,6 +69,17 @@ export async function runAudit({site=SITE,admin=ADMIN}={}) {
     }catch(error){add('pages',pathname,'fail',error.message,url)}
   })
   if(pagePaths.length&&pageData.length===pagePaths.length)add('seo','Page metadata',results.some(r=>r.category==='seo'&&r.name.startsWith('Metadata ')&&r.status==='fail')?'fail':'pass',`${pageData.length} pages checked`)
+  const consentPages=pageData.filter(page=>!/<meta\s+name=["']robots["'][^>]*noindex/i.test(page.html))
+  const missingConsent=consentPages.filter(page=>!/<script\b[^>]*\bsrc=["'](?:\/|\.\.\/)?consent\.js["']/i.test(page.html))
+  add('cookies','Consent controls on pages',missingConsent.length?'fail':'pass',missingConsent.length?`${missingConsent.length} pages lack the consent script`:`${consentPages.length} pages checked; legal compliance is not certified`,missingConsent[0]?.url||site+'/cookies')
+  const prematureThirdParty=pageData.filter(page=>hasPrematureThirdParty(page.html))
+  add('cookies','Non-essential embeds held until consent',prematureThirdParty.length?'fail':'pass',prematureThirdParty.length?`${prematureThirdParty.length} pages include an active third-party script or frame before consent`:'No active tracking, map or Momence embeds found in initial page HTML',prematureThirdParty[0]?.url||site+'/')
+  try {const response=await get(site+'/consent.js');const code=response.ok?await response.text():'';const gated=code.includes('if (c.functional && !loaded.functional)')&&code.includes('if (c.analytics && !loaded.analytics)')&&code.includes('if (c.marketing && !loaded.marketing)')&&code.includes("showBanner(); // nothing non-essential loads until a choice is made");add('cookies','Tracking loader consent gates',response.ok&&gated?'pass':'fail',response.ok?gated?'Functional, analytics and marketing loaders are gated':'Expected consent gates changed; review the script':`HTTP ${response.status}`,site+'/consent.js')}
+  catch(error){add('cookies','Tracking loader consent gates','fail',error.message,site+'/consent.js')}
+  const missingViewport=pageData.filter(page=>!/<meta\s+name=["']viewport["'][^>]*content=["'][^"']*width=device-width/i.test(page.html))
+  add('mobile','Phone viewport configured',missingViewport.length?'fail':'pass',missingViewport.length?`${missingViewport.length} pages lack a responsive viewport`:`${pageData.length} pages checked; this does not prove visual layout`,missingViewport[0]?.url||site+'/')
+  try {const response=await get(site+'/styles.css');const css=response.ok?await response.text():'';add('mobile','Responsive styles available',response.ok&&/@media\s*\(/.test(css)?'pass':'fail',response.ok?/@media\s*\(/.test(css)?'Mobile breakpoints found; visual changes still need browser review':'No responsive breakpoints found':`HTTP ${response.status}`,site+'/styles.css')}
+  catch(error){add('mobile','Responsive styles available','fail',error.message,site+'/styles.css')}
   const internal=new Set(),external=new Set(),images=new Set(),forms=new Map()
   for(const {url,pathname,html} of pageData){
     for(const link of urls(html,url,/\bhref\s*=\s*["']([^"']+)["']/gi)){

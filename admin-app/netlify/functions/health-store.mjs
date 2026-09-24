@@ -4,19 +4,16 @@ import {CATEGORIES,FORMS} from './health-audit.mjs'
 const store = () => getStore({name:'vfy-health',consistency:'strong'})
 export const manualItems = [
   ...FORMS.map(name=>({id:`form:${name}`,label:`${name} form delivery`,url:name==='retreat-interest'?'/retreats':name==='application'?'/work-with-us':`/${name}`})),
-  {id:'cookies',label:'Cookie consent and GDPR review',url:'/cookies'},
-  {id:'speed',label:'Real-world page speed review',url:'/'},
-  {id:'mobile',label:'Mobile layout review',url:'/'},
 ]
 
 export function defaultSettings() {
-  return {recipients:['hello@charlie-harris.com','vanessa@vanessaflowyoga.co.uk'],alertCategories:[...CATEGORIES,'cookies','mobile'],manual:{}}
+  return {recipients:['hello@charlie-harris.com','vanessa@vanessaflowyoga.co.uk'],alertCategories:[...CATEGORIES],manual:{}}
 }
 
 export function validSettings(value) {
   if(!value || !Array.isArray(value.recipients) || value.recipients.length>5 ||
       value.recipients.some(email=>typeof email!=='string'||email.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) ||
-      !Array.isArray(value.alertCategories) || value.alertCategories.some(category=>![...CATEGORIES,'cookies','speed','mobile'].includes(category)))return false
+      !Array.isArray(value.alertCategories) || value.alertCategories.some(category=>!CATEGORIES.includes(category)))return false
   return true
 }
 
