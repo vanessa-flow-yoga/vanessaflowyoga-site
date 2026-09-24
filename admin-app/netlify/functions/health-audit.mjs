@@ -1,5 +1,6 @@
 const SITE = 'https://vanessaflowyoga.co.uk'
 const ADMIN = 'https://vanessa-flow-yoga-admin.netlify.app'
+const BEHOLD_DASHBOARD = 'https://app.behold.so/sign-in'
 const FORMS = ['contact', 'membership', 'application', 'retreat-interest']
 const CATEGORIES = ['availability', 'pages', 'links', 'security', 'seo', 'forms', 'cookies', 'media', 'speed', 'mobile', 'integrations', 'github']
 
@@ -102,8 +103,8 @@ export async function runAudit({site=SITE,admin=ADMIN}={}) {
   for(const asset of library?.assets||[])images.add(site+asset.path)
   await parallel([...images],30,async url=>{const check=await probe(url);add('media',pagePath(url),check.ok?'pass':'fail',check.detail||`HTTP ${check.status}`,url)})
   const behold=pageData.map(page=>/data-behold-url=["'](https:\/\/feeds\.behold\.so\/[^"']+)["']/i.exec(page.html)?.[1]).find(Boolean)
-  if(behold){const check=await probe(behold);add('integrations','Instagram feed',check.ok?'pass':check.warning?'warn':'fail',check.detail||`HTTP ${check.status}`,behold)}
-  else add('integrations','Instagram feed','warn','Feed address was not found in page links')
+  if(behold){try{const response=await get(behold);const feed=await response.json().catch(()=>null);const overage=response.status===402&&feed?.errorCode==='pausedByOverage';add('integrations','Instagram feed (Behold)',response.ok&&Array.isArray(feed?.posts)?'pass':response.status===429?'warn':'fail',overage?'Monthly view allowance reached. Sign in to Behold to check usage; the feed is paused until the allowance resets or the plan changes.':response.ok?Array.isArray(feed?.posts)?`${feed.posts.length} posts available`:'Feed response has no posts list':feed?.message||`HTTP ${response.status}`,BEHOLD_DASHBOARD)}catch(error){add('integrations','Instagram feed (Behold)','warn',`Behold did not respond: ${error.message}`,BEHOLD_DASHBOARD)}}
+  else add('integrations','Instagram feed (Behold)','warn','Feed address was not found in page links',BEHOLD_DASHBOARD)
   const momence=[...external].find(url=>new URL(url).hostname.endsWith('momence.com'))
   if(momence){const check=await probe(momence);add('integrations','Momence booking link',check.ok?'pass':check.warning?'warn':'fail',check.detail||`HTTP ${check.status}`,momence)}
   else add('integrations','Momence booking link','fail','No booking link found')
