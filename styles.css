@@ -2626,9 +2626,7 @@
 
   .cardband.tint { background: var(--paper-2, #e9eef1); }
   .faq.tint { background: var(--paper-2, #e9eef1); }
-  /* ---- Hero date pills (pregnancy page) ----
-     These are the hero's only call to action, so each pill carries its own
-     "Book now" chip and links straight to that Momence session. */
+  /* ---- Hero course-block pills (pregnancy page) ---- */
   /* Sits inside .hero-text, directly under the copy. */
   .id-hero .hero-foot { margin-top: clamp(22px, 2.6vw, 32px); }
   .hero-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
@@ -2703,7 +2701,7 @@
   @media (max-width: 920px) { .ben-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .ben-grid { grid-template-columns: 1fr; } }
 
-  /* ---- Five-class pregnancy pack band (brand pink = --coral, image + offer) ---- */
+  /* ---- Pregnancy drop-in alternative band ---- */
   .pass-band {
     background: var(--coral); color: #fff; position: relative; overflow: hidden;
     padding: clamp(56px, 7vw, 92px) 0;
@@ -2770,6 +2768,8 @@
   .pc-more { display: block; text-align: center; margin-top: 18px; font-weight: 800; color: var(--coral-deep, var(--coral)); }
   .pc-empty { text-align: center; padding: 32px 20px; }
   .pc-empty p { font-size: 16px; color: var(--ink-soft); max-width: 46ch; margin: 0 auto 20px; line-height: 1.6; }
+  .pregnancy-dropins { max-width: 900px; margin: clamp(48px, 7vw, 80px) auto 0; scroll-margin-top: 100px; }
+  #dates { scroll-margin-top: 100px; }
   @media (max-width: 560px) {
     .pc-row { flex-direction: column; align-items: stretch; gap: 14px; }
     .pc-right { justify-content: space-between; }
@@ -5654,6 +5654,60 @@ main#main > section:first-child { padding-top: 116px; }
      is untouched. Purple is also better on white than coral: 3.97:1 against
      3.15:1. --purple-deep would clear AA outright at 5.73:1. */
   body.page-pregnancy .id-hero h1 .accent { color: var(--purple); }
+  body.page-pregnancy .pregnancy-block-strip {
+    background: var(--mint-ink); border-block: 1px solid rgba(14,13,11,0.12);
+    padding: clamp(42px, 6vw, 72px) 0;
+  }
+  body.page-pregnancy .pregnancy-block-strip__layout {
+    display: grid; grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1.35fr);
+    align-items: center; gap: clamp(18px, 2.5vw, 32px);
+  }
+  body.page-pregnancy .pregnancy-block-strip__heading {
+    color: #fff; text-align: left;
+    text-shadow: 0 1px 2px rgba(14,13,11,0.28);
+  }
+  body.page-pregnancy .pregnancy-block-strip__heading h2 {
+    margin: 14px 0 20px; color: #fff; font-size: clamp(38px, 4.4vw, 58px);
+    line-height: 1.06; letter-spacing: -0.035em;
+  }
+  body.page-pregnancy .pregnancy-block-strip__heading p {
+    max-width: 390px; margin: 0; color: #fff;
+    font-size: clamp(17px, 1.7vw, 19px); line-height: 1.5;
+  }
+  body.page-pregnancy .pregnancy-block-strip__plus {
+    display: block; color: #fff; text-align: center;
+    font-size: 62px; font-weight: 300; line-height: 1;
+  }
+  body.page-pregnancy .pregnancy-block-strip__grid {
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+  body.page-pregnancy .pregnancy-block-strip__pill {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 5px; min-height: 112px; padding: 18px 26px;
+    border-radius: 18px; background: var(--paper); color: var(--ink); text-align: center;
+    box-shadow: 0 6px 16px rgba(14,13,11,0.10);
+  }
+  body.page-pregnancy .pregnancy-block-strip__eyebrow {
+    color: #fff; font-size: 12px; font-weight: 900;
+    letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase;
+  }
+  body.page-pregnancy .pregnancy-block-strip__pill h3 {
+    margin: 0; color: var(--ink); font-size: clamp(20px, 2vw, 25px);
+    line-height: 1.18; letter-spacing: -0.025em;
+  }
+  body.page-pregnancy .pregnancy-block-strip__pill p {
+    margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.5;
+  }
+  body.page-pregnancy .pregnancy-block-strip__pill p strong { color: var(--ink); }
+  @media (max-width: 850px) {
+    body.page-pregnancy .pregnancy-block-strip__layout { grid-template-columns: 1fr; gap: 16px; }
+    body.page-pregnancy .pregnancy-block-strip__heading { text-align: center; }
+    body.page-pregnancy .pregnancy-block-strip__heading p { margin: 0 auto; }
+    body.page-pregnancy .pregnancy-block-strip__plus { font-size: 40px; }
+    body.page-pregnancy .pregnancy-block-strip__grid { width: 100%; max-width: 620px; margin: 0 auto; }
+    body.page-pregnancy .pregnancy-block-strip__pill { min-height: 108px; }
+  }
+  body.page-pregnancy .split .pregnancy-first-class-photo { object-position: center top; }
   body.page-pregnancy .tt-head h1 .accent,
   body.page-pregnancy .tt-head h2 .accent,
   body.page-pregnancy .faq-head h1 .accent,
@@ -5666,7 +5720,7 @@ main#main > section:first-child { padding-top: 116px; }
     background: var(--purple-deep);
     box-shadow: 0 16px 36px rgba(128,121,185,0.44), inset 0 1px 0 rgba(255,255,255,0.20);
   }
-  /* the pack band: purple ground, so its button inverts to white on purple */
+  /* the drop-in band: purple ground, so its button inverts to white on purple */
   body.page-pregnancy .pass-band { background: var(--purple); }
   body.page-pregnancy .pass-stamp { color: var(--purple); }
   body.page-pregnancy .pass-band .btn { background: var(--paper); color: var(--purple); box-shadow: 0 12px 30px rgba(14,13,11,0.18); }
@@ -5691,5 +5745,4 @@ main#main > section:first-child { padding-top: 116px; }
     body.page-pregnancy .id-hero.has-cards h1 { margin-top: 16px !important; }
     body.page-pregnancy .id-hero .hero-foot { margin-top: 22px; }
   }
-  /* The five-class pack CTA stays brand coral on purpose, so the alternative
-     offer reads as distinct from the purple date pills above it. */
+  /* The drop-in CTA stays brand coral to distinguish the secondary offer. */
