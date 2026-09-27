@@ -211,19 +211,10 @@
       if (!productId && v && k.toLowerCase() !== 'type' && /id$/i.test(k)) productId = v;
     });
 
-    // Only genuine paid purchases should count. Members booking a class they
-    // already pay for via membership ALSO land here (type=session), and a paid
-    // drop-in looks identical, so we cannot tell them apart from the URL. To
-    // avoid counting member bookings, we fire Purchase ONLY for these types.
-    // Add types (e.g. 'pack', 'giftcard') once you confirm their exact Momence
-    // 'type' string from the redirect URL.
-    var PURCHASE_TYPES = ['membership'];
-    if (!type || PURCHASE_TYPES.indexOf(type) === -1) return;
-
-    // To get revenue/ROAS, set a £ value per product. Momence does not send a
-    // price, so we look it up here. The product id is the reliable key (type
-    // alone can't tell the intro pass from a normal membership). Leave blank to
-    // fire Purchase with no value (Meta still optimises on purchase count).
+    // Membership IDs are stable, so their values can be mapped locally.
+    // Momence sends pregnancy blocks as type=session. Ordinary member class
+    // bookings use that same type, so session redirects must be checked against
+    // Momence's public schedule before they can safely count as purchases.
     var VALUE_BY_ID = {
       '907474': 35,    // 21-day intro pass (current product, from 31 Aug 2026)
       '23857': 35,     // 21-day intro pass (retired product; kept so any
@@ -233,49 +224,72 @@
       '36635': 780,    // Annual membership (£780)
       '24050': 150     // 10-class pass (£150)
     };
-    var VALUE_BY_TYPE = {
-      // 'session': null // single class drop-in
-    };
-    var value = (productId && VALUE_BY_ID[productId] != null) ? VALUE_BY_ID[productId]
-              : (type && VALUE_BY_TYPE[type] != null) ? VALUE_BY_TYPE[type]
-              : null;
+    function resolvePurchase() {
+      if (type === 'membership' && productId && VALUE_BY_ID[productId] != null) {
+        return Promise.resolve({ value: VALUE_BY_ID[productId], id: productId });
+      }
+      if (type !== 'session' || !productId) return Promise.resolve(null);
 
-    // Fire once per purchase — a refresh of this page must not double-count.
-    var guardKey = 'vfy-purchase-fired:' + (productId || type || location.search || 'ty');
-    try {
-      if (sessionStorage.getItem(guardKey)) return;
-      sessionStorage.setItem(guardKey, '1');
-    } catch (e) {}
+      var from = new Date(Date.now() - 62 * 86400000).toISOString();
+      var scheduleUrl = 'https://api.momence.com/host-plugins/host/13063/host-schedule/sessions'
+        + '?teacherIds%5B%5D=9368&startsAfter=' + encodeURIComponent(from)
+        + '&pageSize=100';
+      return fetch(scheduleUrl, { credentials: 'omit' })
+        .then(function (response) { return response.ok ? response.json() : null; })
+        .then(function (data) {
+          var sessions = (data && data.payload) || [];
+          var block = sessions.find(function (session) {
+            var semesterId = session && session.semester && session.semester.sessionId;
+            return session && session.type === 'semester'
+              && (String(session.id) === productId || String(semesterId) === productId);
+          });
+          if (!block || typeof block.fixedTicketPrice !== 'number') return null;
+          return { value: block.fixedTicketPrice, id: productId };
+        })
+        .catch(function () { return null; });
+    }
 
-    // Meta Pixel — Purchase (marketing consent)
-    window.vfyConsent.onReady('marketing', function () {
-      if (!window.fbq) return;
-      var data = { currency: currency, content_type: 'product' };
-      if (value != null) data.value = value;
-      if (productId) data.content_ids = [productId];
-      if (type) data.content_category = type;
-      window.fbq('track', 'Purchase', data, productId ? { eventID: productId } : undefined);
-    });
+    resolvePurchase().then(function (purchase) {
+      if (!purchase) return;
+      var value = purchase.value;
+
+      // Fire once per completed redirect so refreshing does not double-count.
+      var guardKey = 'vfy-purchase-fired:' + location.search;
+      try {
+        if (sessionStorage.getItem(guardKey)) return;
+        sessionStorage.setItem(guardKey, '1');
+      } catch (e) {}
+
+      // Meta Pixel — standard Purchase event (marketing consent). Do not use a
+      // product ID as eventID: eventID must identify a unique order and Momence
+      // does not include an order ID in this redirect.
+      window.vfyConsent.onReady('marketing', function () {
+        if (!window.fbq) return;
+        var data = { currency: currency, content_type: 'product', value: value };
+        if (productId) data.content_ids = [productId];
+        if (type) data.content_category = type;
+        window.fbq('track', 'Purchase', data);
+      });
 
     // Google Ads — conversion (marketing consent)
-    window.vfyConsent.onReady('marketing', function () {
-      if (!window.gtag || !ADS_PURCHASE_LABEL) return;
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-16566090144/' + ADS_PURCHASE_LABEL,
-        value: value != null ? value : undefined,
-        currency: currency,
-        transaction_id: productId || undefined
+      window.vfyConsent.onReady('marketing', function () {
+        if (!window.gtag || !ADS_PURCHASE_LABEL) return;
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-16566090144/' + ADS_PURCHASE_LABEL,
+          value: value,
+          currency: currency
+        });
       });
-    });
 
-    // GA4 — purchase (analytics consent)
-    window.vfyConsent.onReady('analytics', function () {
-      if (!window.gtag) return;
-      window.gtag('event', 'purchase', {
-        transaction_id: productId || undefined,
-        value: value != null ? value : undefined,
-        currency: currency,
-        items: (productId || type) ? [{ item_id: productId || undefined, item_category: type || undefined }] : undefined
+      // GA4 — purchase (analytics consent). Momence supplies no unique order
+      // ID, so omit transaction_id rather than reusing a product/session ID.
+      window.vfyConsent.onReady('analytics', function () {
+        if (!window.gtag) return;
+        window.gtag('event', 'purchase', {
+          value: value,
+          currency: currency,
+          items: (productId || type) ? [{ item_id: productId || undefined, item_category: type || undefined }] : undefined
+        });
       });
     });
   }
