@@ -239,8 +239,7 @@ const copyLimits = {
     benefit_mood: 150, benefit_temperature: 150, benefit_welcome: 160,
     benefit_community: 170, benefit_teachers: 140, benefit_home: 160, help_intro: 170 },
   retreats: { eyebrow: 45, headline: 55, intro: 270, hero_alt: 130,
-    story_heading: 65, story: 320, past_heading: 65, past_place: 65,
-    past_description: 280, quote: 280, interest_heading: 65, interest_description: 240 },
+    interest_heading: 65, interest_description: 240 },
 };
 for (const [page, limits] of Object.entries(copyLimits)) {
   const data = read(page === 'retreats' ? 'content/retreats-general.json' : `content/page-copy/${page}.json`);

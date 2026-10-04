@@ -4,27 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Yoga retreats · Vanessa Flow Yoga, Ribble Valley</title>
-<meta name="description" content="Explore Vanessa Flow Yoga retreats, see where we've travelled, and register interest in the next restorative yoga getaway.">
+<meta name="description" content="A coastal escape is taking shape for June 2027. Enquire about Vanessa Flow Yoga's next retreat and be first to hear the details.">
 <link rel="canonical" href="https://vanessaflowyoga.co.uk/retreats">
 <meta name="theme-color" content="#6a3b7c">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/styles.css?v=20260922-nav">
 <style>
-  .retreat-page{background:#faf8f5;color:var(--ink)}
+  .retreat-page{background:#f8f4ef;color:var(--ink)}
   .retreat-page .r-wrap{width:min(1180px,calc(100% - 40px));margin:auto}
-  .r-hero{padding:145px 0 80px;background:var(--purple-deep);color:#fff;overflow:hidden}
+  .r-general-hero{min-height:min(880px,92vh);padding:150px 0 75px;color:#fff;display:flex;align-items:flex-end;position:relative;isolation:isolate;background:#353a3d url('/images/blog/flow-to-freedom-with-us-on-retreat.webp') center 42%/cover no-repeat}
+  .r-general-hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(22,25,26,.22) 0%,rgba(22,25,26,.1) 28%,rgba(22,25,26,.82) 100%)}
+  .r-general-hero__content{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:8%;align-items:end}
+  .r-general-hero .r-eyebrow{color:var(--yellow)}
+  .r-general-hero h1{font-size:clamp(58px,8.3vw,116px);line-height:.86;letter-spacing:-.065em;max-width:900px;margin:0;text-wrap:balance}
+  .r-general-hero__intro{border-left:1px solid rgba(255,255,255,.55);padding-left:32px;padding-bottom:7px}
+  .r-general-hero__intro p{font-size:clamp(18px,1.55vw,22px);line-height:1.55;margin:0 0 27px;text-wrap:pretty}
+  .r-general-hero .btn{background:var(--yellow);color:var(--ink)}
+  .r-hero{padding:145px 0 85px;background:var(--purple-deep);color:#fff;overflow:hidden;position:relative}
+  .r-hero::before{content:'';position:absolute;inset:auto -12% -45% auto;width:580px;aspect-ratio:1;border:1px solid rgba(255,255,255,.15);border-radius:50%}
   .r-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:7%;align-items:center}
   .r-eyebrow{display:inline-block;text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:800;color:var(--yellow);margin-bottom:24px}
   .r-hero h1{font-size:clamp(52px,6vw,94px);line-height:.98;letter-spacing:-.055em;max-width:650px;margin:0 0 27px}
   .r-hero p{font-size:clamp(18px,2vw,23px);line-height:1.55;max-width:610px;margin:0 0 30px}
-  .r-photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:230px 230px 24px 24px;box-shadow:24px 25px 0 rgba(250,215,50,.9)}
+  .r-photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:230px 230px 24px 24px;box-shadow:24px 25px 0 rgba(250,215,50,.9);position:relative}
   .r-hero .btn{background:var(--yellow);color:var(--ink)}
   .r-section{padding:100px 0}
   .r-section h2{font-size:clamp(36px,4vw,62px);letter-spacing:-.04em;line-height:1.08;margin:0 0 25px}
   .r-section p{font-size:18px;line-height:1.7;max-width:690px}
   .r-story-grid,.r-past-grid{display:grid;grid-template-columns:1fr 1fr;gap:10%;align-items:center}
+  .r-intro-band{padding:35px 0;background:var(--yellow);overflow:hidden}
+  .r-intro-band p{margin:0;text-align:center;text-transform:uppercase;letter-spacing:.12em;font-size:clamp(12px,1.5vw,16px);font-weight:800}
+  .r-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  .r-pillar{min-height:280px;padding:32px;border:1px solid #ddcfe0;border-radius:120px 120px 22px 22px;background:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+  .r-pillar span{font-size:12px;color:var(--coral);font-weight:900;letter-spacing:.14em;margin-bottom:auto}
+  .r-pillar h3{font-size:31px;letter-spacing:-.04em;margin:35px 0 12px}
+  .r-pillar p{font-size:16px;line-height:1.55;margin:0}
   .r-orb{width:min(100%,390px);aspect-ratio:1;border-radius:50%;background:var(--mint);display:grid;place-items:center;padding:55px;font-size:clamp(25px,3vw,40px);font-weight:800;line-height:1.15;letter-spacing:-.04em;text-align:center;transform:rotate(-6deg)}
   .r-past{background:#f0e8f3}.r-past img{width:100%;aspect-ratio:1.35;object-fit:cover;border-radius:24px}
+  .r-past-card{position:relative}.r-past-card::after{content:'Past retreat';position:absolute;right:-18px;bottom:-18px;background:var(--yellow);padding:17px 22px;border-radius:999px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;transform:rotate(-5deg)}
   .r-past-place{font-size:14px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:var(--purple-deep)}
   .r-quote{background:var(--yellow);padding:60px;border-radius:24px;font-size:clamp(22px,2.6vw,35px);line-height:1.3;font-weight:700;letter-spacing:-.025em}
   .r-quote cite{display:block;font-size:14px;font-style:normal;letter-spacing:0;font-weight:600;margin-top:23px}
@@ -45,7 +62,27 @@
   .r-live-list{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;list-style:none;padding:0;margin:35px 0}
   .r-live-list li{background:#fff;padding:20px;border-radius:12px;font-weight:650}
   .r-live-list li::before{content:'✦';color:var(--coral);padding-right:10px}
-  @media(max-width:760px){.r-hero-grid,.r-story-grid,.r-past-grid,.r-interest-grid{grid-template-columns:1fr}.r-hero{padding:120px 0 70px}.r-photo{max-width:520px;margin-top:25px;aspect-ratio:1.2}.r-section{padding:65px 0}.r-orb{margin:auto}.r-past-grid img{order:-1}.r-quote{padding:35px}.r-live-details,.r-live-list{grid-template-columns:1fr}}
+  .r-editorial{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:8%;align-items:start}
+  .r-editorial__aside{position:sticky;top:120px}.r-editorial__aside p{font-size:14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--purple-deep)}
+  .r-editorial__body h2{max-width:760px}.r-editorial__body p+p{margin-top:22px}
+  .r-detail-section{padding:90px 0}.r-detail-section:nth-child(even){background:#f0e8f3}
+  .r-detail-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:9%;align-items:center}
+  .r-detail-grid img{width:100%;aspect-ratio:1.2;object-fit:cover;border-radius:24px 150px 24px 24px}
+  .r-kicker{display:block;text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:900;color:var(--coral);margin-bottom:18px}
+  .r-sample{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;list-style:none;padding:0;margin:34px 0}.r-sample li{display:grid;grid-template-columns:76px 1fr;gap:15px;padding:18px 0;border-top:1px solid #d4c5d8}.r-sample strong{color:var(--purple-deep)}
+  .r-two-lists{display:grid;grid-template-columns:1fr 1fr;gap:35px}.r-two-lists h3{font-size:26px}.r-two-lists ul{padding:0;list-style:none}.r-two-lists li{padding:12px 0;border-bottom:1px solid #dacfdc}
+  .r-faq{max-width:860px}.r-faq details{border-top:1px solid #d4c5d8;padding:20px 0}.r-faq summary{font-size:18px;font-weight:800;cursor:pointer}.r-faq details p{font-size:16px}
+  .r-book-panel{background:var(--purple-deep);color:#fff;padding:55px;border-radius:28px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}.r-book-panel h2{margin-bottom:12px}.r-book-panel p{margin:0}
+  @media(max-width:760px){.r-general-hero{min-height:760px;padding:155px 0 55px;background-position:54% center}.r-general-hero__content,.r-hero-grid,.r-story-grid,.r-past-grid,.r-interest-grid,.r-editorial,.r-detail-grid,.r-book-panel{grid-template-columns:1fr}.r-general-hero h1{font-size:clamp(52px,16vw,75px);line-height:.9}.r-general-hero__intro{border-left:0;border-top:1px solid rgba(255,255,255,.5);padding:25px 0 0;margin-top:35px}.r-general-hero__intro p{font-size:18px}.r-hero{padding:120px 0 70px}.r-photo{max-width:520px;margin-top:25px;aspect-ratio:1.2}.r-section,.r-detail-section{padding:65px 0}.r-orb{margin:auto}.r-past-card{order:-1}.r-quote{padding:35px}.r-live-details,.r-live-list,.r-pillars,.r-sample,.r-two-lists{grid-template-columns:1fr}.r-editorial__aside{position:static}.r-book-panel{padding:34px}.r-pillar{min-height:225px}.r-sample li{grid-template-columns:64px 1fr}}
+
+  .r-general-hero{min-height:calc(100svh - 20px);padding:170px 0 85px;background:#1d454b url('/images/retreat-coast.jpg') center/cover no-repeat;align-items:flex-end;overflow:hidden}
+  .r-general-hero::before{z-index:0;background:linear-gradient(180deg,rgba(7,29,34,.08) 20%,rgba(7,29,34,.66) 100%),linear-gradient(90deg,transparent 35%,rgba(7,29,34,.25) 100%)}
+  .r-coast-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+  .r-teaser{position:relative;z-index:1;padding-left:50%;box-sizing:border-box;text-align:right}.r-teaser h1{max-width:900px;font-size:clamp(64px,6.7vw,96px);line-height:.97;letter-spacing:-.055em}
+  .r-teaser>p{max-width:480px;font-size:20px;line-height:1.6;margin:28px 0 28px auto}
+  .r-video-toggle{position:absolute;z-index:2;right:24px;bottom:24px;border:1px solid #ffffff80;border-radius:999px;padding:10px 16px;background:#153239b3;color:#fff;font:inherit;font-size:12px;cursor:pointer}
+  .r-interest{padding:75px 0;background:#f8f4ef;color:var(--ink)}.r-interest .r-eyebrow{color:var(--purple-deep)}.r-interest h2{font-size:clamp(38px,4vw,58px)}.r-form{padding:0;background:transparent;gap:18px}.r-form button{background:var(--purple-deep);color:#fff}.r-form a{color:var(--purple-deep)}
+  @media(max-width:760px){.r-general-hero{min-height:85svh;padding:150px 0 80px}.r-teaser{padding-left:0}.r-teaser h1{font-size:clamp(58px,15vw,88px)}.r-teaser>p{font-size:18px;max-width:330px}.r-interest-grid{gap:30px}.r-interest{padding:55px 0}.r-video-toggle{bottom:18px;right:20px}}
 </style>
 </head>
 <body class="nav-solid theme-purple retreat-page">
@@ -60,15 +97,13 @@
 </div></nav><div class="nav-backdrop" id="navBackdrop"></div>
 <main id="main">
   <div id="retreatMain">
-    <header class="r-hero"><div class="r-wrap r-hero-grid">
-      <div><span class="r-eyebrow" data-retreat-copy="eyebrow">Retreats with Vanessa Flow Yoga</span><h1 data-retreat-copy="headline">Make room for yourself.</h1><p data-retreat-copy="intro">Step away from the everyday and come back to yourself. Our yoga retreats bring good movement, nourishing food, fresh air and real connection together in one beautiful pause.</p><a class="btn" href="#retreat-interest">Hear about the next retreat <span class="arrow">→</span></a></div>
-      <img class="r-photo" src="/images/blog/flow-to-freedom-with-us-on-retreat.webp" alt="Vanessa Flow Yoga retreat guests walking together in the countryside" data-retreat-image>
-    </div></header>
-    <section class="r-section"><div class="r-wrap r-story-grid"><div><span class="eyebrow">The experience</span><h2 data-retreat-copy="story_heading">More than time on the mat.</h2><p data-retreat-copy="story">Expect a balance of energising and restorative yoga, shared meals, new experiences and space to do exactly what you need. Come with a friend or come on your own. Beginners are welcome.</p></div><div class="r-orb">Move. Rest.<br>Connect. Return.</div></div></section>
-    <section class="r-section r-past"><div class="r-wrap r-past-grid"><img src="/images/blog/flow-to-freedom-with-us-on-retreat.webp" alt="Retreat guests out walking together" loading="lazy"><div><span class="eyebrow">Our retreats so far</span><h2 data-retreat-copy="past_heading">Where the journey has taken us</h2><span class="r-past-place" data-retreat-copy="past_place">Snowdonia, Wales</span><p data-retreat-copy="past_description">Our Alive and Aglow retreat brought the group together for yoga, nature, nourishing food and time to reconnect in the Welsh mountains.</p></div></div></section>
-    <section class="r-section"><div class="r-wrap"><blockquote class="r-quote"><span data-retreat-copy="quote">“Vanessa's retreats are very special. She creates such a beautiful environment that gives people flexibility to do whatever they want to do.”</span><cite>Past retreat guest</cite></blockquote></div></section>
+    <header class="r-general-hero">
+      <video class="r-coast-video" id="retreat-video" muted loop playsinline preload="none" poster="/images/retreat-coast.jpg" aria-hidden="true" tabindex="-1"><source data-src="/videos/retreat-coast.mp4" type="video/mp4"></video>
+      <div class="r-wrap r-teaser"><span class="r-eyebrow" data-retreat-copy="eyebrow">A retreat with Vanessa</span><h1 data-retreat-copy="headline">Somewhere slower.</h1><p data-retreat-copy="intro">Salt in the air. Space to breathe. A little time for you. We're dreaming of a coastal escape in June 2027.</p><a class="btn" href="#retreat-interest">Tell me more <span class="arrow">→</span></a></div>
+      <button class="r-video-toggle" id="retreat-video-toggle" type="button" hidden>Pause video</button>
+    </header>
   </div>
-  <section class="r-interest" id="retreat-interest"><div class="r-wrap r-interest-grid"><div><span class="r-eyebrow">Stay in the loop</span><h2 data-retreat-copy="interest_heading">Be first to hear what comes next.</h2><p data-retreat-copy="interest_description">There is no retreat on sale right now. Leave your details and we'll email you when the next one is announced.</p></div>
+  <section class="r-interest" id="retreat-interest"><div class="r-wrap r-interest-grid"><div><span class="r-eyebrow">A little curiosity?</span><h2 data-retreat-copy="interest_heading">Be first to hear.</h2><p data-retreat-copy="interest_description">Leave your details and we'll share the destination, dates and all the lovely details when they're ready.</p></div>
     <form class="r-form" name="retreat-interest" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html?f=retreat" aria-label="Register interest in retreats">
       <input type="hidden" name="form-name" value="retreat-interest"><p hidden aria-hidden="true"><label>Leave this empty: <input name="bot-field"></label></p>
       <div><label for="retreat-name">Your name</label><input id="retreat-name" name="name" autocomplete="name" required maxlength="100"></div>
@@ -91,6 +126,19 @@
   </div>
   <div class="footer-bottom"><div>&copy; Vanessa Flow Yoga Ltd</div><div><a href="/terms.html">Terms</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/cookies.html">Cookies</a></div></div>
 </div></footer>
+<script>
+(function(){
+  var video=document.getElementById('retreat-video'),button=document.getElementById('retreat-video-toggle');
+  var motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function pause(){video.pause();button.textContent='Play video'}
+  function play(){if(!video.querySelector('source').src){video.querySelector('source').src=video.querySelector('source').dataset.src;video.load()}video.play().then(function(){button.textContent='Pause video'}).catch(function(){button.textContent='Play video'})}
+  button.hidden=false;button.textContent='Play video';
+  if(!motion.matches && !(navigator.connection && navigator.connection.saveData))play();
+  button.addEventListener('click',function(){if(video.paused)play();else pause()});
+  motion.addEventListener('change',function(event){if(event.matches)pause()});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)pause()});
+})();
+</script>
 <script src="/retreat-content.js" defer></script>
 <script src="/consent.js" defer></script>
 <script>
