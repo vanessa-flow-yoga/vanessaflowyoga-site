@@ -2,18 +2,18 @@
   "schema_version": "1.0",
   "tiles": [
     {
-      "id": "class-of-the-month",
+      "id": "workshop-of-the-month",
       "size": "big",
-      "kind": "class",
+      "kind": "event",
       "tag": "Class of the month",
-      "headline": "Warm Yin",
-      "sub": "Class of the month · Fridays at 6:45pm",
-      "body": "A slower end to the week. Sink into deep stretches in a gently heated room, giving your body time to soften, release and reset. Fridays at 6:45pm · 45 mins.",
-      "cta": "See the timetable",
-      "href": "/classes",
-      "image": "/images/1790347014094-dsc-2424.jpeg",
-      "colour": "mint",
-      "expires": "2026-09-30"
+      "headline": "The Power Of Rest",
+      "sub": "Workshop of the month · Sunday 25th 3pm",
+      "body": "Are you tired, stressed or struggling to sleep? If so the ‘Power of Rest’ two hour mini retreat is just for you! You will leave feeling completely chilled out.",
+      "cta": "Learn More",
+      "href": "https://momence.com/l/ElhJ622M",
+      "image": "/images/1791373323251-restorative-yoga-yoga-nidra-copy-4.png",
+      "colour": "coral",
+      "expires": "2026-10-24"
     },
     {
       "id": "top-class",
@@ -27,7 +27,7 @@
       "href": "/pregnancy-yoga-ribble-valley",
       "image": "/images/pregnancy-yoga.webp",
       "colour": "purple",
-      "expires": ""
+      "expires": "2026-10-18"
     },
     {
       "id": "latest-read",
@@ -54,7 +54,7 @@
       "cta": "Get the intro pass",
       "href": "/intro-pass",
       "image": "/images/7.webp",
-      "colour": "coral",
+      "colour": "yellow",
       "expires": ""
     },
     {
@@ -68,7 +68,7 @@
       "cta": "Read what to expect in the heat",
       "href": "/post/are-you-feeling-hot-hot-hot",
       "image": "/images/hotyoga.webp",
-      "colour": "yellow",
+      "colour": "purple",
       "expires": ""
     }
   ]
