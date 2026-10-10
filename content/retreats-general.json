@@ -12,5 +12,7 @@
   "past_description": "Alive and Aglow brought our group into the Welsh mountains for generous yoga, long walks, shared food and the rare pleasure of having nowhere else to be.",
   "quote": "Vanessa's retreats are very special. She creates such a beautiful environment that gives people flexibility to do whatever they want to do.",
   "interest_heading": "Be first to hear.",
-  "interest_description": "Leave your details and we'll share the destination, dates and all the lovely details when they're ready."
+  "interest_description": "Leave your details and we'll share the destination, dates and all the lovely details when they're ready.",
+  "hero_video": "/videos/retreat-coast.mp4",
+  "momence_form_code": "<div id=\"momence-plugin-lead-form\"></div>\n<script async type=\"module\" id=\"momence-plugin-lead-form-src\" host_id=\"13063\" fields=\"firstName,lastName,email,phoneNumber\" token=\"3AXePpg8PE\" country_code=\"gb\" source_id=\"274907\" data_collect_consent=\"required\" data-field-def='{\"firstName\":{\"type\":\"text\",\"label\":\"First name\",\"required\":true},\"lastName\":{\"type\":\"text\",\"label\":\"Last name\",\"required\":true},\"email\":{\"type\":\"email\",\"label\":\"Email\",\"required\":true},\"phoneNumber\":{\"type\":\"phone-number\",\"label\":\"Phone number\",\"required\":true}}' data-on-success-msg=\"This is exciting! We’ll be in touch soon with more details &amp; an early bird special just for you!✨☀️\" src=\"https://momence.com/plugin/lead-form/lead-form.js\"></script>\n<style>:root { --momenceColorBackground: #FBFBFB; --momenceColorPrimary: 230,229,193; --momenceColorBlack: 3,1,13; }</style>"
 }

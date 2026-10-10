@@ -23,3 +23,29 @@ The old Sveltia GitHub-login editor and OAuth functions are retired. Do not re-e
 The separate admin project is live at `https://admin.vanessaflowyoga.co.uk/admin/` and `https://vanessa-flow-yoga-admin.netlify.app/admin/`. Charlie confirmed successful sign-in and a direct live publish. The admin write branch is `main`. The former customer-site `/admin/` remains removed. The GitHub content token expires on 24 October 2026 and must be rotated before then.
 
 Media, Site health, and optional per-post SEO editing have been deployed. Signed-in health controls still need Charlie/Vanessa verification. The health screen runs technical cookie-gating, responsive setup and server-response checks automatically. A full legal GDPR review, real-user speed score and pixel-perfect mobile review cannot be inferred from those checks. Form delivery requires a real test submission and inbox receipt confirmation. Alert email is **not active** until the admin Netlify project has a verified mail sender and `RESEND_API_KEY` plus `HEALTH_ALERT_FROM` in its Functions environment, followed by a real delivered test. The email recipients and alert categories are edited in the admin after deployment.
+
+
+## General retreat teaser (10 October 2026)
+
+General retreats page edits `/retreats`: label, title, teaser text, background video,
+poster fallback and form heading/introduction. Old experience, past-retreat and
+review fields remain in the JSON for compatibility but are hidden from this editor.
+Optional `hero_video` and `momence_form_code` fields extend schema 1.0 additively.
+The build, server validation and unsaved preview share `shared/retreat-teaser.cjs`.
+
+Upload an MP4 under 4 MB or paste a direct HTTPS MP4 URL. Uploads create a media
+commit immediately; publishing this page selects the new file. Larger clips must
+be compressed or hosted separately. The poster is still shown for reduced motion
+and data-saving visitors. HTTPS videos are permitted by the media CSP.
+
+Paste the complete Vanessa Momence lead form embed. Only known field settings,
+required consent, source ID, public widget token, success message and three colour
+variables are extracted. Only host 13063 and the official Momence lead-form script
+are permitted. Custom JavaScript and HTML are never executed. The generated form
+remains held until functional cookie consent. Preview renders the unsaved video,
+copy and form settings together; no enquiry is submitted automatically.
+
+The general page cannot be replaced automatically by an individual retreat.
+Individual-retreat routing/design remains a separate follow-up. Verify real
+video upload/publish and Momence lead receipt after sign-in; builds and tests do
+not prove those external flows.

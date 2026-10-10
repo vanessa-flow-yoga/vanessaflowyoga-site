@@ -84,7 +84,7 @@ async function main() {
     await checkHttp(`Internal link ${linkPath}`, link);
   }
 
-  for (const expected of ['contact', 'membership', 'application', 'retreat-interest']) {
+  for (const expected of ['contact', 'membership', 'application']) {
     const form = forms.get(expected);
     const valid = !!form && new RegExp(`name=["']form-name["'][^>]*value=["']${expected}["']`, 'i').test(form.markup)
       && /method=["']POST["']/i.test(form.markup);

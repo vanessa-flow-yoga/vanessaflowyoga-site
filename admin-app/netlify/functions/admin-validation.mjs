@@ -1,3 +1,4 @@
+import teaser from '../../../shared/retreat-teaser.cjs'
 import YAML from 'yaml'
 
 const pageLimits = {
@@ -53,6 +54,9 @@ export function validateContent(path, text) {
           !(/^\/[A-Za-z0-9_\-/.?=&%]+$/.test(t.href||'') || url(t.href)) || (t.expires && !date(t.expires)))) return 'Check the five cards, their photos and links, and choose one big card.'
   }
   if (path === 'content/retreats-general.json') {
+    if (value.hero_video !== undefined && !teaser.validVideo(value.hero_video)) return 'Choose an MP4 video or HTTPS MP4 link.'
+    if (value.momence_form_code !== undefined) { try { teaser.parseForm(value.momence_form_code) } catch (error) { return error.message } }
+    for (const [key,max] of Object.entries({eyebrow:45,interest_heading:65,interest_description:240})) { if (typeof value[key] !== 'string' || !value[key].trim() || value[key].length > max) return `Check ${key.replaceAll('_',' ')}.` }
     if (!value.headline?.trim() || value.headline.length>55 || !image(value.hero_image) ||
         !value.intro?.trim() || value.intro.length>270) return 'Complete the retreat headline, introduction and photo.'
   }

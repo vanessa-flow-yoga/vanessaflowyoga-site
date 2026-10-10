@@ -1,7 +1,7 @@
 const SITE = 'https://vanessaflowyoga.co.uk'
 const ADMIN = 'https://vanessa-flow-yoga-admin.netlify.app'
 const BEHOLD_DASHBOARD = 'https://app.behold.so/sign-in'
-const FORMS = ['contact', 'membership', 'application', 'retreat-interest']
+const FORMS = ['contact', 'membership', 'application']
 const CATEGORIES = ['availability', 'pages', 'links', 'security', 'seo', 'forms', 'cookies', 'media', 'speed', 'mobile', 'integrations', 'github']
 
 const timeLimit = 4000
@@ -30,7 +30,7 @@ function urls(html, base, expression) {
 }
 function pagePath(url) {try{return new URL(url).pathname}catch{return ''}}
 function result(category, name, status, detail = '', url = '') {return {category,name,status,detail,url}}
-export function hasPrematureThirdParty(html){return /<(?:script|iframe)\b[^>]*\ssrc=["']https?:\/\/(?:www\.googletagmanager\.com|www\.google-analytics\.com|connect\.facebook\.net|www\.facebook\.com\/tr|maps\.google\.com|momence\.com\/plugin)/i.test(html)}
+export function hasPrematureThirdParty(html){return /<(?:script|iframe)\b[^>]*\ssrc=["']https?:\/\/(?:www\.googletagmanager\.com|www\.google-analytics\.com|connect\.facebook\.net|www\.facebook\.com\/tr|maps\.google\.com|momence\.com\/plugin)/i.test(html.replace(/<template\b[^>]*>[\s\S]*?<\/template>/gi,''))}
 
 export async function runAudit({site=SITE,admin=ADMIN}={}) {
   const checkedAt=new Date().toISOString(), results=[]
@@ -100,6 +100,8 @@ export async function runAudit({site=SITE,admin=ADMIN}={}) {
   await parallel([...internal],25,async url=>{const check=await probe(url);add('links',`Internal ${new URL(url).pathname}`,(check.ok?'pass':'fail'),check.detail||`HTTP ${check.status}`,url)})
   await parallel([...external],30,async url=>{const check=await probe(url);add('links',`External ${new URL(url).hostname}`,check.ok?'pass':check.warning||!check.status?'warn':'fail',check.detail||`HTTP ${check.status}`,url)})
   for(const name of FORMS){const entry=forms.get(name);const found=!!entry&&new RegExp(`name=["']form-name["'][^>]*value=["']${name}["']`,'i').test(entry.markup);add('forms',`${name} form recognised`,found?'pass':'fail',entry?.pathname||'Not found')}
+  const retreat=pageData.find(page=>page.pathname==='/retreats.html'||page.pathname==='/retreats');
+  add('forms','Retreat Momence lead form configured',retreat?.html.includes('id="momence-plugin-lead-form"')&&retreat.html.includes('source_id="')?'pass':'fail','Submission and receipt in Momence require a real test',site+'/retreats');
   for(const asset of library?.assets||[])images.add(site+asset.path)
   await parallel([...images],30,async url=>{const check=await probe(url);add('media',pagePath(url),check.ok?'pass':'fail',check.detail||`HTTP ${check.status}`,url)})
   const behold=pageData.map(page=>/data-behold-url=["'](https:\/\/feeds\.behold\.so\/[^"']+)["']/i.exec(page.html)?.[1]).find(Boolean)

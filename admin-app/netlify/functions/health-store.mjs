@@ -3,6 +3,7 @@ import {CATEGORIES,FORMS} from './health-audit.mjs'
 
 const store = () => getStore({name:'vfy-health',consistency:'strong'})
 export const manualItems = [
+  {id:'form:retreat-interest',label:'retreat-interest form delivery',url:'/retreats'},
   ...FORMS.map(name=>({id:`form:${name}`,label:`${name} form delivery`,url:name==='retreat-interest'?'/retreats':name==='application'?'/work-with-us':`/${name}`})),
 ]
 

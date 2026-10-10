@@ -1,6 +1,7 @@
 // Post-build rendering for editor-managed content in the existing HTML pages.
 // Source pages retain readable fallback markup; only _site/ is rewritten.
 const fs = require('node:fs');
+const {renderTeaser} = require('../shared/retreat-teaser.cjs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
@@ -262,6 +263,7 @@ for (const [page, limits] of Object.entries(copyLimits)) {
   const missing = Object.keys(limits).filter((key) => key !== 'hero_alt' && !seen.has(key));
   if (missing.length) throw new Error(`Missing ${page} wording fields: ${missing.join(', ')}`);
   if (page === 'retreats') {
+    html = renderTeaser(html, data);
     if (!validImage(data.hero_image)) throw new Error('Invalid retreat hero image');
     html = html.replace(/(<img class="r-photo" src=")[^"]+(" alt=")[^"]+(" data-retreat-image>)/,
       `$1${escape(data.hero_image)}$2${escape(data.hero_alt)}$3`);

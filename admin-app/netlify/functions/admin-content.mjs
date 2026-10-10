@@ -56,25 +56,27 @@ export default async function handler(req) {
       const body = await req.json()
       const folder = body.folder
       const filename = body.filename
-      if (!['images', 'images/blog', 'images/retreats'].includes(folder) ||
-          !/^[a-z0-9]+(?:-[a-z0-9]+)*\.(?:jpg|jpeg|png|webp)$/.test(filename || '') ||
-          typeof body.base64 !== 'string' || body.base64.length > 3000000 ||
+      const video = folder === 'videos/retreats'
+      const limit = video ? 4000000 : 2000000
+      if (!['images', 'images/blog', 'images/retreats', 'videos/retreats'].includes(folder) ||
+          !(video ? /^[a-z0-9]+(?:-[a-z0-9]+)*\.mp4$/ : /^[a-z0-9]+(?:-[a-z0-9]+)*\.(?:jpg|jpeg|png|webp)$/).test(filename || '') ||
+          typeof body.base64 !== 'string' || body.base64.length > Math.ceil(limit / 3) * 4 ||
           !/^[A-Za-z0-9+/]+={0,2}$/.test(body.base64)) {
-        return response({error: 'Choose a JPG, PNG or WebP photo under 2 MB.'}, 400)
+        return response({error: 'Choose a photo under 2 MB or an MP4 video under 4 MB.'}, 400)
       }
       const bytes = Buffer.from(body.base64, 'base64')
-      if (bytes.length > 2000000 || bytes.length < 100 ||
-          !(bytes.subarray(0, 3).equals(Buffer.from([0xff, 0xd8, 0xff])) ||
+      if (bytes.length > limit || bytes.length < 100 ||
+          !(video ? bytes.toString('ascii',4,8)==='ftyp' : (bytes.subarray(0, 3).equals(Buffer.from([0xff, 0xd8, 0xff])) ||
             bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])) ||
-            (bytes.toString('ascii',0,4)==='RIFF' && bytes.toString('ascii',8,12)==='WEBP'))) {
-        return response({error: 'That photo format is not supported, or the file is over 2 MB.'}, 400)
+            (bytes.toString('ascii',0,4)==='RIFF' && bytes.toString('ascii',8,12)==='WEBP')))) {
+        return response({error: 'That media format is not supported, or the file exceeds the upload limit.'}, 400)
       }
       const imagePath = `${folder}/${filename}`
       const existing = await github(imagePath)
       if (existing.ok) return response({error: 'A photo with that name already exists. Try again.'}, 409)
       if (existing.status !== 404) return response({error: 'Could not check the photo name.'}, 502)
       const saved = await github(imagePath, {method: 'PUT', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({message: `Upload photo ${filename} from website admin`, content: body.base64, branch: BRANCH})})
+        body: JSON.stringify({message: `Upload ${video ? 'video' : 'photo'} ${filename} from website admin`, content: body.base64, branch: BRANCH})})
       if (!saved.ok) return response({error: 'Could not upload this photo.'}, 502)
       return response({path: `/${imagePath}`})
     }
