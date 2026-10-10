@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Yoga retreats · Vanessa Flow Yoga, Ribble Valley</title>
-<meta name="description" content="A coastal escape is taking shape for June 2027. Enquire about Vanessa Flow Yoga's next retreat and be first to hear the details.">
+<meta name="description" content="An escape is taking shape for June 2027. Enquire about Vanessa Flow Yoga's next retreat and be first to hear the details.">
 <link rel="canonical" href="https://vanessaflowyoga.co.uk/retreats">
 <meta name="theme-color" content="#6a3b7c">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -83,6 +83,19 @@
   .r-video-toggle{position:absolute;z-index:2;right:24px;bottom:24px;border:1px solid #ffffff80;border-radius:999px;padding:10px 16px;background:#153239b3;color:#fff;font:inherit;font-size:12px;cursor:pointer}
   .r-interest{padding:75px 0;background:#f8f4ef;color:var(--ink)}.r-interest .r-eyebrow{color:var(--purple-deep)}.r-interest h2{font-size:clamp(38px,4vw,58px)}.r-form{padding:0;background:transparent;gap:18px}.r-form button{background:var(--purple-deep);color:#fff}.r-form a{color:var(--purple-deep)}
   @media(max-width:760px){.r-general-hero{min-height:85svh;padding:150px 0 80px}.r-teaser{padding-left:0;text-align:center}.r-teaser h1{font-size:clamp(58px,15vw,88px)}.r-teaser>p{font-size:18px;max-width:330px;margin-left:auto;margin-right:auto}.r-interest-grid{gap:30px}.r-interest{padding:55px 0}.r-video-toggle{bottom:18px;right:20px}}
+
+  /* Retreat enquiry card */
+  .r-interest{padding:100px 0;background:#f8f4ef}
+  .r-interest-grid{align-items:start;gap:clamp(32px,6vw,88px)}
+  .r-interest-grid>div:first-child{padding-top:24px;max-width:440px}
+  .r-interest-grid>div:first-child>p{font-size:18px;line-height:1.7;color:var(--ink-soft)}
+  .r-interest .r-form{padding:clamp(24px,4vw,42px);background:#fbfbfb;border:1px solid #e6dfd9;border-radius:24px;box-shadow:0 16px 48px rgba(45,25,55,.07);display:block;min-width:0}
+  #momence-plugin-lead-form{font-family:inherit;color:var(--ink)}
+  #momence-plugin-lead-form input:not([type=checkbox]):not([type=radio]),#momence-plugin-lead-form select{border-radius:10px!important;min-height:50px;font:inherit;border:1px solid #d5ced7!important;background:#fff!important;box-sizing:border-box;max-width:100%}
+  #momence-plugin-lead-form input:focus-visible,#momence-plugin-lead-form select:focus-visible{outline:2px solid var(--purple-deep);outline-offset:2px}
+  #momence-plugin-lead-form button[type=submit]{border-radius:999px!important;min-height:52px;font-weight:700!important}
+  .r-form .consent-placeholder{padding:8px 0;text-align:left;background:transparent}
+  @media(max-width:760px){.r-interest{padding:60px 0}.r-interest-grid>div:first-child{padding-top:0}.r-interest .r-form{border-radius:18px;padding:24px 20px}}
 </style>
 </head>
 <body class="nav-solid theme-purple retreat-page">
@@ -99,19 +112,16 @@
   <div id="retreatMain">
     <header class="r-general-hero">
       <video class="r-coast-video" id="retreat-video" muted loop playsinline preload="none" poster="/images/retreat-coast.jpg" aria-hidden="true" tabindex="-1"><source data-src="/videos/retreat-coast.mp4" type="video/mp4"></video>
-      <div class="r-wrap r-teaser"><span class="r-eyebrow" data-retreat-copy="eyebrow">A retreat with Vanessa</span><h1 data-retreat-copy="headline">Somewhere slower.</h1><p data-retreat-copy="intro">Salt in the air. Space to breathe. A little time for you. We're dreaming of a coastal escape in June 2027.</p><a class="btn" href="#retreat-interest">Tell me more <span class="arrow">→</span></a></div>
+      <div class="r-wrap r-teaser"><span class="r-eyebrow" data-retreat-copy="eyebrow">Vanessa Flow Yoga</span><h1 data-retreat-copy="headline">Somewhere slower.</h1><p data-retreat-copy="intro">Space to breathe. A little time for you. We're dreaming of an escape in June 2027.</p><a class="btn" href="#retreat-interest">Tell me more <span class="arrow">→</span></a></div>
       <button class="r-video-toggle" id="retreat-video-toggle" type="button" hidden>Pause video</button>
     </header>
   </div>
   <section class="r-interest" id="retreat-interest"><div class="r-wrap r-interest-grid"><div><span class="r-eyebrow">A little curiosity?</span><h2 data-retreat-copy="interest_heading">Be first to hear.</h2><p data-retreat-copy="interest_description">Leave your details and we'll share the destination, dates and all the lovely details when they're ready.</p></div>
-    <form class="r-form" name="retreat-interest" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html?f=retreat" aria-label="Register interest in retreats">
-      <input type="hidden" name="form-name" value="retreat-interest"><p hidden aria-hidden="true"><label>Leave this empty: <input name="bot-field"></label></p>
-      <div><label for="retreat-name">Your name</label><input id="retreat-name" name="name" autocomplete="name" required maxlength="100"></div>
-      <div><label for="retreat-email">Email address</label><input id="retreat-email" name="email" type="email" autocomplete="email" required maxlength="254"></div>
-      <label class="r-check" for="retreat-consent"><input id="retreat-consent" name="retreat-emails" type="checkbox" value="yes" required><span>Yes, email me about future Vanessa Flow Yoga retreats. I can stop these emails at any time by contacting <a href="mailto:contact@vanessaflowyoga.co.uk">contact@vanessaflowyoga.co.uk</a>.</span></label>
-      <p>We use your details for retreat updates only. Read our <a href="/privacy.html">Privacy Policy</a>.</p>
-      <button class="btn" type="submit">Keep me posted <span class="arrow">→</span></button>
-    </form>
+    <div class="r-form" style="--momenceColorBackground:#FBFBFB;--momenceColorPrimary:230,229,193;--momenceColorBlack:3,1,13">
+      <div id="momence-plugin-lead-form"></div>
+      <div class="consent-placeholder" id="retreat-form-consent"><p>Allow functional cookies to load the retreat enquiry form.</p><button class="btn" type="button" onclick="window.vfyOpenCookieSettings()">Cookie settings</button></div>
+      <template id="retreat-lead-script"><script async type="module" id="momence-plugin-lead-form-src" host_id="13063" fields="firstName,lastName,email,phoneNumber" token="3AXePpg8PE" country_code="gb" source_id="274907" data_collect_consent="required" data-field-def='{"firstName":{"type":"text","label":"First name","required":true},"lastName":{"type":"text","label":"Last name","required":true},"email":{"type":"email","label":"Email","required":true},"phoneNumber":{"type":"phone-number","label":"Phone number","required":true}}' data-on-success-msg="This is exciting! We’ll be in touch soon with more details &amp; an early bird special just for you!✨☀️" src="https://momence.com/plugin/lead-form/lead-form.js"></script></template>
+    </div>
   </div></section>
 </main>
 <footer class="site-footer footer-a footer-d"><div class="wrap">
@@ -147,6 +157,19 @@
   function close(){document.body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false')}
   toggle.addEventListener('click',function(){var open=document.body.classList.toggle('nav-open');toggle.setAttribute('aria-expanded',open?'true':'false')});
   backdrop.addEventListener('click',close);document.querySelectorAll('#navLinks a').forEach(function(link){link.addEventListener('click',close)})})();
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  window.vfyConsent.onReady('functional', function () {
+    if (document.getElementById('momence-plugin-lead-form-src')) return;
+    var template = document.getElementById('retreat-lead-script');
+    var source = template.content.querySelector('script');
+    var script = document.createElement('script');
+    Array.from(source.attributes).forEach(function (attribute) { script.setAttribute(attribute.name, attribute.value); });
+    document.getElementById('retreat-form-consent').remove();
+    template.parentNode.appendChild(script);
+  });
+});
 </script>
 </body>
 </html>
