@@ -3,7 +3,7 @@ title: Our House Rules
 description: House rules at Vanessa Flow Yoga Studio, drawn from the ancient
   Yamas and Niyamas, plus our class cancellation policy.
 category: Yoga 101
-published: 2022-04-26
+published: 2026-10-12
 readTime: 4 min read
 image: /images/blog/1791796192478-logo-header.jpg
 ---
