@@ -1,72 +1,104 @@
 ---
-title: "Our House Rules"
-description: "House rules at Vanessa Flow Yoga Studio, drawn from the ancient Yamas and Niyamas, plus our class cancellation policy."
-category: "Yoga 101"
-published: "2022-04-26"
-readTime: "4 min read"
+title: Our House Rules
+description: House rules at Vanessa Flow Yoga Studio, drawn from the ancient
+  Yamas and Niyamas, plus our class cancellation policy.
+category: Yoga 101
+published: 2022-04-26
+readTime: 4 min read
+image: /images/blog/1791796192478-logo-header.jpg
 ---
 
-"Vanessa Flow Yoga studio is committed to help modern people discover freedom & happiness through movement & wellbeing classes that are always welcoming & encouraging"
+## V Flow house rules
 
-Our studio continues to welcome the most beautiful people. Kind, friendly & completely normal people who all have one thing in common…the desire to feel happier & healthier within themselves.
+"Vanessa Flow Yoga Studio is committed to helping modern people discover freedom and happiness through movement and wellbeing classes that are always welcoming and encouraging."
 
-We are doing that & we are making a difference. Complete strangers leave with a new acquaintance, someone they can smile at & feel acknowledged by within a class or maybe across the aisle whilst doing your weekly food shop.
+Our studio keeps welcoming the most beautiful people. Kind, friendly, completely normal people who all want the same thing: to feel happier and healthier in themselves.
 
-Yoga literally means union & for us all to be on the same page & to have equal respect for one another there needs to be specific "house rules" in place.
+And it's working. Strangers leave class with a new acquaintance. That's someone they can smile at across the room, or bump into in the aisle during the weekly food shop.
 
-## Vanessa Flow Yoga House Rules
+Yoga means union. For all of us to be on the same page and show each other equal respect, we need a few house rules.
 
-(Incorporating the Yamas & Niyamas)
+## Where our rules come from
 
-The Yamas (Attitudes towards the world) & Niyamas (Attitudes toward self) are part of the eight limbs of Yoga.
+These rules come from Vanessa's own moral compass and what she wants V Flow to be. The studio is an experience she's creating, and the rules are how we protect it for everyone who walks through the door.
 
-An ancient manual/ map which guides you towards discovering inner & outer peace. We are drawing from Patanjali’s Yoga Sutras to help create our house rules & personal code here at "Vanessa Flow Yoga Studio". Please take a few moments to become familiar with them:
+They draw on the Yamas and Niyamas from Patanjali's Yoga Sutras. These are part of the eight limbs of yoga, an ancient map that guides you towards inner and outer peace. The Yamas are attitudes towards the world. The Niyamas are attitudes towards yourself.
 
-## Yamas
+Please take a few minutes to read through them.
 
-### Ahimsa (Non-harming)
+## The Yamas
 
-- Always be kind, friendly & welcoming to other community members.
+### Ahimsa (non-harming)
 
-### Asteya (Non-stealing)
+Be kind, friendly and welcoming to everyone in our community.
 
-- Stealing of time. 2 Hour Cancellation policy. A last minute cancellation or no show presents a missed opportunity for other community members who may have wanted to sign up for class. Please be courteous to other members;
-- Enter with & leave with your own belongings, don't take what isn't yours.
+Please don't speak negatively about others or get involved in gossip. Every body is welcome here, and we don't tolerate judgement or comments about anyone's body.
 
-### Aparigraha (Non-Greed)
+Only bring what you need for class onto your mat. Please leave bags and anything else in the reception area. That way your teacher can move easily around the studio, and nobody trips over a stray bag.
 
-We make it clear when booking a class, buying a class pass or membership of the policies in place. You have made a commitment to you & our studio. Honour our simple house rules & don't take it for granted or ask for more than is required of us as a business.
+### Asteya (non-stealing)
 
-Buddy Passes are to be used for friends who have expressed their interest to join the studio & would like to experience one of our classes. They are not to be used excessively for other reasons.
+This one's about time as much as belongings. A late cancellation or no-show takes a space someone else might have booked. See our cancellation and no-show policy below.
 
-## Niyamas
+Bring your own things in and take your own things home.
 
-### Saucha (Cleanliness)
+### Aparigraha (non-greed)
 
-- We promise to keep the studio a clean & safe environment;
-- Please make sure to take off shoes in the reception areas & only have bare feet/ yoga socks in the studio;
-- All studio mats used are to be cleaned before putting it back in its rightful place. If you are unsure please ask the teacher or another community member.
+When you book a class or buy a pass or membership, we make our policies clear. That's a promise you've made to yourself and to the studio. Please honour it, and don't ask for more than we can give as a small business.
 
-### Tapas (Discipline)
+## The Niyamas
 
-- Be on time, be early. We make the studio available 15mins prior to Yoga classes & 10 mins before barre or pilates for you to enter & arrive calmly;
-- Do not disturb & steal others’ peace by showing up late;
-- You can view our full cancellation policy when booking, on your confirmation email & here https://vanessaflowyoga.co.uk/class-cancellation-policy
+### Saucha (cleanliness)
 
-## Cancellation Policy:
+We'll keep the studio clean and safe. You can help by:
 
-We know life can be unpredictable and sometimes plans change, that's absolutely fine. To keep things fair and to ensure spaces are available for those who need them, we ask that all cancellations are made through our app or website.
+- taking your shoes off in reception, with bare feet or yoga socks only in the studio
+- cleaning any studio mat you've used before putting it back (ask your teacher or someone nearby if you're unsure)
+- not eating in the studio
+- bringing a full-length towel to cover your mat for hot classes, plus a small face towel if you like
 
-Morning classes that begin before 10am require 12 hours' notice, and all other classes require a minimum of 2 hours' notice.
+Ideally have your last meal around two hours before class. A banana or some electrolytes between classes is fine. If you need something during class for medical reasons, just let us know.
 
-A cancellation made after these windows is considered a late cancel. A no-show is when a booking is missed without cancelling at all.
+We sell towels at the studio, but one from home does the job.
 
-Every client has one grace late cancel or no-show. After this, an £18 Courtesy Contribution will be applied, with 50% donated to community or charity projects, giving back when you back out.
+### Tapas (discipline)
 
-We hope you understand the importance of having a clear, easy-to-follow cancellation policy. It helps us create fairness, maintain boundaries, and keep our classes running smoothly for everyone.
+If you're on time, you're late. The studio opens 15 minutes before every class. Use that time to get your mat, towel and props, and give yourself a few minutes to land.
 
-We are committed to adapting & updating our rules regularly, however please make sure you are aware of the house rules above & apply them to your practice. Let them become a habit.
+Once class starts, we close and lock the door. If you're more than 2 minutes late, you won't be able to join.
 
-We will always be understanding. Being kind & welcoming are two of our core values at our studio.
+If you're running late, call us on 07519 677644 to let us know. We may be able to make an exception.
 
-Thank you for being here & welcome to our community.
+Please leave your phone in reception. Phones are a distraction, and your 45 minutes to an hour on the mat is your time away from them and the outside world. If you're on your phone in the studio, we'll ask you to take it out.
+
+If you need your phone on you for an emergency, just let us know at reception.
+
+We love it when you take a class snap, but please don't keep your phone beside you during class. In hot classes, the heat and humidity aren't kind to phone batteries either, so reception is the safest place for it.
+
+## Our cancellation and no-show policy
+
+We know life is unpredictable and plans change. That's fine. To keep things fair and make sure spaces go to people who need them, please make all cancellations through our app or website.
+
+Classes starting before 10am need 12 hours' notice. All other classes need at least 2 hours' notice.
+
+Cancelling after these windows is a late cancel. Late cancellations made in the app are handled automatically. A no-show is when you miss a booking without cancelling at all.
+
+Every client has one grace late cancel or no-show. After that, an £18 Courtesy Contribution applies, with 50% donated to community or charity projects. Giving back when you back out.
+
+You'll get a reminder 24 hours before every class, so that's your nudge. If you don't turn up, we'll often give you a call to check you're OK. We do that because we care.
+
+### What counts as an emergency
+
+An emergency is something sudden and out of your control that stops you getting to class. For example, an accident or injury, a child or dependant who suddenly needs you, a family emergency, or your car breaking down on the way.
+
+If an emergency happens inside the cancellation window, call the studio on 07519 677644 and leave a voicemail. It's important you leave a message. That phone lives at the studio, and we go through voicemails by hand in line with our policy, so a missed call without a message can't be taken into account.
+
+You can read the full policy when you book, in your confirmation email and at [vanessaflowyoga.co.uk/cancellation](https://vanessaflowyoga.co.uk/cancellation).
+
+## Thank you
+
+A clear policy keeps things fair for everyone and keeps classes running smoothly. We review these rules regularly, so please read through them and bring them into your practice until they become habit.
+
+We'll always be understanding. Being kind and welcoming are two of our core values.
+
+Thank you for being here and welcome to our community.
