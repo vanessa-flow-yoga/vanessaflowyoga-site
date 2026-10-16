@@ -8,7 +8,7 @@
   "button_url": "/retreats",
   "image": "/images/retreat-coast.jpg",
   "image_alt": "Turquoise sea along a peaceful coastline",
-  "delay_seconds": 6,
+  "delay_seconds": 3,
   "pages": "homepage",
   "schedule_enabled": false,
   "start_date": "",
