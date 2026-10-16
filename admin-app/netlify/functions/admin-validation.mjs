@@ -1,3 +1,4 @@
+import popup from '../../../shared/popup.cjs'
 import teaser from '../../../shared/retreat-teaser.cjs'
 import YAML from 'yaml'
 
@@ -30,6 +31,7 @@ export function validateContent(path, text) {
   let value
   try { value = JSON.parse(text) } catch { return 'The content could not be read.' }
   if (value?.schema_version !== '1.0') return 'The content version is missing.'
+  if (path === 'content/popup.json') return popup.validate(value)
   if (pageLimits[path]) {
     for (const [key, max] of Object.entries(pageLimits[path])) {
       if (typeof value[key] !== 'string' || !value[key].trim() || value[key].length > max) return `Check ${key.replaceAll('_',' ')} (${max} characters maximum).`

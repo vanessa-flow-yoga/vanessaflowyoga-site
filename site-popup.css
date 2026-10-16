@@ -1,0 +1,22 @@
+.vfy-popup{padding:0;border:0;border-radius:28px;width:min(880px,calc(100% - 40px));max-width:880px;max-height:calc(100dvh - 40px);overflow:auto;color:#49545a;background:#fff;box-shadow:0 32px 100px #182c3860;font-family:var(--body,'Figtree',sans-serif)}
+.vfy-popup::backdrop{background:#25362e99;backdrop-filter:blur(6px)}
+.vfy-popup__layout{display:grid;grid-template-columns:43% 57%;min-height:510px}
+.vfy-popup__visual{position:relative;min-height:100%;overflow:hidden;background:#8079b9}
+.vfy-popup__photo{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+.vfy-popup__visual:after{content:'';position:absolute;inset:50% 0 0;background:linear-gradient(transparent,#152c3d88)}
+.vfy-popup__seal{position:absolute;bottom:28px;left:28px;z-index:1;color:white;font-size:13px;letter-spacing:.1em}
+.vfy-popup__content{padding:42px 42px 32px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;position:relative}
+.vfy-popup__logo{filter:brightness(0)!important;opacity:1;width:156px;height:auto;max-height:65px;object-fit:contain;object-position:left;margin-bottom:32px}
+.vfy-popup__eyebrow{margin:0 0 13px;font-size:11px;line-height:1.4;text-transform:uppercase;font-weight:700;letter-spacing:.16em;color:#46564d}
+.vfy-popup__title{font-family:var(--sans,'Inter',sans-serif);font-size:clamp(32px,4.2vw,49px);font-weight:600;line-height:1.05;letter-spacing:-.045em;margin:0;overflow-wrap:anywhere}
+.vfy-popup__title:after{content:'';display:block;width:52px;height:5px;border-radius:20px;background:#eb6768;margin-top:22px}
+.vfy-popup__message{font-size:17px;line-height:1.6;margin:22px 0 26px;white-space:pre-line;overflow-wrap:anywhere}
+.vfy-popup__button{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 22px;border-radius:100px;background:#eb6768;color:#fff;font-weight:700;font-size:14px;text-decoration:none;max-width:100%;overflow-wrap:anywhere}
+.vfy-popup__button:after{content:'↗';font-size:21px;line-height:1}
+.vfy-popup__button:hover{background:#d04f50;color:#fff}
+.vfy-popup__dismiss{border:0;background:none;padding:12px 0 0;font-size:13px;text-decoration:underline;color:#46564d}
+.vfy-popup__close{position:absolute;right:12px;top:12px;display:grid;place-items:center;width:36px;height:36px;border:1px solid #354c4526;border-radius:50%;background:#ffffffd9;color:#354c45;font-size:26px;line-height:1;z-index:2}
+.vfy-popup :focus-visible{outline:3px solid #354c45;outline-offset:4px}
+.vfy-popup--text{max-width:540px}.vfy-popup--text .vfy-popup__layout{grid-template-columns:1fr;min-height:0}.vfy-popup--text .vfy-popup__content{padding:48px}
+@media(max-width:620px){.vfy-popup{width:calc(100% - 28px);max-height:calc(100dvh - 28px);border-radius:22px}.vfy-popup__layout{grid-template-columns:1fr;min-height:0}.vfy-popup__visual{height:170px;min-height:0}.vfy-popup__seal{left:24px;bottom:20px}.vfy-popup__content,.vfy-popup--text .vfy-popup__content{padding:28px}.vfy-popup__logo{filter:brightness(0)!important;opacity:1;width:132px;max-height:50px;margin-bottom:24px}.vfy-popup__title{font-size:36px}.vfy-popup__message{font-size:16px;margin:18px 0 22px}.vfy-popup__button{width:100%}}
+@media(prefers-reduced-motion:no-preference){.vfy-popup[open]{animation:vfy-popup-in .3s ease-out}@keyframes vfy-popup-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}}

@@ -6,7 +6,7 @@ const REPO = 'vanessa-flow-yoga/vanessaflowyoga-site'
 // A review deploy must never silently write to main.
 const BRANCH = process.env.VFY_ADMIN_WRITE_BRANCH || 'codex/vanessa-content-editor'
 const singletons = new Set([
-  'content/timetable.json', 'content/latest.json', 'content/prices.json',
+  'content/popup.json', 'content/timetable.json', 'content/latest.json', 'content/prices.json',
   'content/retreats-general.json', 'content/page-copy/home.json',
   'content/page-copy/classes.json', 'content/page-copy/membership.json',
 ])
