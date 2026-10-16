@@ -35,7 +35,7 @@
     try{if(sessionStorage.getItem('vfy-popup-seen'))return}catch{}
     const openWhenReady=()=>{
       // Give the cookie choice and any existing modal priority.
-      if(document.querySelector('.cookie-banner, .cookie-modal, dialog[open], [aria-modal="true"]')){timer=setTimeout(openWhenReady,1000);return}
+      if([...document.querySelectorAll('.cookie-banner, .cookie-modal, dialog[open], [aria-modal="true"]')].some(node=>node.getClientRects().length && getComputedStyle(node).visibility!=='hidden')){timer=setTimeout(openWhenReady,1000);return}
       if(due(data))show(data);
     };
     timer=setTimeout(openWhenReady,Math.max(0,Math.min(60,Number(data.delay_seconds)||0))*1000);

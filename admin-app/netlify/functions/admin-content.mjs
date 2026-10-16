@@ -1,3 +1,4 @@
+import popup from '../../../shared/popup.cjs'
 import {getUser, verifyRequestOrigin} from '@netlify/identity'
 import {validateContent} from './admin-validation.mjs'
 
@@ -46,6 +47,12 @@ export default async function handler(req) {
     const url = new URL(req.url)
     if (req.method === 'GET' && url.searchParams.get('mode') === '1') {
       return response({mode: !process.env.VFY_ADMIN_WRITE_BRANCH ? 'readonly' : BRANCH === 'main' ? 'live' : 'review'})
+    }
+    if (req.method === 'GET' && url.searchParams.get('popup-live') === '1') {
+      const published = await fetch('https://vanessaflowyoga.co.uk/content/popup.json?status='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
+      if (!published.ok) return response({error:'Could not check the published popup.'},502);
+      const data = await published.json();
+      return response({status:popup.status(data),checkedAt:new Date().toISOString(),data});
     }
     if (!process.env.VFY_GITHUB_CONTENT_TOKEN) return response({error: 'The GitHub content connection is not set up yet. Ask Charlie to finish the admin project setup.'}, 503)
     const collection = url.searchParams.get('collection')

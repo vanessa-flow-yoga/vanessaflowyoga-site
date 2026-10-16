@@ -19,4 +19,12 @@ function validate(data) {
   if (data.schedule_enabled && !data.start_date && !data.end_date) return 'Choose a start or end date for the schedule.';
   return null;
 }
-module.exports = {validate,validLink};
+function status(data, now = new Date()) {
+  if (validate(data)) return {label:'Not live',detail:'The published popup settings are invalid.'};
+  if (!data.enabled) return {label:'Not live',detail:'Switched off on the website.'};
+  const today = new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
+  if (data.schedule_enabled && data.start_date && today < data.start_date) return {label:'Not live',detail:'Scheduled to start '+data.start_date+' (UK date).'};
+  if (data.schedule_enabled && data.end_date && today > data.end_date) return {label:'Not live',detail:'Schedule ended '+data.end_date+' (UK date).'};
+  return {label:'Live',detail:(data.pages==='homepage'?'Homepage only':'All eligible pages')+' · after cookie choices · '+data.delay_seconds+' second delay · once per tab visit.'};
+}
+module.exports = {validate,validLink,status};
