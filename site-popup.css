@@ -14,7 +14,6 @@
 .vfy-popup__button{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 22px;border-radius:100px;background:#eb6768;color:#fff;font-weight:700;font-size:14px;text-decoration:none;max-width:100%;overflow-wrap:anywhere}
 .vfy-popup__button:after{content:'↗';font-size:21px;line-height:1}
 .vfy-popup__button:hover{background:#d04f50;color:#fff}
-.vfy-popup__dismiss{border:0;background:none;padding:12px 0 0;font-size:13px;text-decoration:underline;color:#46564d}
 .vfy-popup__close{position:absolute;right:12px;top:12px;display:grid;place-items:center;width:36px;height:36px;border:1px solid #354c4526;border-radius:50%;background:#ffffffd9;color:#354c45;font-size:26px;line-height:1;z-index:2}
 .vfy-popup :focus-visible{outline:3px solid #354c45;outline-offset:4px}
 .vfy-popup--text{max-width:540px}.vfy-popup--text .vfy-popup__layout{grid-template-columns:1fr;min-height:0}.vfy-popup--text .vfy-popup__content{padding:48px}

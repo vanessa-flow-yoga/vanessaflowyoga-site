@@ -19,7 +19,7 @@
     const message=make('p','vfy-popup__message',data.message);message.id='vfy-popup-message';
     content.append(logo,make('p','vfy-popup__eyebrow',data.eyebrow),title,message);
     if(data.button_text && data.button_url){try{const link=new URL(data.button_url,location.origin);if(['https:'].includes(link.protocol) || (link.origin===location.origin && /^\/(?!\/)/.test(data.button_url))){const button=make('a','vfy-popup__button',data.button_text);button.href=link.href;content.append(button)}}catch{}}
-    const dismiss=make('button','vfy-popup__dismiss','Maybe later');dismiss.type='button';dismiss.onclick=()=>dialog.close();content.append(dismiss);layout.append(content);dialog.append(layout);
+    layout.append(content);dialog.append(layout);
     const close=make('button','vfy-popup__close','×');close.type='button';close.setAttribute('aria-label','Close announcement');close.onclick=()=>dialog.close();dialog.append(close);
     const previous=document.activeElement;const scroll=document.documentElement.style.overflow;
     dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close()}});
