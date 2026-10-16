@@ -49,3 +49,10 @@ The general page cannot be replaced automatically by an individual retreat.
 Individual-retreat routing/design remains a separate follow-up. Verify real
 video upload/publish and Momence lead receipt after sign-in; builds and tests do
 not prove those external flows.
+
+
+## Legal documents (16 October 2026)
+
+Terms and conditions and Cancellation policy are editable admin sections. Their canonical content is `content/legal/terms.json` and `content/legal/cancellation.json` (schema 1.0). Each has an updated date and ordered sections with a stable `id`, heading and body. Keep existing section references to preserve incoming links. Paragraphs, `- ` bullet lists, `**bold**` and `[label](link)` are supported; raw HTML is displayed as text. The shared `shared/legal.cjs` renderer is used by the build and unsaved preview, with server-side validation before writes. Cancellation policy remains the full source for notice periods and freeze rules; Terms links to it.
+
+Preview is optional throughout the admin. Publish does not require a prior preview; permissions, validation and conflict checks still apply.

@@ -271,3 +271,10 @@ for (const [page, limits] of Object.entries(copyLimits)) {
   fs.writeFileSync(target, html);
 }
 console.log('Rendered timetable, latest cards, blog index, sitemap, prices and page wording');
+
+const legal = require('../shared/legal.cjs');
+for (const page of ['terms','cancellation']) {
+  const target=path.join(out,page+'.html');
+  const data=read('content/legal/'+page+'.json');
+  fs.writeFileSync(target,replaceRegion(fs.readFileSync(target,'utf8'),'<!-- editor:legal:start -->','<!-- editor:legal:end -->',legal.render(data),page));
+}
