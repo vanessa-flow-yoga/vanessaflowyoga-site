@@ -1,5 +1,5 @@
 import popup from '../../../shared/popup.cjs'
-import {listPosts} from './post-list.mjs'
+import {listPosts} from '../../lib/post-list.mjs'
 import {getUser, verifyRequestOrigin} from '@netlify/identity'
 import {validateContent} from './admin-validation.mjs'
 

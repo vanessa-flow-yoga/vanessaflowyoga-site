@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {sendHealthEmail} from '../netlify/functions/health-email.mjs'
+import {sendHealthEmail} from '../lib/health-email.mjs'
 const env={RESEND_API_KEY:'test-only',HEALTH_ALERT_FROM:'Website <health@example.com>'}
 const message={recipients:['owner@example.com'],subject:'Test',text:'Test message',env}
 test('health email uses saved recipients and server-only credentials',async()=>{

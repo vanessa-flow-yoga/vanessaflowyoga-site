@@ -1,4 +1,4 @@
-import {emailConfigured,sendHealthEmail} from './health-email.mjs'
+import {emailConfigured,sendHealthEmail} from '../../lib/health-email.mjs'
 import {runAudit} from './health-audit.mjs'
 import {readSettings,writeReport,addManualChecks} from './health-store.mjs'
 

@@ -1,10 +1,10 @@
-import {emailConfigured,sendHealthEmail} from './health-email.mjs'
+import {emailConfigured,sendHealthEmail} from '../../lib/health-email.mjs'
 import {getUser,verifyRequestOrigin} from '@netlify/identity'
 import {runAudit,CATEGORIES} from './health-audit.mjs'
 import {manualItems,validSettings,readSettings,writeSettings,readReport,writeReport,addManualChecks} from './health-store.mjs'
 
-import {credentialStatus} from './credential-health.mjs'
-export {credentialStatus} from './credential-health.mjs'
+import {credentialStatus} from '../../lib/credential-health.mjs'
+export {credentialStatus} from '../../lib/credential-health.mjs'
 const response=(value,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store'}})
 
 export default async function handler(req){

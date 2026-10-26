@@ -1,4 +1,4 @@
-import {credentialChecks} from './credential-health.mjs'
+import {credentialChecks} from '../../lib/credential-health.mjs'
 const SITE = 'https://vanessaflowyoga.co.uk'
 const ADMIN = 'https://vanessa-flow-yoga-admin.netlify.app'
 const BEHOLD_DASHBOARD = 'https://app.behold.so/sign-in'

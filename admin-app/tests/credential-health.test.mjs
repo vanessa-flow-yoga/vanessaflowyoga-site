@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {credentialStatus,credentialChecks} from '../netlify/functions/credential-health.mjs'
+import {credentialStatus,credentialChecks} from '../lib/credential-health.mjs'
 import {alertFailures} from '../netlify/functions/health-scheduled.mjs'
 const env={VFY_GITHUB_CONTENT_TOKEN:'test-only',VFY_GITHUB_TOKEN_EXPIRES_AT:'2026-11-25'}
 test('expiry warning enters daily email failures before expiry',async()=>{

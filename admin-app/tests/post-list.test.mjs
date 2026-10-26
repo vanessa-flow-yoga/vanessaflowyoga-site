@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {listPosts} from '../netlify/functions/post-list.mjs'
+import {listPosts} from '../lib/post-list.mjs'
 const entry=(name,sha=name)=>({name:name+'.md',path:'post/'+name+'.md',type:'file',sha})
 test('admin blog list uses publication dates, not filename or modification order',async()=>{
  const dates={'post/a-old.md':'2020-01-01','post/z-new.md':'2026-10-26','post/m-middle.md':'2023-02-28'}
