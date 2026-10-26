@@ -1,12 +1,10 @@
+import {emailConfigured,sendHealthEmail} from './health-email.mjs'
 import {getUser,verifyRequestOrigin} from '@netlify/identity'
 import {runAudit,CATEGORIES} from './health-audit.mjs'
 import {manualItems,validSettings,readSettings,writeSettings,readReport,writeReport,addManualChecks} from './health-store.mjs'
 
-const tokenExpiry=process.env.VFY_GITHUB_TOKEN_EXPIRES_AT||'2026-10-24'
-export function credentialStatus(now=new Date()){
-  const daysLeft=Math.ceil((new Date(`${tokenExpiry}T00:00:00Z`).getTime()-now.getTime())/86400000)
-  return {expiresAt:tokenExpiry,daysLeft,status:!process.env.VFY_GITHUB_CONTENT_TOKEN?'missing':daysLeft<=0?'expired':daysLeft<=14?'expiring':'ok'}
-}
+import {credentialStatus} from './credential-health.mjs'
+export {credentialStatus} from './credential-health.mjs'
 const response=(value,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store'}})
 
 export default async function handler(req){
@@ -19,7 +17,7 @@ export default async function handler(req){
       const [settings,rawReport]=await Promise.all([readSettings(),readReport()])
       const report=rawReport?addManualChecks(rawReport,settings):null
       const stale=report&&Date.now()-Date.parse(report.checkedAt)>36*60*60*1000
-      return response({report,status:!report?'not-run':stale?'stale':report.summary.fail?'attention':report.summary.warn?'warning':'healthy',settings,manualItems,categories:CATEGORIES,credential:credentialStatus(),alertsConfigured:!!(process.env.RESEND_API_KEY&&process.env.HEALTH_ALERT_FROM)})
+      return response({report,status:!report?'not-run':stale?'stale':report.summary.fail?'attention':report.summary.warn?'warning':'healthy',settings,manualItems,categories:CATEGORIES,credential:credentialStatus(),alertsConfigured:emailConfigured()})
     }
     verifyRequestOrigin(req)
     if(req.method==='PUT'){
@@ -29,6 +27,11 @@ export default async function handler(req){
       const settings={...current,recipients:[...new Set(value.recipients.map(email=>email.trim().toLowerCase()))],alertCategories:[...new Set(value.alertCategories)]}
       await writeSettings(settings)
       return response({settings,message:'Email alert choices saved.'})
+    }
+    if(req.method==='POST'&&url.searchParams.get('test-email')==='1'){
+      const settings=await readSettings()
+      await sendHealthEmail({recipients:settings.recipients,subject:'Vanessa Flow Yoga: health alert delivery test',text:'This is a requested test of Vanessa Flow Yoga website health alerts.\n\nPlease confirm this message arrived. The daily monitor checks selected website issues and the admin content connection, including token expiry.\n\nSent: '+new Date().toISOString()})
+      return response({message:'Test email accepted by the email provider for your saved recipients. Check both inboxes to confirm delivery.'})
     }
     if(req.method==='POST'&&url.searchParams.get('manual')){
       const id=url.searchParams.get('manual'),value=await req.json()

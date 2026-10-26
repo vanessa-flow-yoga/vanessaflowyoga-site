@@ -1,3 +1,4 @@
+import {credentialChecks} from './credential-health.mjs'
 const SITE = 'https://vanessaflowyoga.co.uk'
 const ADMIN = 'https://vanessa-flow-yoga-admin.netlify.app'
 const BEHOLD_DASHBOARD = 'https://app.behold.so/sign-in'
@@ -33,7 +34,7 @@ function result(category, name, status, detail = '', url = '') {return {category
 export function hasPrematureThirdParty(html){return /<(?:script|iframe)\b[^>]*\ssrc=["']https?:\/\/(?:www\.googletagmanager\.com|www\.google-analytics\.com|connect\.facebook\.net|www\.facebook\.com\/tr|maps\.google\.com|momence\.com\/plugin)/i.test(html.replace(/<template\b[^>]*>[\s\S]*?<\/template>/gi,''))}
 
 export async function runAudit({site=SITE,admin=ADMIN}={}) {
-  const checkedAt=new Date().toISOString(), results=[]
+  const checkedAt=new Date().toISOString(), results=await credentialChecks()
   const add=(category,name,status,detail='',url='')=>results.push(result(category,name,status,detail,url))
   let home, sitemap,library
   const homeStart=Date.now()

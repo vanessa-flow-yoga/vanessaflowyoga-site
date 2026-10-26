@@ -1,4 +1,5 @@
 import popup from '../../../shared/popup.cjs'
+import {listPosts} from './post-list.mjs'
 import {getUser, verifyRequestOrigin} from '@netlify/identity'
 import {validateContent} from './admin-validation.mjs'
 
@@ -93,6 +94,16 @@ export default async function handler(req) {
       const result = await github(folder)
       if (!result.ok) return response({error: 'Could not load entries.'}, 502)
       const entries = await result.json()
+      if(collection === 'posts') {
+        const posts=await listPosts(entries,async path=>{
+          const result=await github(path)
+          if(!result.ok)throw Error('Could not read article details')
+          const entry=await result.json()
+          if(entry.type!=='file'||entry.size>150000)throw Error('Invalid article')
+          return Buffer.from(entry.content,'base64').toString('utf8')
+        })
+        return response({schema_version:'1.0',entries:posts})
+      }
       return response({entries: entries.filter((entry) => entry.type === 'file' && allowedPath(entry.path))
         .map(({name, path}) => ({name, path}))})
     }
