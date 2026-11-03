@@ -9,6 +9,7 @@ test('checkout parser accepts tracking parameters, anchors and trailing slash wi
  for(const link of [url,url+'/?source=website#checkout',url+'?a=1&b=2','https://momence.com/m/24050'])assert.equal(checkout.productId(link),'24050')
  const prices=JSON.parse(fs.readFileSync(new URL('../../content/prices.json',import.meta.url)))
  prices.plans[4].booking_url=url+'/?source=website#checkout'
+ prices.plans[4].product_id='24050'
  assert.equal(validateContent('content/prices.json',JSON.stringify(prices)),null)
  prices.plans[4].product_id='999'
  assert.notEqual(validateContent('content/prices.json',JSON.stringify(prices)),null)

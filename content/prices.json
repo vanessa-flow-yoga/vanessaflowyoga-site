@@ -19,11 +19,11 @@
     },
     {
       "id": "unlimited",
-      "label": "Unlimited monthly membership",
-      "product_id": "27005",
+      "label": "Unlimited four-week membership",
+      "product_id": "973006",
       "amount": 72,
       "momence_confirmed_amount": 72,
-      "booking_url": "https://momence.com/Vanessa-Flow-Yoga/membership/UNLIMITED-V-Flow-Membership%3A-%C2%A372pm/27005"
+      "booking_url": "https://momence.com/m/973006"
     },
     {
       "id": "annual",
@@ -36,10 +36,10 @@
     {
       "id": "ten-pack",
       "label": "10-class pack",
-      "product_id": "24050",
+      "product_id": "973025",
       "amount": 150,
       "momence_confirmed_amount": 150,
-      "booking_url": "https://momence.com/Vanessa-Flow-Yoga/membership/10-Class-Pass%3A-%C2%A3150/24050"
+      "booking_url": "https://momence.com/m/973025"
     }
   ]
 }
