@@ -1,7 +1,9 @@
+import {combineHealth} from '../../lib/health-essential.mjs'
+import {weeklyMessage,londonWeek} from '../../lib/health-notifications.mjs'
 import {emailConfigured,sendHealthEmail} from '../../lib/health-email.mjs'
 import {getUser,verifyRequestOrigin} from '@netlify/identity'
 import {runAudit,CATEGORIES} from './health-audit.mjs'
-import {manualItems,validSettings,readSettings,writeSettings,readReport,writeReport,addManualChecks} from './health-store.mjs'
+import {manualItems,validSettings,readSettings,writeSettings,readReport,writeReport,addManualChecks,readNotificationState,writeNotificationState,readEssentialReport} from './health-store.mjs'
 
 import {credentialStatus} from '../../lib/credential-health.mjs'
 export {credentialStatus} from '../../lib/credential-health.mjs'
@@ -14,10 +16,11 @@ export default async function handler(req){
   try{
     const url=new URL(req.url)
     if(req.method==='GET'){
-      const [settings,rawReport]=await Promise.all([readSettings(),readReport()])
-      const report=rawReport?addManualChecks(rawReport,settings):null
+      const [settings,rawReport,essential,state]=await Promise.all([readSettings(),readReport(),readEssentialReport(),readNotificationState()])
+      const combined=essential&&(!rawReport||Date.parse(essential.checkedAt)>Date.parse(rawReport.checkedAt))?combineHealth(rawReport,essential):rawReport
+      const report=combined?addManualChecks(combined,settings):null
       const stale=report&&Date.now()-Date.parse(report.checkedAt)>36*60*60*1000
-      return response({report,status:!report?'not-run':stale?'stale':report.summary.fail?'attention':report.summary.warn?'warning':'healthy',settings,manualItems,categories:CATEGORIES,credential:credentialStatus(),alertsConfigured:emailConfigured()})
+      return response({report,status:!report?'not-run':stale?'stale':report.summary.fail?'attention':report.summary.warn?'warning':'healthy',settings,manualItems,categories:CATEGORIES,credential:credentialStatus(),alertsConfigured:emailConfigured(),delivery:state.lastDelivery||null,lastWeeklySentAt:state.lastWeeklySentAt||null,essentialCheckedAt:essential?.checkedAt||null})
     }
     verifyRequestOrigin(req)
     if(req.method==='PUT'){
@@ -27,6 +30,15 @@ export default async function handler(req){
       const settings={...current,recipients:[...new Set(value.recipients.map(email=>email.trim().toLowerCase()))],alertCategories:[...new Set(value.alertCategories)]}
       await writeSettings(settings)
       return response({settings,message:'Email alert choices saved.'})
+    }
+    if(req.method==='POST'&&url.searchParams.get('weekly-email')==='1'){
+      const settings=await readSettings(),raw=await readReport(),essential=await readEssentialReport()
+      if(!raw)return response({error:'Run the website checks first so the report has current results.'},409)
+      const combined=essential&&Date.parse(essential.checkedAt)>Date.parse(raw.checkedAt)?combineHealth(raw,essential):raw
+      const report=addManualChecks(combined,settings),now=new Date(),state=await readNotificationState()
+      await sendHealthEmail({recipients:settings.recipients,...weeklyMessage(report,now)})
+      await writeNotificationState({...state,schema_version:'1.0',weeklyKey:londonWeek(now),lastWeeklySentAt:now.toISOString(),lastDelivery:{type:'weekly',status:'accepted',at:now.toISOString(),detail:'Accepted by email provider; confirm both inboxes.'}})
+      return response({message:'Weekly report accepted for your saved recipients. Check both inboxes to confirm delivery.'})
     }
     if(req.method==='POST'&&url.searchParams.get('test-email')==='1'){
       const settings=await readSettings()

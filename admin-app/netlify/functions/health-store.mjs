@@ -34,3 +34,8 @@ export function addManualChecks(report,settings) {
   for(const item of manualItems){const record=settings.manual?.[item.id];if(record?.status==='fail')results.push({category:item.id.startsWith('form:')?'forms':item.id,name:item.label,status:'fail',detail:`Manual check failed on ${record.checkedAt?.slice(0,10)||'an unknown date'}`,url:item.url})}
   return {...report,results,summary:{pass:results.filter(r=>r.status==='pass').length,fail:results.filter(r=>r.status==='fail').length,warn:results.filter(r=>r.status==='warn').length}}
 }
+
+export async function readNotificationState(){return await store().get('notification-state',{type:'json'})||{schema_version:'1.0'}}
+export async function writeNotificationState(value){await store().setJSON('notification-state',value)}
+export async function readEssentialReport(){return await store().get('essential-report',{type:'json'})}
+export async function writeEssentialReport(value){await store().setJSON('essential-report',value)}

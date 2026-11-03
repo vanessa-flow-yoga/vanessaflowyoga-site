@@ -10,3 +10,7 @@
 
 [functions."health-scheduled"]
   schedule = "17 8 * * *"
+
+# Lightweight public-site/admin/Identity/token checks; full audit remains daily.
+[functions."health-essential-scheduled"]
+  schedule = "47 * * * *"

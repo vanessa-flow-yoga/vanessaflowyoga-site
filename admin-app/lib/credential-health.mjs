@@ -10,6 +10,8 @@ export function credentialStatus(now=new Date(),env=process.env){
 export async function credentialChecks({env=process.env,now=new Date(),request=fetch}={}){
   const credential=credentialStatus(now,env)
   const results=[{category:'github',name:'Admin token expiry',status:credential.status==='ok'?'pass':'fail',detail:credential.status==='missing'?'Admin content token is missing':credential.status==='unknown'?'Set VFY_GITHUB_TOKEN_EXPIRES_AT to the actual token expiry date':`Renew admin content token before ${credential.expiresAt} (${credential.daysLeft} days remaining)`}]
+  const stage=credential.daysLeft<=0?'expired':credential.daysLeft<=1?'tomorrow':credential.daysLeft<=7?'week':'fortnight'
+  results[0].notificationKey='github:token-expiry:'+credential.expiresAt+':'+credential.status+':'+(credential.status==='expiring'||credential.status==='expired'?stage:'setup')
   if(!env.VFY_GITHUB_CONTENT_TOKEN)return results
   try{
     const response=await request('https://api.github.com/repos/vanessa-flow-yoga/vanessaflowyoga-site/contents/content/page-copy/home.json?ref='+encodeURIComponent(env.VFY_ADMIN_WRITE_BRANCH||'codex/vanessa-content-editor'),{headers:{Authorization:`Bearer ${env.VFY_GITHUB_CONTENT_TOKEN}`,Accept:'application/vnd.github+json','User-Agent':'VanessaFlowYoga-Health'},redirect:'error',signal:AbortSignal.timeout(4000)})
