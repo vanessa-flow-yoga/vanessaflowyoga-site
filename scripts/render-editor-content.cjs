@@ -1,3 +1,4 @@
+const checkout = require('../shared/checkout.cjs');
 // Post-build rendering for editor-managed content in the existing HTML pages.
 // Source pages retain readable fallback markup; only _site/ is rewritten.
 const fs = require('node:fs');
@@ -138,9 +139,7 @@ if (priceContent.schema_version !== '1.0' || !Array.isArray(priceContent.plans) 
 const plans = originalPlans.map((original, index) => {
   const plan = priceContent.plans[index];
   if (plan.id !== original.id || !Number.isInteger(plan.amount) || plan.amount < 1 || plan.amount > 5000 ||
-    plan.momence_confirmed_amount !== plan.amount || !/^\d+$/.test(plan.product_id) ||
-    !plan.booking_url.startsWith('https://momence.com/') ||
-    !plan.booking_url.endsWith('/' + plan.product_id)) {
+    plan.momence_confirmed_amount !== plan.amount || !checkout.matches(plan.booking_url,plan.product_id)) {
     throw new Error(`Check the ${original.id} site price, Momence price confirmation and booking link`);
   }
   return { ...plan, baseAmount: original.amount, baseProduct: original.product, baseUrl: original.url };
@@ -151,7 +150,7 @@ function replaceVisiblePrices(value) {
     (_match, pound, amount) => pound + amounts.get(amount));
 }
 function replaceBookingLinks(value) {
-  for (const plan of plans) value = value.replaceAll(plan.baseUrl, plan.booking_url);
+  for (const plan of plans) value = value.replaceAll(plan.baseUrl, escape(plan.booking_url.trim()));
   return value;
 }
 for (const file of fs.readdirSync(out).filter((name) => name.endsWith('.html'))) {

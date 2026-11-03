@@ -1,3 +1,4 @@
+import checkout from '../../../shared/checkout.cjs'
 import legal from '../../../shared/legal.cjs'
 import popup from '../../../shared/popup.cjs'
 import teaser from '../../../shared/retreat-teaser.cjs'
@@ -42,8 +43,7 @@ export function validateContent(path, text) {
   if (path === 'content/prices.json') {
     if (!Array.isArray(value.plans) || value.plans.length !== 5 || value.plans.some((p) =>
       !Number.isInteger(p.amount) || p.amount < 1 || p.amount > 5000 || p.momence_confirmed_amount !== p.amount ||
-      !/^\d+$/.test(p.product_id || '') || !p.booking_url?.startsWith('https://momence.com/') ||
-      !p.booking_url.endsWith('/'+p.product_id))) return 'Confirm every price and matching Momence checkout link before saving.'
+      !checkout.matches(p.booking_url,p.product_id))) return 'Confirm every price and matching Momence checkout link before saving.'
   }
   if (path === 'content/timetable.json') {
     const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun']

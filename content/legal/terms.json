@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-10-16",
+  "updated": "2026-11-03",
   "sections": [
     {
       "id": "who-we-are",
@@ -15,7 +15,7 @@
     {
       "id": "intro-pass-and-class-packs",
       "heading": "3. Intro Pass and class packs",
-      "body": "The 21-Day Intro Pass is available to new members only and can only be purchased once. It gives you access to classes for 21 days from your first visit.\n\nClass packs are valid for 12 months from the date of purchase. Class packs can't usually be shared, but 10-class packs may be transferred to another person under special circumstances, at our discretion.\n\nIntro Passes and class packs are non-refundable unless you're entitled to a refund under your statutory rights."
+      "body": "The 21-Day Intro Pass is available to new members only and can only be purchased once. It gives you access to classes for 21 days from your first visit.\n\n10-class packs are valid for 6 months from the date of purchase. Class packs can't usually be shared, but 10-class packs may be transferred to another person under special circumstances, at our discretion.\n\nIntro Passes and class packs are non-refundable unless you're entitled to a refund under your statutory rights."
     },
     {
       "id": "memberships",
