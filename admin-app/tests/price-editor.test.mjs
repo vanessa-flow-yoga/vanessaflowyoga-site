@@ -15,6 +15,7 @@ test('link-only edits accept supplied Momence URLs without a duplicate price edi
 })
 test('changed price needs explicit confirmation and names the blocked plan',()=>{
  const data=prices(),annual=data.plans[3]
+ annual.amount=780;annual.momence_confirmed_amount=780
  changePrice(annual,840)
  assert.equal(annual.momence_confirmed_amount,null)
  assert.throws(()=>preparePrices(data.plans),/Annual membership: tick.*£840/)

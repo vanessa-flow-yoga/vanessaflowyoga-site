@@ -13,7 +13,7 @@ test('both legal documents retain all sections, anchors and requested email link
   const output=legal.render(data);
   assert.match(output,/href="mailto:cancel@vanessaflowyoga.co.uk"/);assert.match(output,/href="mailto:freeze@vanessaflowyoga.co.uk"/);
   assert.match(output,/href="mailto:contact@vanessaflowyoga.co.uk"/);assert.match(output,/id="memberships"/);
-  assert.ok(output.includes('Last updated: '+(page==='terms'?'3 November 2026':'16 October 2026')));
+  assert.ok(output.includes('Last updated: '+(page==='terms'?'4 November 2026':'16 October 2026')));
  }
  const data=read('cancellation');const member=data.sections.find(s=>s.id==='memberships');assert.doesNotMatch(member.body,/contact@/);
  assert.match(member.body,/90 days/);assert.match(member.body,/7 consecutive days/);
