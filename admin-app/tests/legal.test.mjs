@@ -28,7 +28,7 @@ test('publish succeeds without a previous preview',async()=>{
  const source=fs.readFileSync(new URL('../src/admin-app.js',import.meta.url),'utf8');
  const save=source.slice(source.indexOf('async function saveEntry('),source.indexOf('async function listEntries('));
  let request,feedback;
- const context={state:{data:read('terms'),path:'content/legal/terms.json',sha:'a'.repeat(40),reviewed:null},legal,JSON,api:async(q,options)=>{request=JSON.parse(options.body);return {sha:'b'.repeat(40),message:'Published.'}},setMessage:(text,error)=>{feedback={text,error}}};
+ const context={document:{getElementById:()=>null},state:{data:read('terms'),path:'content/legal/terms.json',sha:'a'.repeat(40),reviewed:null},legal,JSON,api:async(q,options)=>{request=JSON.parse(options.body);return {sha:'b'.repeat(40),message:'Published.'}},setMessage:(text,error)=>{feedback={text,error}}};
  vm.runInNewContext(save,context);await context.saveEntry({id:'terms',legal:true},false);
  assert.equal(request.path,'content/legal/terms.json');assert.equal(feedback.error,undefined);assert.equal(feedback.text,'Published.');
 })

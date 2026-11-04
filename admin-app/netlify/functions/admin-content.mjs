@@ -41,26 +41,30 @@ async function github(path, options = {}) {
 }
 
 export default async function handler(req) {
+  const respond = (data, status = 200) => {
+    if (req.method === 'PUT') console.info(JSON.stringify({schema_version:'1.0',event:'admin-content-save',status,outcome:status < 400 ? 'saved' : data.error || 'rejected'}))
+    return response(data,status)
+  }
   try {
     const user = await getUser()
-    if (!user) return response({error: 'Please sign in again.'}, 401)
-    if (!user.roles?.includes('admin')) return response({error: 'Your account needs admin access.'}, 403)
+    if (!user) return respond({error: 'Please sign in again.'}, 401)
+    if (!user.roles?.includes('admin')) return respond({error: 'Your account needs admin access.'}, 403)
     const url = new URL(req.url)
     if (req.method === 'GET' && url.searchParams.get('mode') === '1') {
-      return response({mode: !process.env.VFY_ADMIN_WRITE_BRANCH ? 'readonly' : BRANCH === 'main' ? 'live' : 'review'})
+      return respond({mode: !process.env.VFY_ADMIN_WRITE_BRANCH ? 'readonly' : BRANCH === 'main' ? 'live' : 'review'})
     }
     if (req.method === 'GET' && url.searchParams.get('popup-live') === '1') {
       const published = await fetch('https://vanessaflowyoga.co.uk/content/popup.json?status='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
-      if (!published.ok) return response({error:'Could not check the published popup.'},502);
+      if (!published.ok) return respond({error:'Could not check the published popup.'},502);
       const data = await published.json();
-      return response({status:popup.status(data),checkedAt:new Date().toISOString(),data});
+      return respond({status:popup.status(data),checkedAt:new Date().toISOString(),data});
     }
-    if (!process.env.VFY_GITHUB_CONTENT_TOKEN) return response({error: 'The GitHub content connection is not set up yet. Ask Charlie to finish the admin project setup.'}, 503)
+    if (!process.env.VFY_GITHUB_CONTENT_TOKEN) return respond({error: 'The GitHub content connection is not set up yet. Ask Charlie to finish the admin project setup.'}, 503)
     const collection = url.searchParams.get('collection')
     const path = url.searchParams.get('path')
     if (req.method === 'POST' && url.searchParams.get('upload') === '1') {
       verifyRequestOrigin(req)
-      if (!process.env.VFY_ADMIN_WRITE_BRANCH) return response({error: 'Saving is not enabled on this preview.'}, 503)
+      if (!process.env.VFY_ADMIN_WRITE_BRANCH) return respond({error: 'Saving is not enabled on this preview.'}, 503)
       const body = await req.json()
       const folder = body.folder
       const filename = body.filename
@@ -70,29 +74,29 @@ export default async function handler(req) {
           !(video ? /^[a-z0-9]+(?:-[a-z0-9]+)*\.mp4$/ : /^[a-z0-9]+(?:-[a-z0-9]+)*\.(?:jpg|jpeg|png|webp)$/).test(filename || '') ||
           typeof body.base64 !== 'string' || body.base64.length > Math.ceil(limit / 3) * 4 ||
           !/^[A-Za-z0-9+/]+={0,2}$/.test(body.base64)) {
-        return response({error: 'Choose a photo under 2 MB or an MP4 video under 4 MB.'}, 400)
+        return respond({error: 'Choose a photo under 2 MB or an MP4 video under 4 MB.'}, 400)
       }
       const bytes = Buffer.from(body.base64, 'base64')
       if (bytes.length > limit || bytes.length < 100 ||
           !(video ? bytes.toString('ascii',4,8)==='ftyp' : (bytes.subarray(0, 3).equals(Buffer.from([0xff, 0xd8, 0xff])) ||
             bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])) ||
             (bytes.toString('ascii',0,4)==='RIFF' && bytes.toString('ascii',8,12)==='WEBP')))) {
-        return response({error: 'That media format is not supported, or the file exceeds the upload limit.'}, 400)
+        return respond({error: 'That media format is not supported, or the file exceeds the upload limit.'}, 400)
       }
       const imagePath = `${folder}/${filename}`
       const existing = await github(imagePath)
-      if (existing.ok) return response({error: 'A photo with that name already exists. Try again.'}, 409)
-      if (existing.status !== 404) return response({error: 'Could not check the photo name.'}, 502)
+      if (existing.ok) return respond({error: 'A photo with that name already exists. Try again.'}, 409)
+      if (existing.status !== 404) return respond({error: 'Could not check the photo name.'}, 502)
       const saved = await github(imagePath, {method: 'PUT', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({message: `Upload ${video ? 'video' : 'photo'} ${filename} from website admin`, content: body.base64, branch: BRANCH})})
-      if (!saved.ok) return response({error: 'Could not upload this photo.'}, 502)
-      return response({path: `/${imagePath}`})
+      if (!saved.ok) return respond({error: 'Could not upload this photo.'}, 502)
+      return respond({path: `/${imagePath}`})
     }
     if (req.method === 'GET' && collection) {
       const folder = collection === 'posts' ? 'post' : collection === 'retreats' ? 'content/retreats' : null
-      if (!folder) return response({error: 'Unknown section.'}, 400)
+      if (!folder) return respond({error: 'Unknown section.'}, 400)
       const result = await github(folder)
-      if (!result.ok) return response({error: 'Could not load entries.'}, 502)
+      if (!result.ok) return respond({error: 'Could not load entries.'}, 502)
       const entries = await result.json()
       if(collection === 'posts') {
         const posts=await listPosts(entries,async path=>{
@@ -102,38 +106,38 @@ export default async function handler(req) {
           if(entry.type!=='file'||entry.size>150000)throw Error('Invalid article')
           return Buffer.from(entry.content,'base64').toString('utf8')
         })
-        return response({schema_version:'1.0',entries:posts})
+        return respond({schema_version:'1.0',entries:posts})
       }
-      return response({entries: entries.filter((entry) => entry.type === 'file' && allowedPath(entry.path))
+      return respond({entries: entries.filter((entry) => entry.type === 'file' && allowedPath(entry.path))
         .map(({name, path}) => ({name, path}))})
     }
-    if (!path || !allowedPath(path)) return response({error: 'That content area is not available.'}, 400)
+    if (!path || !allowedPath(path)) return respond({error: 'That content area is not available.'}, 400)
 
     if (req.method === 'GET') {
       const result = await github(path)
-      if (result.status === 404) return response({error: 'Entry not found.'}, 404)
-      if (!result.ok) return response({error: 'Could not load content.'}, 502)
+      if (result.status === 404) return respond({error: 'Entry not found.'}, 404)
+      if (!result.ok) return respond({error: 'Could not load content.'}, 502)
       const entry = await result.json()
-      if (entry.type !== 'file' || entry.size > 150000) return response({error: 'Invalid content file.'}, 400)
-      return response({path, sha: entry.sha, content: Buffer.from(entry.content, 'base64').toString('utf8')})
+      if (entry.type !== 'file' || entry.size > 150000) return respond({error: 'Invalid content file.'}, 400)
+      return respond({path, sha: entry.sha, content: Buffer.from(entry.content, 'base64').toString('utf8')})
     }
 
-    if (req.method !== 'PUT') return response({error: 'Method not allowed.'}, 405)
+    if (req.method !== 'PUT') return respond({error: 'Method not allowed.'}, 405)
     verifyRequestOrigin(req)
-    if (!process.env.VFY_ADMIN_WRITE_BRANCH) return response({error: 'Saving is not enabled on this preview.'}, 503)
+    if (!process.env.VFY_ADMIN_WRITE_BRANCH) return respond({error: 'Saving is not enabled on this preview.'}, 503)
     const body = await req.json()
     if (body.path !== path || typeof body.content !== 'string' || body.content.length > 150000 ||
         (body.sha !== null && !/^[a-f0-9]{40}$/.test(body.sha || ''))) {
-      return response({error: 'Invalid content update.'}, 400)
+      return respond({error: 'Invalid content update.'}, 400)
     }
     const validationError = validateContent(path, body.content)
-    if (validationError) return response({error: validationError}, 400)
+    if (validationError) return respond({error: validationError}, 400)
     const current = await github(path)
-    if (current.status === 404 && body.sha !== null) return response({error: 'This entry was removed. Reload before saving.'}, 409)
+    if (current.status === 404 && body.sha !== null) return respond({error: 'This entry was removed. Reload before saving.'}, 409)
     if (current.ok) {
       const entry = await current.json()
-      if (body.sha !== entry.sha) return response({error: 'Someone changed this entry. Reload before saving.'}, 409)
-    } else if (current.status !== 404) return response({error: 'Could not verify the latest version.'}, 502)
+      if (body.sha !== entry.sha) return respond({error: 'Someone changed this entry. Reload before saving.'}, 409)
+    } else if (current.status !== 404) return respond({error: 'Could not verify the latest version.'}, 502)
     const commit = await github(path, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
@@ -144,11 +148,12 @@ export default async function handler(req) {
         branch: BRANCH,
       }),
     })
-    if (!commit.ok) return response({error: commit.status === 409 ? 'This entry changed. Reload before saving.' : 'GitHub could not save this change.'}, commit.status === 409 ? 409 : 502)
+    if (!commit.ok) console.warn(JSON.stringify({schema_version:'1.0',event:'github-content-save-rejected',status:commit.status}))
+    if (!commit.ok) return respond({error: commit.status === 409 ? 'This entry changed. Reload before saving.' : 'GitHub could not save this change.'}, commit.status === 409 ? 409 : 502)
     const saved = await commit.json()
-    return response({path, sha: saved.content?.sha, message: BRANCH === 'main' ? 'Published. Netlify will now update the website.' : 'Saved to the review branch. The live website has not changed.'})
+    return respond({path, sha: saved.content?.sha, message: BRANCH === 'main' ? 'Published. Netlify will now update the website.' : 'Saved to the review branch. The live website has not changed.'})
   } catch (error) {
-    if (error?.status === 403) return response({error: 'Request was blocked for security.'}, 403)
-    return response({error: 'The admin could not complete that request.'}, 500)
+    if (error?.status === 403) return respond({error: 'Request was blocked for security.'}, 403)
+    return respond({error: 'The admin could not complete that request.'}, 500)
   }
 }
