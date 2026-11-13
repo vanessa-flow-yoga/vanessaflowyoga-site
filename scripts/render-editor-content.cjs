@@ -266,6 +266,9 @@ for (const [page, limits] of Object.entries(copyLimits)) {
     if (!validImage(data.hero_image)) throw new Error('Invalid retreat hero image');
     html = html.replace(/(<img class="r-photo" src=")[^"]+(" alt=")[^"]+(" data-retreat-image>)/,
       `$1${escape(data.hero_image)}$2${escape(data.hero_alt)}$3`);
+    // Share previews (Facebook, WhatsApp, iMessage) use the same hero photo.
+    html = html.replace(/(<meta (?:property|name)="(?:og|twitter):image" content=")[^"]+(" data-retreat-share-image>)/g,
+      `$1https://vanessaflowyoga.co.uk${escape(data.hero_image)}$2`);
   }
   fs.writeFileSync(target, html);
 }

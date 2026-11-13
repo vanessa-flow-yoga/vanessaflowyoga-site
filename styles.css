@@ -4807,7 +4807,8 @@
   .article .a-cat { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; margin: 0 0 14px; }
   .article h1 { font-size: clamp(30px,5vw,46px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 12px; }
   .article .a-meta { font-size: 13px; color: var(--muted); font-weight: 700; margin: 0 0 24px; }
-  .article .a-hero { border-radius: 18px; overflow: hidden; margin: 0 0 30px; aspect-ratio: 16/9; background-size: cover; background-position: center; filter: brightness(1.18) saturate(0.96); }
+  .article .a-hero { border-radius: 18px; overflow: hidden; margin: 0 0 30px; aspect-ratio: 16/9; filter: brightness(1.18) saturate(0.96); }
+  .article .a-hero img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
   .article .a-body > p { font-size: 17.5px; line-height: 1.75; color: var(--ink-2); margin: 0 0 20px; }
   .article .a-body > h2 { font-size: 26px; font-weight: 900; letter-spacing: -0.02em; margin: 34px 0 12px; color: var(--ink); }
   .article .a-body > h3 { font-size: 20px; font-weight: 900; letter-spacing: -0.01em; margin: 26px 0 10px; color: var(--ink); }

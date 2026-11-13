@@ -31,3 +31,31 @@ function injectPopup(folder) {
   }
 }
 injectPopup(output);
+
+// Image SEO pass over the finished pages: reserve space for local images and
+// list each page's meaningful photos in the sitemap for Google Images.
+const imageMeta = require('../shared/image-meta.cjs');
+const SITE = 'https://vanessaflowyoga.co.uk';
+const pageImages = new Map();
+const sizeCache = new Map();
+const isLogo = (src) => /(?:^|\/)(?:new-)?logo\.png$/i.test(src.split(/[?#]/)[0]);
+(function walk(folder) {
+  for (const entry of fs.readdirSync(folder, {withFileTypes:true})) {
+    const file = path.join(folder, entry.name);
+    if (entry.isDirectory()) { walk(file); continue; }
+    if (!entry.name.endsWith('.html')) continue;
+    const before = fs.readFileSync(file, 'utf8');
+    const {html, images} = imageMeta.processHtml(output, file, before, sizeCache);
+    if (html !== before) fs.writeFileSync(file, html);
+    const canonical = (html.match(/<link rel="canonical" href="([^"]+)"/i) || [])[1];
+    if (!canonical) continue;
+    const urls = [...new Set(images.filter((i) => i.alt.trim() && !isLogo(i.src))
+      .map((i) => SITE + '/' + path.relative(output, i.file).split(path.sep).map(encodeURIComponent).join('/')))];
+    if (urls.length) pageImages.set(canonical, urls);
+  }
+})(output);
+const sitemapFile = path.join(output, 'sitemap.xml');
+const sitemap = fs.readFileSync(sitemapFile, 'utf8');
+const withImages = imageMeta.addSitemapImages(sitemap, pageImages);
+fs.writeFileSync(sitemapFile, withImages);
+console.log(`Image pass: ${sizeCache.size} images sized, ${(withImages.match(/<image:image>/g) || []).length} sitemap image entries`);

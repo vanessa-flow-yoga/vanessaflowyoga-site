@@ -65,7 +65,7 @@
   <span class="a-cat" style="background:{{ cat.bg }};color:{{ cat.fg }}">{{ category | vfyesc | safe }}</span>
   <h1>{{ title | vfyesc | safe }}</h1>
   <div class="a-meta">{{ publishedISO | monthYear }} &middot; {{ readTime }} &middot; Vanessa Flow</div>
-  <div class="a-hero" style="background-image:url('{{ hero }}')" role="img" aria-label="{{ heroAlt | vfyesc | safe }}"></div>
+  <figure class="a-hero"><img src="{{ hero }}" alt="{{ heroAlt | vfyesc | safe }}" fetchpriority="high" decoding="async"></figure>
   <div class="a-body">
 {{ content | safe }}  </div>
   <a class="a-back" href="/blog.html">&larr; Back to all posts</a>
