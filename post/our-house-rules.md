@@ -34,7 +34,7 @@ Be kind, friendly and welcoming to everyone in our community.
 
 Please don't speak negatively about others or get involved in gossip. Every body is welcome here, and we don't tolerate judgement or comments about anyone's body.
 
-Only bring what you need for class onto your mat. Please leave bags and anything else in the reception area. That way your teacher can move easily around the studio, and nobody trips over a stray bag.
+Only bring what you need for class onto your mat. Please leave bags and anything else in a locker. That way your teacher can move easily around the studio, and nobody trips over a stray bag.
 
 ### Asteya (non-stealing)
 
@@ -69,11 +69,11 @@ Once class starts, we close and lock the door. If you're more than 2 minutes lat
 
 If you're running late, call us on 07519 677644 to let us know. We may be able to make an exception.
 
-Please leave your phone in reception. Phones are a distraction, and your 45 minutes to an hour on the mat is your time away from them and the outside world. If you're on your phone in the studio, we'll ask you to take it out.
+Please leave your phone in a locker. Phones are a distraction, and your 45 minutes to an hour on the mat is your time away from them and the outside world. If you're on your phone in the studio, we'll ask you to take it out.
 
 If you need your phone on you for an emergency, just let us know at reception.
 
-We love it when you take a class snap, but please don't keep your phone beside you during class. In hot classes, the heat and humidity aren't kind to phone batteries either, so reception is the safest place for it.
+We love it when you take a class snap, but please don't keep your phone beside you during class. In hot classes, the heat and humidity aren't kind to phone batteries either, so a locker is the safest place for it.
 
 ## Our cancellation and no-show policy
 
