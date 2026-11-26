@@ -1,0 +1,252 @@
+{
+  "schema_version": "2.0",
+  "title": "SAMPLE retreat page",
+  "show_on_retreats_page": false,
+  "last_few_places": false,
+  "fully_booked": false,
+  "hero": {
+    "eyebrow": "Five-night yoga retreat · Mallorca",
+    "heading": "Somewhere *slower.*",
+    "intro": "Sunrise yoga, long lunches and warm sea. Five unrushed days on the Mallorca coast with Vanessa and a small group.",
+    "image": "/images/retreat-coast.jpg",
+    "image_alt": "Turquoise bay on the Mallorca coast",
+    "video": "/videos/retreat-coast.mp4"
+  },
+  "facts": {
+    "dates": "6 to 11 June 2027",
+    "location": "Cala d'Or, Mallorca",
+    "length": "5 nights",
+    "price_from": "£1,150 pp"
+  },
+  "invitation": {
+    "heading": "Space to move, rest and feel like *yourself again.*",
+    "text": "Each day starts with yoga as the sun comes up over the bay. After that, the time is yours. Swim, read, nap, explore the old town or sit with a coffee and do nothing at all.\n\nNothing is compulsory. Everything is looked after.",
+    "for_you_heading": "This retreat is for you if",
+    "for_you": [
+      "You want a proper break, not a packed itinerary",
+      "You're coming alone and want an easy group to join",
+      "You've done a few classes, or none at all",
+      "You'd like someone else to do the planning for once"
+    ],
+    "image": "/images/retreat-coast.jpg",
+    "image_alt": "The bay from above"
+  },
+  "highlights": {
+    "heading": "What we can't wait for.",
+    "cards": [
+      {
+        "heading": "Two practices a day",
+        "text": "Energising morning flow and slow evening yin on the terrace."
+      },
+      {
+        "heading": "A boat day to the coves",
+        "text": "Swim stops in water you can see the bottom of."
+      },
+      {
+        "heading": "Long-table suppers",
+        "text": "Local, seasonal food made for passing round."
+      },
+      {
+        "heading": "Afternoons free",
+        "text": "The pool, the beach, a book, a nap. Your call."
+      }
+    ]
+  },
+  "photos": [
+    {
+      "image": "/images/retreat-coast.jpg",
+      "alt": "Retreat photo"
+    },
+    {
+      "image": "/images/blog/flow-to-freedom-with-us-on-retreat.webp",
+      "alt": "Retreat photo"
+    },
+    {
+      "image": "/images/warmyoga.webp",
+      "alt": "Retreat photo"
+    },
+    {
+      "image": "/images/vfy2.webp",
+      "alt": "Retreat photo"
+    },
+    {
+      "image": "/images/od2.webp",
+      "alt": "Retreat photo"
+    }
+  ],
+  "stories": [
+    {
+      "label": "Where you'll stay",
+      "heading": "A quiet villa above the bay.",
+      "text": "Whitewashed rooms, a shaded terrace for practice and a pool looking out to sea. The beach is a ten-minute walk down the hill. It feels like a home, not a hotel.",
+      "image": "/images/retreat-coast.jpg",
+      "image_alt": ""
+    },
+    {
+      "label": "The yoga",
+      "heading": "Yoga that works with your energy.",
+      "text": "Morning classes wake the body up with steady, spacious movement. Evenings are quieter: yin, breathwork and long rest. Vanessa adapts every class, so beginners and regulars practise side by side.",
+      "image": "/images/warmyoga.webp",
+      "image_alt": ""
+    },
+    {
+      "label": "The food",
+      "heading": "Food to look forward to.",
+      "text": "Colourful breakfasts, relaxed lunches and suppers that turn into long conversations. Dietary needs are collected when you book and planned for properly.",
+      "image": "/images/blog/flow-to-freedom-with-us-on-retreat.webp",
+      "image_alt": ""
+    }
+  ],
+  "band": {
+    "image": "/images/retreat-coast.jpg",
+    "image_alt": "",
+    "line": "Five days by the sea, *with nowhere else to be.*"
+  },
+  "day": {
+    "heading": "Enough shape. Plenty of freedom.",
+    "intro": "A typical day. Join what you like, skip what you don't.",
+    "timeline": [
+      {
+        "time": "7:30",
+        "activity": "Tea, coffee and fruit on the terrace"
+      },
+      {
+        "time": "8:00",
+        "activity": "Morning flow, 90 minutes"
+      },
+      {
+        "time": "10:00",
+        "activity": "Long breakfast together"
+      },
+      {
+        "time": "11:30",
+        "activity": "Free time or the day's planned trip"
+      },
+      {
+        "time": "18:00",
+        "activity": "Yin and breathwork as the sun drops"
+      },
+      {
+        "time": "20:00",
+        "activity": "Supper around the long table"
+      }
+    ],
+    "note": "Exact times may shift with the weather and the group."
+  },
+  "included": {
+    "yes": [
+      "Five nights in the villa",
+      "Two yoga sessions a day",
+      "Breakfast, lunch and dinner",
+      "Private boat day with lunch",
+      "Airport transfers from Palma",
+      "Mats, bolsters and blocks",
+      "Welcome pack and journal",
+      "WhatsApp group before you go"
+    ],
+    "no": [
+      "Flights to Palma",
+      "Travel insurance (required)",
+      "Massages and treatments",
+      "Alcohol and personal spending"
+    ]
+  },
+  "rooms": {
+    "heading": "Choose your room.",
+    "intro": "Every price is per person and covers everything in the included list.",
+    "items": [
+      {
+        "name": "Shared twin",
+        "price": 1150,
+        "description": "Two single beds, shared with one other guest. Come with a friend or we'll pair you up.",
+        "image": "/images/vfy3.webp",
+        "image_alt": "",
+        "full": false,
+        "most_booked": false
+      },
+      {
+        "name": "Double for two",
+        "price": 1250,
+        "description": "A double bed for couples or close friends sharing.",
+        "image": "/images/vfy1.webp",
+        "image_alt": "",
+        "full": false,
+        "most_booked": true
+      },
+      {
+        "name": "Private room",
+        "price": 1450,
+        "description": "Your own room and your own space.",
+        "image": "/images/vfy4.webp",
+        "image_alt": "",
+        "full": true,
+        "most_booked": false
+      }
+    ],
+    "deposit": "£300 deposit",
+    "balance": "Balance due by 6 March 2027"
+  },
+  "host": {
+    "heading": "Hosted by *Vanessa.*",
+    "text": "The same warmth and down-to-earth teaching people know from the Clitheroe studio, with more time to enjoy it. Vanessa holds the shape of each day and gives everyone permission to choose what they need from it.\n\nShe'll be with the group for the whole retreat, from airport pickup to the last goodbye.",
+    "image": "/images/staff/vanessa.jpg",
+    "image_alt": "Vanessa, founder of Vanessa Flow Yoga"
+  },
+  "reviews": [
+    {
+      "quote": "Sample review. A guest's words about a past retreat go here, in their own voice.",
+      "name": "Sample guest",
+      "retreat": "Past retreat"
+    },
+    {
+      "quote": "I came on my own and was nervous. By lunch on the first day it felt like I'd known everyone for years.",
+      "name": "Sample guest",
+      "retreat": "Past retreat"
+    },
+    {
+      "quote": "The food, the yoga, the people. I came home properly rested for the first time in ages.",
+      "name": "Sample guest",
+      "retreat": "Past retreat"
+    }
+  ],
+  "travel": [
+    {
+      "heading": "Fly to Palma",
+      "text": "Direct flights from Manchester and Liverpool, about 2 hours 30. We'll share suggested flights once you book."
+    },
+    {
+      "heading": "Transfers included",
+      "text": "Shared pickup from Palma airport at set times on arrival and departure day. Around an hour to the villa."
+    },
+    {
+      "heading": "Arrive by 3pm",
+      "text": "Check-in from 3pm on Sunday, welcome circle at 6pm. Check-out 11am on Friday."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I book?",
+      "answer": "Fill in the Save my spot form at the bottom of this page. Vanessa will get in touch personally to answer your questions, confirm your room and arrange your deposit."
+    },
+    {
+      "question": "Can I come on my own?",
+      "answer": "Yes. Most guests do."
+    },
+    {
+      "question": "Do I need yoga experience?",
+      "answer": "No. Vanessa teaches in layers, so complete beginners and regular students practise together comfortably."
+    },
+    {
+      "question": "Can you cater for dietary needs?",
+      "answer": "Yes, with notice. Mention them in the form and Vanessa will plan for them."
+    }
+  ],
+  "enquiry": {
+    "heading": "Save your spot.",
+    "intro": "Send your details and Vanessa will be in touch personally. She'll talk you through the rooms, answer your questions and hold your place while you decide."
+  },
+  "thank_you": {
+    "heading": "Your spot is saved. *That's with Vanessa.*",
+    "message": "Thank you for saying yes. Vanessa reads every one of these herself and will be in touch personally by email or phone."
+  }
+}

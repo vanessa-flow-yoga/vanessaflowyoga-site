@@ -24,7 +24,7 @@ function injectPopup(folder) {
   for (const entry of fs.readdirSync(folder, {withFileTypes:true})) {
     const file = path.join(folder,entry.name);
     if (entry.isDirectory()) injectPopup(file);
-    else if (entry.name.endsWith('.html') && !['404.html','thankyou.html','thanks.html','retreat-thank-you.html'].includes(entry.name)) {
+    else if (entry.name.endsWith('.html') && !['404.html','thankyou.html','thanks.html','retreat-thank-you.html','retreat-sample.html'].includes(entry.name)) {
       const html = fs.readFileSync(file,'utf8');
       fs.writeFileSync(file,html.replace(/<\/head>/i,'<link rel="stylesheet" href="/site-popup.css">\n<script src="/site-popup.js" defer></script>\n</head>'));
     }

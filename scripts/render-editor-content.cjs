@@ -338,5 +338,19 @@ const retreatPage = require('../shared/retreat-page.cjs');
     image: (live && live.data.hero.image) || '/images/retreat-coast.jpg',
     path: retreatPage.THANK_YOU_PATH, noindex: true,
   }));
+  // Temporary design sample for owner review: /retreat-sample (noindex, unlinked).
+  // Delete content/retreat-sample.json to remove it.
+  const sampleFile = path.join(root, 'content/retreat-sample.json');
+  if (fs.existsSync(sampleFile)) {
+    const sample = JSON.parse(fs.readFileSync(sampleFile, 'utf8'));
+    const error = retreatPage.validate(sample);
+    if (error) throw new Error(`Retreat sample: ${error}`);
+    const view = retreatPage.render(sample);
+    const note = '<div class="rt-sample-note" role="note">Sample page for review. All wording and photos are placeholders.</div>';
+    fs.writeFileSync(path.join(out, 'retreat-sample.html'), page(view.main.replace('<main id="main" class="rt">', () => '<main id="main" class="rt">\n' + note), {
+      ...view, title: 'Sample · ' + view.title, path: '/retreat-sample', noindex: true,
+    }));
+    console.log('Retreat page: built the design sample at /retreat-sample');
+  }
   console.log(live ? `Retreat page: showing ${live.slug} at /retreats` : 'Retreat page: no retreat ticked to show, keeping the teaser at /retreats');
 }
