@@ -102,7 +102,10 @@ export async function runAudit({site=SITE,admin=ADMIN}={}) {
   await parallel([...external],30,async url=>{const check=await probe(url);add('links',`External ${new URL(url).hostname}`,check.ok?'pass':check.warning||!check.status?'warn':'fail',check.detail||`HTTP ${check.status}`,url)})
   for(const name of FORMS){const entry=forms.get(name);const found=!!entry&&new RegExp(`name=["']form-name["'][^>]*value=["']${name}["']`,'i').test(entry.markup);add('forms',`${name} form recognised`,found?'pass':'fail',entry?.pathname||'Not found')}
   const retreat=pageData.find(page=>page.pathname==='/retreats.html'||page.pathname==='/retreats');
-  add('forms','Retreat Momence lead form configured',retreat?.html.includes('id="momence-plugin-lead-form"')&&retreat.html.includes('source_id="')?'pass':'fail','Submission and receipt in Momence require a real test',site+'/retreats');
+  // /retreats carries either the teaser's Momence lead form or, while a retreat is live, the Save my spot form.
+  const retreatLive=!!retreat&&/name=["']form-name["'][^>]*value=["']retreat-enquiry["']/i.test(retreat.html);
+  if(retreatLive)add('forms','Retreat Save my spot form configured',/data-netlify=["']true["']/i.test(retreat.html)?'pass':'fail','Submission and email receipt require a real test',site+'/retreats');
+  else add('forms','Retreat Momence lead form configured',retreat?.html.includes('id="momence-plugin-lead-form"')&&retreat.html.includes('source_id="')?'pass':'fail','Submission and receipt in Momence require a real test',site+'/retreats');
   for(const asset of library?.assets||[])images.add(site+asset.path)
   await parallel([...images],30,async url=>{const check=await probe(url);add('media',pagePath(url),check.ok?'pass':'fail',check.detail||`HTTP ${check.status}`,url)})
   const behold=pageData.map(page=>/data-behold-url=["'](https:\/\/feeds\.behold\.so\/[^"']+)["']/i.exec(page.html)?.[1]).find(Boolean)

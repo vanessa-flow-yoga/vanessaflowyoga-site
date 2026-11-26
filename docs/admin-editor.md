@@ -45,11 +45,46 @@ are permitted. Custom JavaScript and HTML are never executed. The generated form
 remains held until functional cookie consent. Preview renders the unsaved video,
 copy and form settings together; no enquiry is submitted automatically.
 
-The general page cannot be replaced automatically by an individual retreat.
-Individual-retreat routing/design remains a separate follow-up. Verify real
-video upload/publish and Momence lead receipt after sign-in; builds and tests do
-not prove those external flows.
+While a retreat is ticked to show (see "Retreat landing page" below) it replaces
+this teaser at /retreats; the teaser returns when that retreat is unticked or
+marked fully booked. Verify real video upload/publish and Momence lead receipt
+after sign-in; builds and tests do not prove those external flows.
 
+
+## Retreat landing page (26 November 2026)
+
+Upcoming retreats builds a full retreat landing page. Content lives in
+`content/retreats/<slug>.json`, **schema 2.0**, defined in `shared/retreat-page.cjs`
+(the single source of truth for the shape, limits, validation and rendering, shared
+by the build, the admin editor and server-side save validation). Schema 1.0 was
+never rendered or published; the build skips 1.0 files with a warning and the
+admin refuses to save or open them.
+
+The editor has 14 numbered sections in page order. Simple lists (for-you points,
+included, not included, timeline) are one textarea with one item per line;
+the timeline uses `time | activity`. Rooms, photos, reviews and questions are
+cards with their own add buttons. `*stars*` colour words in headings. Empty
+sections are hidden on the page.
+
+Switching: `/retreats` shows the retreat when **Show this retreat on the retreats
+page** is ticked and **Fully booked** is not. Otherwise the general teaser stays.
+If several are ticked, the first by file name wins and the build logs a warning.
+There are no date-based switches, because the site only rebuilds when something
+is published. **Last few places** adds a yellow banner. A room ticked full is
+greyed out and removed from the form.
+
+Form: the Save my spot form is a Netlify Form named `retreat-enquiry` (fields
+retreat, first_name, last_name, email, phone, room, party, message, consent) that
+posts to `/retreat-thank-you`. That thank-you page (noindex, no popup, not in the
+sitemap) is always built and carries a hidden copy of the form, so the form stays
+registered between retreats. Who receives the emails is a Netlify form
+notification setting, not admin content. While a retreat is live, the health
+audit checks for this form instead of the teaser's Momence form.
+
+Testing: `admin-app/tests/retreat-page.test.mjs`. A sample retreat lives in
+`admin-app/tests/fixtures/retreats/`; build with
+`VFY_RETREATS_DIR=admin-app/tests/fixtures/retreats node scripts/build-site.cjs`
+to preview it without touching live content.
 
 ## Legal documents (16 October 2026)
 

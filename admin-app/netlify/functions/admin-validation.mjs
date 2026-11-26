@@ -2,6 +2,7 @@ import checkout from '../../../shared/checkout.cjs'
 import legal from '../../../shared/legal.cjs'
 import popup from '../../../shared/popup.cjs'
 import teaser from '../../../shared/retreat-teaser.cjs'
+import retreatPage from '../../../shared/retreat-page.cjs'
 import YAML from 'yaml'
 
 const pageLimits = {
@@ -32,6 +33,8 @@ export function validateContent(path, text) {
   }
   let value
   try { value = JSON.parse(text) } catch { return 'The content could not be read.' }
+  // Retreat pages use their own schema (2.0); see shared/retreat-page.cjs.
+  if (/^content\/retreats\/[a-z0-9]+(?:-[a-z0-9]+)*\.json$/.test(path)) return retreatPage.validate(value)
   if (value?.schema_version !== '1.0') return 'The content version is missing.'
   if (['content/legal/cancellation.json','content/legal/terms.json'].includes(path)) return legal.validate(value)
   if (path === 'content/popup.json') return popup.validate(value)
@@ -63,12 +66,6 @@ export function validateContent(path, text) {
     for (const [key,max] of Object.entries({eyebrow:45,interest_heading:65,interest_description:240})) { if (typeof value[key] !== 'string' || !value[key].trim() || value[key].length > max) return `Check ${key.replaceAll('_',' ')}.` }
     if (!value.headline?.trim() || value.headline.length>55 || !image(value.hero_image) ||
         !value.intro?.trim() || value.intro.length>270) return 'Complete the retreat headline, introduction and photo.'
-  }
-  if (path.startsWith('content/retreats/')) {
-    if (!value.title?.trim() || value.title.length>58 || !date(value.go_live) || !date(value.end_date) ||
-        value.go_live>value.end_date || (value.hide_after && !date(value.hide_after)) || !image(value.hero_image) ||
-        !url(value.booking_url) || !Array.isArray(value.experiences) || value.experiences.length<3 ||
-        !Array.isArray(value.inclusions) || value.inclusions.length<3) return 'Complete the retreat details, dates, photo, booking link and at least three experiences and inclusions.'
   }
   return null
 }

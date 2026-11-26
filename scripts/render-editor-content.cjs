@@ -280,3 +280,63 @@ for (const page of ['terms','cancellation']) {
   const data=read('content/legal/'+page+'.json');
   fs.writeFileSync(target,replaceRegion(fs.readFileSync(target,'utf8'),'<!-- editor:legal:start -->','<!-- editor:legal:end -->',legal.render(data),page));
 }
+
+// Retreat landing page. /retreats shows the general teaser unless one retreat
+// is ticked "Show this retreat on the retreats page" and not "Fully booked".
+// The retreat thank-you page is always built, and carries a hidden copy of the
+// enquiry form so Netlify keeps the form registered between retreats.
+const retreatPage = require('../shared/retreat-page.cjs');
+{
+  const folder = path.join(root, process.env.VFY_RETREATS_DIR || 'content/retreats');
+  const entries = fs.existsSync(folder) ? fs.readdirSync(folder).filter((name) => name.endsWith('.json')).flatMap((name) => {
+    const data = JSON.parse(fs.readFileSync(path.join(folder, name), 'utf8'));
+    if (data.schema_version !== retreatPage.SCHEMA) { console.warn(`Skipping ${name}: retreat schema ${data.schema_version} is not ${retreatPage.SCHEMA}`); return []; }
+    const error = retreatPage.validate(data);
+    if (error) throw new Error(`Retreat ${name}: ${error}`);
+    return [{slug: name.slice(0, -5), data}];
+  }) : [];
+  const live = retreatPage.pickLive(entries);
+  if (entries.filter((entry) => retreatPage.isLive(entry.data)).length > 1) console.warn(`Several retreats are ticked to show. Showing ${live.slug}.`);
+
+  const teaserFile = path.join(out, 'retreats.html');
+  const teaser = fs.readFileSync(teaserFile, 'utf8');
+  // The retreat page reuses the teaser's head, nav and footer, minus its
+  // own styles and scripts.
+  const removeScript = (html, needle) => {
+    const at = html.indexOf(needle);
+    const start = html.lastIndexOf('<script', at);
+    const end = html.indexOf('</script>', at);
+    if (at < 0 || start < 0 || end < 0) throw new Error(`Retreat page: teaser script "${needle}" not found`);
+    return html.slice(0, start) + html.slice(end + 9).replace(/^\n/, '');
+  };
+  let shell = teaser.replace(/<style>[\s\S]*?<\/style>/, '<link rel="stylesheet" href="/retreat-page.css">');
+  if (shell === teaser) throw new Error('Retreat page: teaser styles not found');
+  for (const needle of ["getElementById('retreat-video')", 'src="/retreat-content.js"', "getElementById('retreat-lead-script')"]) shell = removeScript(shell, needle);
+  shell = shell.replace('<script src="/consent.js" defer></script>', '<script src="/retreat-page.js" defer></script>\n<script src="/consent.js" defer></script>');
+  const page = (main, meta) => {
+    let html = shell.replace(/<main id="main">[\s\S]*<\/main>/, () => main);
+    html = html.replace(/<title>[^<]*<\/title>/, () => `<title>${meta.title}</title>`)
+      .replace(/(<meta name="description" content=")[^"]*"/, (_, a) => `${a}${meta.description}"`)
+      .replace(/(<meta property="og:title" content=")[^"]*"/, (_, a) => `${a}${meta.title}"`)
+      .replace(/(<meta property="og:description" content=")[^"]*"/, (_, a) => `${a}${meta.description}"`)
+      .replace(/(<meta (?:property|name)="(?:og|twitter):image" content=")[^"]+(" data-retreat-share-image>)/g, (_, a, b) => `${a}https://vanessaflowyoga.co.uk${retreatPage.escape(meta.image)}${b}`)
+      .replace('<body class="nav-solid theme-purple retreat-page">', `<body class="nav-solid theme-purple retreat-page${meta.bodyClass || ''}">`);
+    if (meta.path) html = html.replace(/(<link rel="canonical" href=")[^"]+"/, (_, a) => `${a}https://vanessaflowyoga.co.uk${meta.path}"`)
+      .replace(/(<meta property="og:url" content=")[^"]+"/, (_, a) => `${a}https://vanessaflowyoga.co.uk${meta.path}"`);
+    if (meta.noindex) html = html.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">');
+    if (!html.includes(main) || !html.includes('/retreat-page.css')) throw new Error('Retreat page: could not assemble page');
+    return html;
+  };
+
+  if (live) {
+    const view = retreatPage.render(live.data);
+    fs.writeFileSync(teaserFile, page(view.main, view));
+  }
+  fs.writeFileSync(path.join(out, 'retreat-thank-you.html'), page(retreatPage.renderThankYou(live && live.data), {
+    title: 'Thank you · Retreats · Vanessa Flow Yoga',
+    description: 'Thank you. Vanessa will be in touch personally.',
+    image: (live && live.data.hero.image) || '/images/retreat-coast.jpg',
+    path: retreatPage.THANK_YOU_PATH, noindex: true,
+  }));
+  console.log(live ? `Retreat page: showing ${live.slug} at /retreats` : 'Retreat page: no retreat ticked to show, keeping the teaser at /retreats');
+}
