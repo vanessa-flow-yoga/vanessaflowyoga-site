@@ -1,0 +1,259 @@
+{
+  "schema_version": "2.0",
+  "title": "Siesta & Soul Retreat ",
+  "show_on_retreats_page": false,
+  "last_few_places": false,
+  "fully_booked": false,
+  "hero": {
+    "eyebrow": "Five-night yoga & Pilates retreat · Xaló, Spain",
+    "heading": "Siesta & *Soul*",
+    "intro": "Five nights in the Xaló valley with Vanessa and Cara. Sunshine, a pool, an outdoor shala, long evening meals and a proper siesta. Yoga and Pilates available daily and nowhere you need to be.",
+    "image": "/images/retreats/drone-shot-june-6bizl.webp",
+    "image_alt": "photo of villa  surroundings",
+    "video": ""
+  },
+  "facts": {
+    "dates": "30 June to 5 July 2027",
+    "location": "Xaló, Costa Blanca",
+    "length": "5 nights",
+    "price_from": "From £1,450pp"
+  },
+  "invitation": {
+    "heading": "When did you last have a day with *nowhere to be?*",
+    "text": "Siesta & Soul is five nights tucked away among vineyards, olive and almond trees, an hour from Alicante airport and well away from the tourist strip. We'll have a gorgeous traditional villa to ourselves: a small, family-run villa with a pool, a help-yourself bar and an outdoor yoga shala looking out over the hills.\n\nMornings start with movement if you want it. Afternoons are for the pool and a siesta. Evenings are easy, and there's no need to change out of your yoga clothes for dinner.\n\n",
+    "for_you_heading": "This retreat is for you if",
+    "for_you": [
+      "You'd love a week of sunshine, good food and good company",
+      "You want to move every day, with varied options",
+      "You're new to yoga or Pilates, or you've practised for years",
+      "You're coming on your own (plenty of people do)",
+      "You'd like to book a shared room with a friend",
+      "You could do with a proper rest before summer really starts"
+    ],
+    "image": "/images/retreats/vanessa-flow-yoga-photo-6ckxm.webp",
+    "image_alt": "lady sat around the pool reading "
+  },
+  "highlights": {
+    "heading": "What we can't wait for.",
+    "cards": [
+      {
+        "heading": "Paella night",
+        "text": "Paella cooked at the villa, live music and a reason to dress up.\n"
+      },
+      {
+        "heading": "Happy Hour Yin",
+        "text": "Long, slow holds in the shade during the the afternoon, then a cool glass of sangria."
+      },
+      {
+        "heading": "A day at the beach",
+        "text": "Sunbeds, sea and lunch out in Moraira."
+      },
+      {
+        "heading": "An evening stroll in Altea",
+        "text": "Wander the old town's white streets, with shopping and dinner out."
+      }
+    ]
+  },
+  "photos": [
+    {
+      "image": "/images/retreats/vanessa-flow-yoga-photo-6dun5.webp",
+      "alt": "Poolside accessories "
+    },
+    {
+      "image": "/images/retreats/vanessa-flow-yoga-photo-6dq5p.webp",
+      "alt": "villa shot"
+    },
+    {
+      "image": "/images/retreats/cuatre-finques-by-night-6e71o.webp",
+      "alt": "nightime villa"
+    },
+    {
+      "image": "/images/retreats/vanessa-flow-yoga-photo-6eo49.webp",
+      "alt": "breakfast view by pool"
+    },
+    {
+      "image": "/images/retreats/vanessa-flow-yoga-photo-6f5t3.webp",
+      "alt": "bedroom glimpse"
+    }
+  ],
+  "stories": [
+    {
+      "label": "Were you stay",
+      "heading": "A villa that's *ours for the week*",
+      "text": "Cuatre Finques is a small, family-run villa in the Xaló valley, with nine en-suite rooms, a pool and gardens full of olive and almond trees. We have the whole place to ourselves. Each room has a sun hat, beach bag and pool towels waiting for you to use during your stay, and there's a little honesty bar for when the sun goes down.\n",
+      "image": "/images/retreats/a-bright-en-suite-bedroom-at-cuatre-finques-6ftgb.webp",
+      "image_alt": "A bright en-suite bedroom at Cuatre Finques with a view of the garden"
+    },
+    {
+      "label": "The yoga",
+      "heading": "Slow and spicy, *sun and shade*",
+      "text": "Vanessa's yoga and Cara's Pilates are made to work as a pair. Expect a gentle Land and Arrive practice, Happy Hour Yin, a sleepy Yoga Nidra after the beach and a two-hour Cayenne Mandala. Cara brings Sunrise Core, Spicy HIIT Pilates, Flamenco Barre and Fiesta Full Body. Every class is optional and all levels are welcome.\n",
+      "image": "",
+      "image_alt": ""
+    },
+    {
+      "label": "The food",
+      "heading": "Long lunches and *slow suppers*",
+      "text": "Breakfast every morning, plus three lunches and four dinners at the villa, all made fresh in the villa kitchen. There's a tapas night, a light salad lunch by the pool and paella night with live music. Tea, coffee and water are there all day. Lunch on the beach day and dinner in Altea are out and about, so you can choose what you fancy.\n",
+      "image": "/images/retreats/vanessa-flow-yoga-photo-6g8xm.webp",
+      "image_alt": ""
+    }
+  ],
+  "band": {
+    "image": "/images/retreats/sun-loungers-beside-the-pool-at-cuatre-finques-6lxvu.webp",
+    "image_alt": "Sun loungers beside the pool at Cuatre Finques in the afternoon light",
+    "line": "Move in the morning. *Siesta in the afternoon.*"
+  },
+  "day": {
+    "heading": "Enough shape. Plenty of freedom.",
+    "intro": "A typical day. Join what you like, skip what you don't.",
+    "timeline": [
+      {
+        "time": "7:30",
+        "activity": "Flamenco Barre with Cara"
+      },
+      {
+        "time": "8:30",
+        "activity": "Breakfast on the terrace"
+      },
+      {
+        "time": "10:30",
+        "activity": "Stroll to the Xaló flea market"
+      },
+      {
+        "time": "14:00",
+        "activity": "Late lunch at the villa"
+      },
+      {
+        "time": "15:00",
+        "activity": "Pool, siesta or a massage"
+      },
+      {
+        "time": "18:00",
+        "activity": "Cayenne Mandala with Vanessa"
+      },
+      {
+        "time": "20:30",
+        "activity": "Relaxed tapas dinner"
+      }
+    ],
+    "note": "This is an example. Each day is a little different and every class is optional."
+  },
+  "included": {
+    "yes": [
+      "Five nights in an en-suite room at Cuatre Finques",
+      "Whole-villa exclusive use, with pool and outdoor shala",
+      "Breakfast every day",
+      "Three lunches and four dinners at the villa",
+      "Paella night with live music",
+      "All yoga, Pilates and barre classes",
+      "Happy Hour Yin with sangria",
+      "Sun hat, beach bag and pool towels to use in your room",
+      "Tea, coffee and water all day",
+      "Help booking our recommended retreat flight"
+    ],
+    "no": [
+      "Flights",
+      "Airport transfers (shared minibus you can join)",
+      "Lunch on the beach day and dinner in Altea",
+      "Your share of the minibus to the beach and Altea",
+      "Massages (Thursday and Saturday afternoons)",
+      "Drinks from the villa bar",
+      "Travel insurance"
+    ]
+  },
+  "rooms": {
+    "heading": "Choose your room.",
+    "intro": "Every price is per person and covers everything in the included list.",
+    "items": [
+      {
+        "name": "Olivera, Our four-poster room",
+        "price": 2250,
+        "description": "A four-poster bed and its own dressing room. Our most special room, just for you.\nEarly bird £2,250 · Standard £2,500",
+        "image": "/images/retreats/vanessa-flow-yoga-photo-6gxna.webp",
+        "image_alt": "four poster bed ",
+        "full": false,
+        "most_booked": false
+      },
+      {
+        "name": "Single en-suite room",
+        "price": 1950,
+        "description": "Your own room and bathroom, with a sun hat, beach bag and pool towels waiting.\nEarly bird £1,950 · Standard £2,150\n",
+        "image": "/images/retreats/vanessa-flow-yoga-photo-6hdxp.webp",
+        "image_alt": "double bed",
+        "full": false,
+        "most_booked": true
+      },
+      {
+        "name": "Shared twin, book with a friend",
+        "price": 1600,
+        "description": "Two beds, one bathroom and someone to share the week with. Price per person.\nEarly bird £1,450 pp · Standard £1,600 pp\n",
+        "image": "/images/retreats/vanessa-flow-yoga-photo-6je9v.webp",
+        "image_alt": "",
+        "full": false,
+        "most_booked": false
+      }
+    ],
+    "deposit": "£300",
+    "balance": "Balance due by Monday 26 April 2027"
+  },
+  "host": {
+    "heading": "Hosted by *Vanessa & Cara.*",
+    "text": "Vanessa has run V Flow Yoga Studio in Clitheroe for six years and this is her next retreat after Ibiza and Greece. Her yoga classes are always themed, warm and welcoming, whatever your level.\n\nCara teaches Pilates and barre at V Flow Yoga. Her classes are upbeat, with plenty of focus on core and posture, and a good playlist.\n\nYou'll be looked after from the moment you land.",
+    "image": "/images/staff/vanessa.jpg",
+    "image_alt": "Vanessa, founder of Vanessa Flow Yoga"
+  },
+  "reviews": [],
+  "travel": [
+    {
+      "heading": "Fly to Alicante",
+      "text": "We'll recommend one retreat flight there and back from Manchester, so we can travel together if you like. Book it yourself once your place is confirmed.\n"
+    },
+    {
+      "heading": "Shared minibus",
+      "text": "We'll arrange a minibus to meet the retreat flight. It's about an hour to the villa. You pay your share separately, nearer the time.\n"
+    },
+    {
+      "heading": "Arrive from 3pm",
+      "text": "Check-in is from 3pm on Wednesday 30 June, with our first yoga class at 5pm. Check-out is by 11am on Monday 5 July."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I book?",
+      "answer": "Fill in the Save my spot form below. Vanessa will be in touch personally to talk you through the rooms and send the payment details."
+    },
+    {
+      "question": "How do I pay?",
+      "answer": "A £300 non-refundable deposit secures your place. Pay the rest in full, or in two equal payments by 26 February and 26 April 2027. All payments are by bank transfer.\n"
+    },
+    {
+      "question": "When does the early bird end?",
+      "answer": "Sunday 31 January 2027."
+    },
+    {
+      "question": "Can I come on my own?",
+      "answer": "Yes, and plenty of people do. Most rooms are singles, so you'll have your own space and a ready-made group to share the week with."
+    },
+    {
+      "question": "I'm new to yoga and Pilates. Is that okay?",
+      "answer": "Absolutely. Every class is for all levels and every class is optional, so you can join in as much or as little as you like."
+    },
+    {
+      "question": "Can I give a place as a gift?",
+      "answer": "Yes. A place on Siesta & Soul makes a lovely Christmas present. Get in touch and we'll help you arrange it.\n"
+    },
+    {
+      "question": "Are flights included?",
+      "answer": "No. We'll recommend a flight from Manchester and arrange a shared minibus from Alicante airport that you can join."
+    }
+  ],
+  "enquiry": {
+    "heading": "Save your spot.",
+    "intro": "Send your details and Vanessa will be in touch personally. She'll talk you through the rooms, answer your questions and hold your place while you decide."
+  },
+  "thank_you": {
+    "heading": "Your spot is saved. *That's with Vanessa & Cara.*",
+    "message": "Thank you for saying yes. Vanessa reads every one of these herself and will be in touch personally by email or phone."
+  }
+}
