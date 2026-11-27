@@ -2,18 +2,18 @@
   "schema_version": "1.0",
   "tiles": [
     {
-      "id": "workshop-of-the-month",
+      "id": "studio-news",
       "size": "big",
-      "kind": "event",
-      "tag": "Workshop of the month",
-      "headline": "🧙‍♀️Yin Yoga: Harry Potter Edition 🪄✨",
-      "sub": "Saturday 21st of November, 7-8:30pm",
-      "body": "The studio becomes Hogwarts Great Hall after dark. The soundtrack will play softly while you settle into a slow, cosy Yin practice. Expect long, supported holds, plenty of blankets and no wands required.",
+      "kind": "news",
+      "tag": "Christmas Classes",
+      "headline": "Practice through the festivities!",
+      "sub": "Open between Christmas & New Year!",
+      "body": "We close for Christmas after classes on MON 21 Dec, then we're back on SUN 27 Dec for a few cosy classes between Christmas and New Year. Perfect for shaking off the mince pies. Full timetable returns on SAT 2 Jan.",
       "cta": "Learn More",
-      "href": "https://momence.com/l/Lbh5yBJx",
-      "image": "/images/1793378113435-harry-potter-yin-yoga-1920-x-1080-px-1-copy.png",
+      "href": "https://momence.com/u/vanessa-flow-yoga",
+      "image": "/images/practice-through-the-festivities-4349n.webp",
       "colour": "purple",
-      "expires": "2026-11-21"
+      "expires": "2027-01-01"
     },
     {
       "id": "top-class",
